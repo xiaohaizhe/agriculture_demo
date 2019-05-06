@@ -54,18 +54,18 @@ province_city = {"北京": [], "天津": [], "上海": [], "重庆": [], "香港
 def get_province(s):
     p = ''
     if '省' in s:
-        print("省1")
+        # print("省1")
         ss = s.split('省')
         if p in ss[0]:
             p = ss[0]
     else:
         for pro in province:
             if pro in s:
-                print("省2")
+                # print("省2")
                 p = pro
                 break
         if p == '':
-            print("市")
+            # print("市")
             p = get_province_by_city(s)
     return p
 
@@ -77,6 +77,6 @@ def get_province_by_city(s):
         for city in citys:
             if city in s:
                 p = key
-                print(key+'-'+city)
+                # print(key+'-'+city)
                 break
     return p

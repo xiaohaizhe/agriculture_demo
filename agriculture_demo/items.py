@@ -29,6 +29,7 @@ class MofcomItem(scrapy.Item):
     province = scrapy.Field()
 
 
+# 图片
 class ImageItem(scrapy.Item):
     # 文件夹名称
     file_name = scrapy.Field()
@@ -55,6 +56,7 @@ class NmcItem(scrapy.Item):
     image_urls = scrapy.Field()
 
 
+# 病虫害新闻
 class NatescItem(scrapy.Field):
     # 标题
     title = scrapy.Field()
@@ -85,6 +87,7 @@ class CfvinItem(scrapy.Field):
     content = scrapy.Field()
 
 
+# 苹果交易所价格
 class AppleZhengzhouItem(scrapy.Item):
     # 时间
     date = scrapy.Field()
@@ -110,3 +113,37 @@ class AppleZhengzhouItem(scrapy.Item):
     open_interest = scrapy.Field()
     # 成交额
     turnover = scrapy.Field()
+
+
+# 苹果价格
+class AppleAgronetItem(scrapy.Item):
+    # 日期
+    date = scrapy.Field()
+    # 品种
+    variety = scrapy.Field()
+    # 批发市场
+    terminal_market = scrapy.Field()
+    # 最高价
+    top_price = scrapy.Field()
+    # 最低价
+    bottom_price = scrapy.Field()
+    # 均价
+    average_price = scrapy.Field()
+    # 计量单位
+    measurement_unit = scrapy.Field()
+    # 省份
+    province = scrapy.Field()
+
+
+# 作物病虫害数据库
+class DiseasesOrPests(scrapy.Item):
+    # 一级目录
+    first_level  = scrapy.Field()
+    # 二级目录
+    second_level = scrapy.Field()
+    # 病害/虫害
+    type = scrapy.Field()
+    # 病虫害名称
+    name = scrapy.Field()
+    # html详情
+    html = scrapy.Field()

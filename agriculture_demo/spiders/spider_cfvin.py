@@ -22,7 +22,7 @@ class SpiderCfvinSpider(scrapy.Spider):
         article_title = result.xpath(".//div[@class='fl article-time']")
         date = article_title.xpath(".//span[1]/text()").extract_first()
         date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-        if (datetime.now() - date).days < 0:
+        if (datetime.now() - date).days < 13:
             cfvinItem = CfvinItem()
             cfvinItem['date'] = date
             cfvinItem['title'] = result.xpath(".//h1/text()").extract_first()

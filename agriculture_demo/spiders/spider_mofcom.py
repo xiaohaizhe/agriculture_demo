@@ -10,6 +10,8 @@ yesterday = (date.today() + timedelta(days=-1)).strftime('%Y-%m-%d')
 global page
 page = 1
 starttime = yesterday
+# starttime = "2019-04-28"
+# yesterday = "2019-05-06"
 
 
 

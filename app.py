@@ -10,8 +10,8 @@ from scrapy.utils.project import get_project_settings
 from twisted.internet import reactor
 
 from log import Logger
-from mongodb import query_by_type, get_price_analyse, query_by_date, get_natesc_newsList, get_precipitation, \
-    get_latest_forecast_and_assessment, get_cfvin_newsList
+from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, get_precipitation, \
+    get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, get_apple_price_analyse, apple_futures_data
 
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def process():
     # 创建并启动子进程
     mp = Process(target=run_spider, args=(
         ["spider_mofcom", "spider_nmc_forecast_and_assessment", "spider_nmc_precipitation", "spider_natesc",
-         "spider_cfvin"],))
+         "spider_cfvin", "spider_zhengzhou", "spider_agronet"],))
     mp.start()
     mp.join()
 
@@ -48,6 +48,15 @@ class Config(object):
     ]
 
     SCHEDULER_API_ENABLED = True
+
+@app.route('/api/apple/apple_futures_data', methods=['GET'])
+def apple_price():
+    response = {}
+    result = apple_futures_data()
+    response['code'] = 0
+    response['msg'] = '成功'
+    response['data'] = result
+    return jsonify(response)
 
 
 @app.route('/orders/<int:order_id>', methods=['GET'])
@@ -66,7 +75,7 @@ def get_order_id(order_id):
 
 
 @app.route('/api/strawberry/get_price_detail', methods=['GET'])
-def get_price_detail():
+def strawberry_price_detail():
     response = {}
     try:
         sdate = request.values.get('sdate')
@@ -79,7 +88,7 @@ def get_price_detail():
     else:
         sdate = datetime.datetime.strptime(sdate, '%Y-%m-%d')
         edate = datetime.datetime.strptime(edate, '%Y-%m-%d')
-        result = query_by_date(sdate, edate, page, number)
+        result = strawberry_query_by_date(sdate, edate, page, number)
         response['code'] = 0
         response['msg'] = '成功'
         response['data'] = result['data']
@@ -88,17 +97,48 @@ def get_price_detail():
     return jsonify(response)
 
 
+@app.route('/api/apple/get_price_detail', methods=['GET'])
+def apple_price_detail():
+    response = {}
+    try:
+        sdate = request.values.get('sdate')
+        edate = request.values.get('edate')
+        page = int(request.values.get('page'))
+        number = int(request.values.get('number'))
+    except TypeError:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        sdate = datetime.datetime.strptime(sdate, '%Y-%m-%d')
+        edate = datetime.datetime.strptime(edate, '%Y-%m-%d')
+        result = apple_query_by_date(sdate, edate, page, number)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result['data']
+        response['page_size'] = result['page_size']
+        response['total_elements'] = result['total_elements']
+    return jsonify(response)
+
 @app.route('/api/strawberry/get_price_analyse', methods=['POST', 'GET'])
 def price_analyse():
     response = {}
-    result = get_price_analyse()
+    result = get_strawberry_price_analyse()
+    response['code'] = 0
+    response['msg'] = '成功'
+    response['data'] = result
+    return jsonify(response)
+
+@app.route('/api/apple/get_price_analyse', methods=['POST', 'GET'])
+def apple_price_analyse():
+    response = {}
+    result = get_apple_price_analyse()
     response['code'] = 0
     response['msg'] = '成功'
     response['data'] = result
     return jsonify(response)
 
 
-@app.route('/api/pd&ip/newsList', methods=['GET'])
+@app.route('/api/plant_diseases_and_insect_pests/newsList', methods=['GET'])
 def get_plant_diseases_and_insect_pests_news():
     response = {}
     try:
