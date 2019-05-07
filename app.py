@@ -10,8 +10,9 @@ from scrapy.utils.project import get_project_settings
 from twisted.internet import reactor
 
 from log import Logger
-from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, get_precipitation, \
-    get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, get_apple_price_analyse, apple_futures_data
+from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, \
+    get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
+    get_apple_price_analyse, apple_futures_data
 
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
@@ -32,7 +33,7 @@ def process():
     # 创建并启动子进程
     mp = Process(target=run_spider, args=(
         ["spider_mofcom", "spider_nmc_forecast_and_assessment", "spider_nmc_precipitation", "spider_natesc",
-         "spider_cfvin", "spider_zhengzhou", "spider_agronet"],))
+         "spider_cfvin", "spider_zhengzhou", "spider_agronet"]))
     mp.start()
     mp.join()
 
@@ -49,7 +50,8 @@ class Config(object):
 
     SCHEDULER_API_ENABLED = True
 
-@app.route('/api/apple/apple_futures_data', methods=['GET'])
+
+@app.route('/api/apple/apple_futures_data', methods=['GET','POST'])
 def apple_price():
     response = {}
     result = apple_futures_data()
@@ -59,19 +61,20 @@ def apple_price():
     return jsonify(response)
 
 
-@app.route('/orders/<int:order_id>', methods=['GET'])
-def get_order_id(order_id):
-    print(type(order_id))
-    # date = '2019-04-11'
-    # result = query(date)
-    # market = '江苏'
-    # result = query_by_market(market)
-    # sdate = datetime.datetime.strptime("2019-04-10", '%Y-%m-%d')
-    # edate = datetime.datetime.strptime("2019-04-16", '%Y-%m-%d')
-    # result = query_by_date(sdate, edate, 1, 2)
-    t = '农业气象月报'
-    result = query_by_type(t)
-    return jsonify(result)
+#
+# @app.route('/orders/<int:order_id>', methods=['GET'])
+# def get_order_id(order_id):
+#     print(type(order_id))
+#     # date = '2019-04-11'
+#     # result = query(date)
+#     # market = '江苏'
+#     # result = query_by_market(market)
+#     # sdate = datetime.datetime.strptime("2019-04-10", '%Y-%m-%d')
+#     # edate = datetime.datetime.strptime("2019-04-16", '%Y-%m-%d')
+#     # result = query_by_date(sdate, edate, 1, 2)
+#     t = '农业气象月报'
+#     result = query_by_type(t)
+#     return jsonify(result)
 
 
 @app.route('/api/strawberry/get_price_detail', methods=['GET'])
@@ -119,6 +122,7 @@ def apple_price_detail():
         response['total_elements'] = result['total_elements']
     return jsonify(response)
 
+
 @app.route('/api/strawberry/get_price_analyse', methods=['POST', 'GET'])
 def price_analyse():
     response = {}
@@ -127,6 +131,7 @@ def price_analyse():
     response['msg'] = '成功'
     response['data'] = result
     return jsonify(response)
+
 
 @app.route('/api/apple/get_price_analyse', methods=['POST', 'GET'])
 def apple_price_analyse():
@@ -167,7 +172,7 @@ def precipitation():
     return jsonify(response)
 
 
-@app.route('/api/nmc/get_latest_forecast_and_assessment', methods=['GET'])
+@app.route('/api/forecast_and_assessment/get_latest_forecast_and_assessment', methods=['GET'])
 def latest_forecast_and_assessment():
     result = get_latest_forecast_and_assessment()
     response = {}
@@ -177,7 +182,7 @@ def latest_forecast_and_assessment():
     return jsonify(response)
 
 
-@app.route('/api/cfvin/newsList', methods=['GET'])
+@app.route('/api/strawberry_market_news/newsList', methods=['GET'])
 def cfvin_newsList():
     response = {}
     try:
@@ -194,6 +199,12 @@ def cfvin_newsList():
         response['page_size'] = result['page_size']
         response['total_elements'] = result['total_elements']
     return jsonify(response)
+
+
+# @app.route('/api/deal_with_plant_diseases_and_insect_pests_data', methods=['GET'])
+# def deal_with_dpdata():
+#     deal_with_data()
+#     return "1"
 
 
 if __name__ == '__main__':

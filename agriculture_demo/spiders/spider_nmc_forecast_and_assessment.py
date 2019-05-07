@@ -48,7 +48,7 @@ class SpiderNmcSpider(scrapy.Spider):
                         imageItem = ImageItem()
                         imageItem['file_name'] = 'forecast_and_assessment'
                         imageItem['image_url'] = image_url
-                        imageItem['image_name'] = today + '_' + str(count)
+                        imageItem['image_name'] = date_s.strip() + '_' + str(count)
                         count += 1
                         yield imageItem
                         image_urls_r.append(image_url)

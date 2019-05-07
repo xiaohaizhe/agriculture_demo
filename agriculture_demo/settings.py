@@ -70,7 +70,7 @@ IMAGES_EXPIRES = 90  # 90天内抓取的都不会被重抓
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'agriculture_demo.pipelines.AgricultureDemoPipeline': 300,
+    # 'agriculture_demo.pipelines.AgricultureDemoPipeline': 300,
     'agriculture_demo.pipelines.MofcomPipeline': 301,
     'agriculture_demo.pipelines.NatescPipeline': 302,
     'agriculture_demo.pipelines.ImagePipeline': 303,
@@ -106,3 +106,5 @@ ITEM_PIPELINES = {
 mongo_host = '127.0.0.1'
 mongo_port = 27017
 mongo_db_name = 'agriculture_demo'
+user = 'agri_demo_user'
+password = '123456'

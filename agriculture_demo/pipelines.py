@@ -5,7 +5,7 @@ from scrapy.pipelines.images import ImagesPipeline
 
 from agriculture_demo.items import MofcomItem, ImageItem, NmcItem, NatescItem, Precipitation, CfvinItem, \
     AppleZhengzhouItem, AppleAgronetItem, DiseasesOrPests
-from agriculture_demo.settings import mongo_host, mongo_port, mongo_db_name
+from agriculture_demo.settings import mongo_host, mongo_port, mongo_db_name, user, password
 
 
 # Define your item pipelines here
@@ -28,12 +28,18 @@ class MofcomPipeline(object):
         collection = 'strawberry_price'
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
         if isinstance(item, MofcomItem):
-            data = dict(item)
-            self.post.insert(data)
+            date = item['date']
+            market = item['market']
+            isValid = self.post.find(
+                {"date": date, "market": market}).count()
+            if isValid == 0:
+                data = dict(item)
+                self.post.insert(data)
         return item
 
 
@@ -42,15 +48,21 @@ class NmcPipeline(object):
         host = mongo_host
         port = mongo_port
         dbname = mongo_db_name
-        collection = 'nmc'
+        collection = 'forecast_and_assessment'
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
         if isinstance(item, NmcItem):
-            data = dict(item)
-            self.post.insert(data)
+            date = item['date']
+            title = item['title']
+            isValid = self.post.find(
+                {"date": date, "title": title}).count()
+            if isValid == 0:
+                data = dict(item)
+                self.post.insert(data)
         return item
 
 
@@ -62,6 +74,7 @@ class NatescPipeline(object):
         collection = 'pest_news'
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
@@ -84,12 +97,17 @@ class PrecipitationPipeline(object):
         collection = 'precipitation'
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
         if isinstance(item, Precipitation):
-            data = dict(item)
-            self.post.insert(data)
+            date = item['date']
+            isValid = self.post.find(
+                {"date": date}).count()
+            if isValid == 0:
+                data = dict(item)
+                self.post.insert(data)
         return item
 
 
@@ -101,12 +119,18 @@ class CfvinPipeline(object):
         collection = 'strawberry_market_news'
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
         if isinstance(item, CfvinItem):
-            data = dict(item)
-            self.post.insert(data)
+            date = item['date']
+            title = item['title']
+            isValid = self.post.find(
+                {"date": date, "title": title}).count()
+            if isValid == 0:
+                data = dict(item)
+                self.post.insert(data)
         return item
 
 
@@ -118,6 +142,7 @@ class AppleZhengzhouPipeline(object):
         collection = "apple_zhengzhou"
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
@@ -126,7 +151,7 @@ class AppleZhengzhouPipeline(object):
             variety_month = item['variety_month']
             isValid = self.post.find(
                 {"date": date, "variety_month": variety_month}).count()
-            if isValid==0:
+            if isValid == 0:
                 data = dict(item)
                 self.post.insert(data)
         return item
@@ -140,6 +165,7 @@ class AppleAgronetPipeline(object):
         collection = "apple_price"
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
@@ -163,6 +189,7 @@ class DiseasesOrPestsPipeline(object):
         collection = "diseases_or_pests"
         client = pymongo.MongoClient(host=host, port=port)
         mydb = client[dbname]
+        mydb.authenticate(name=user, password=password)
         self.post = mydb[collection]
 
     def process_item(self, item, spider):
@@ -171,8 +198,9 @@ class DiseasesOrPestsPipeline(object):
             second_level = item['second_level']
             type = item['type']
             name = item['name']
-            isValid = self.post.find({"first_level": first_level, "second_level":second_level, "type":type, "name":name}).count()
-            if isValid==0:
+            isValid = self.post.find(
+                {"first_level": first_level, "second_level": second_level, "type": type, "name": name}).count()
+            if isValid == 0:
                 data = dict(item)
                 self.post.insert(data)
         return item

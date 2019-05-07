@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 import json
 from datetime import datetime, date, timedelta
-
 import pymongo
 from bson import ObjectId
 from dateutil.relativedelta import relativedelta
 from flask import Flask
 from flask_pymongo import PyMongo
-
+import re
 from province_city import province
 
 '''
@@ -20,17 +19,18 @@ from province_city import province
 '''
 app = Flask(__name__)
 app.config.update(
-    MONGO_URI='mongodb://127.0.0.1:27017/agriculture_demo'
+    MONGO_URI='mongodb://agri_demo_user:123456@127.0.0.1:27017/agriculture_demo'
 )
 
 mongo = PyMongo(app)
 mofcom = mongo.db.strawberry_price
-nmc = mongo.db.nmc
-natesc = mongo.db.natesc
+nmc = mongo.db.forecast_and_assessment
+natesc = mongo.db.pest_news
 precipitation = mongo.db.precipitation
 cfvin = mongo.db.strawberry_market_news
 apple_price = mongo.db.apple_price
 apple_zhengzhou = mongo.db.apple_zhengzhou
+dpdata = mongo.db.diseases_or_pests
 
 today = datetime.now().strftime('%Y-%m-%d')
 
@@ -89,24 +89,30 @@ def get_strawberry_price_analyse():
 
 
 def strawberry_price_analyse(range):
-    yesterday = (date.today() + timedelta(days=-1)).strftime('%Y-%m-%d')
-    yesterday = datetime.strptime(yesterday, '%Y-%m-%d')
-    isValid = mofcom.find({"date": yesterday, 'province': {'$regex': range}}).count()
+    result = mofcom.find().sort('date', pymongo.DESCENDING).limit(1)
+    result = json.dumps(result[0], cls=JSONEncoder)
+    result = json.loads(result)
+    date = result['date']
+    print(date)
+    date = datetime.strptime(date, '%Y-%m-%d')
+    isValid = mofcom.find({"date": date, 'province': {'$regex': range}}).count()
     if isValid == 0:
         return None
     else:
-        results1 = mofcom.find({"date": yesterday, 'province': {'$regex': range}})
+        results1 = mofcom.find({"date": date, 'province': {'$regex': range}})
         # 全国昨日均价
         average_yesterday = get_average(results1)
         # print(range + "昨日均价:" + str(average_yesterday))
-        last_year = (date.today() + timedelta(days=-1) - relativedelta(months=12)).strftime('%Y-%m-%d')
-        last_year = datetime.strptime(last_year, '%Y-%m-%d')
+        # last_year = (date.today() + timedelta(days=-1) - relativedelta(months=12)).strftime('%Y-%m-%d')
+        # last_year = datetime.strptime(last_year, '%Y-%m-%d')
+        last_year = date - relativedelta(months=12)
         results2 = mofcom.find({"date": last_year, 'province': {'$regex': range}})
         # 全国昨日同比价格
         average_last_year = get_average(results2)
         # print("全国昨日同比价格:" + str(average_last_year))
-        day_before_yesterday = (date.today() + timedelta(days=-2)).strftime('%Y-%m-%d')
-        day_before_yesterday = datetime.strptime(day_before_yesterday, '%Y-%m-%d')
+        # day_before_yesterday = (date.today() + timedelta(days=-2)).strftime('%Y-%m-%d')
+        # day_before_yesterday = datetime.strptime(day_before_yesterday, '%Y-%m-%d')
+        day_before_yesterday = date + timedelta(days=-1)
         results3 = mofcom.find({"date": day_before_yesterday, 'province': {'$regex': range}})
         # 全国昨日环比价格
         average_day_before_yesterday = get_average(results3)
@@ -127,7 +133,7 @@ def strawberry_price_analyse(range):
             result['province'] = 'nationwide'
         else:
             result['province'] = range
-        result['average_yesterday'] = average_yesterday
+        result['average_latest'] = average_yesterday
         result['day_on_day_rate'] = day_on_day_rate
         result['year_on_year_rate'] = year_on_year_rate
         return result
@@ -204,16 +210,14 @@ def query_by_type(type):
     return r
 
 
+# 最新农业气象预报与评估
 def get_latest_forecast_and_assessment():
     results = nmc.find().sort('date', pymongo.DESCENDING).limit(1)
     r = deal_with_results(results)
     return r
 
 
-# natesc相关方法
-'''病虫害新闻列表'''
-
-
+# 病虫害新闻列表
 def get_natesc_newsList(page, number):
     result = {}
     elements_number = natesc.find().count()
@@ -239,6 +243,7 @@ def get_precipitation():
     return r
 
 
+# 草莓价格市场新闻
 def get_cfvin_newsList(page, number):
     result = {}
     elements_number = cfvin.find().count()
@@ -255,16 +260,18 @@ def get_cfvin_newsList(page, number):
     result['data'] = r
     return result
 
-# 苹果期货
+
+# 苹果期货数据
 def apple_futures_data():
     result = apple_zhengzhou.find().sort('date', pymongo.DESCENDING).limit(1)
     result = json.dumps(result[0], cls=JSONEncoder)
     result = json.loads(result)
     date = result['date']
-    date = datetime.strptime(date,'%Y-%m-%d')
-    result = apple_zhengzhou.find({"date":date})
+    date = datetime.strptime(date, '%Y-%m-%d')
+    result = apple_zhengzhou.find({"date": date})
     result = deal_with_results(result)
     return result
+
 
 # 苹果价格
 def apple_query_by_date(sdate, edate, page, number):
@@ -284,6 +291,7 @@ def apple_query_by_date(sdate, edate, page, number):
     result['data'] = r
     return result
 
+
 def get_apple_price_analyse():
     results = []
     results.append(apple_price_analyse(""))
@@ -294,39 +302,31 @@ def get_apple_price_analyse():
         results.append(r)
     return results
 
-# def deal_with_apple_price():
-#     range = ""
-#     results1 = apple_price.find({'province': {'$regex': range}})
-#     for result in results1:
-#         condition = {'date':result['date'],'variety':result['variety'],'terminal_market':result['terminal_market']}
-#         result['top_price'] = float(result['top_price'])
-#         result['bottom_price'] = float(result['bottom_price'])
-#         result['average_price'] = float(result['average_price'])
-#         apple_price.update_one(condition, {'$set': result})
-
-
 
 def apple_price_analyse(range):
-    yesterday = (date.today() + timedelta(days=-1)).strftime('%Y-%m-%d')
-    yesterday = datetime.strptime(yesterday, '%Y-%m-%d')
-    isValid = apple_price.find({"date": yesterday, 'province': {'$regex': range}}).count()
+    # 获取苹果价格最新数据日期
+    result = apple_price.find().sort('date', pymongo.DESCENDING).limit(1)
+    result = json.dumps(result[0], cls=JSONEncoder)
+    result = json.loads(result)
+    date = result['date']
+    date = datetime.strptime(date, '%Y-%m-%d')
+    isValid = apple_price.find({"date": date, 'province': {'$regex': range}}).count()
+    print("isValid:"+str(isValid))
     if isValid == 0:
         return None
     else:
-        results1 = apple_price.find({"date": yesterday, 'province': {'$regex': range}})
-        # 全国昨日均价
+        results1 = apple_price.find({"date": date, 'province': {'$regex': range}})
+        # 全国最新日期均价
         average_yesterday = get_average_apple(results1)
-        # print(range + "昨日均价:" + str(average_yesterday))
-        last_year = (date.today() + timedelta(days=-1) - relativedelta(months=12)).strftime('%Y-%m-%d')
-        last_year = datetime.strptime(last_year, '%Y-%m-%d')
+        # print(range + "最新日期均价:" + str(average_yesterday))
+        last_year = date - relativedelta(months=12)
         results2 = apple_price.find({"date": last_year, 'province': {'$regex': range}})
-        # 全国昨日同比价格
+        # 全国最新日期均价同比价格
         average_last_year = get_average_apple(results2)
-        # print("全国昨日同比价格:" + str(average_last_year))
-        day_before_yesterday = (date.today() + timedelta(days=-2)).strftime('%Y-%m-%d')
-        day_before_yesterday = datetime.strptime(day_before_yesterday, '%Y-%m-%d')
+        # print("全国最新日期均价同比价格:" + str(average_last_year))
+        day_before_yesterday = date + timedelta(days=-1)
         results3 = apple_price.find({"date": day_before_yesterday, 'province': {'$regex': range}})
-        # 全国昨日环比价格
+        # 全国最新日期均价环比价格
         average_day_before_yesterday = get_average_apple(results3)
         # print("全国昨日环比价格:" + str(average_day_before_yesterday))
         # 环比增长(下降)率
@@ -345,9 +345,32 @@ def apple_price_analyse(range):
             result['province'] = 'nationwide'
         else:
             result['province'] = range
-        result['average_yesterday'] = average_yesterday
+        result['average_latest'] = average_yesterday
         result['day_on_day_rate'] = day_on_day_rate
         result['year_on_year_rate'] = year_on_year_rate
         return result
 
 
+# def deal_with_data():
+#     s = "http://crop.agridata.cn/disease/16-贮粮/"
+#     results = dpdata.find({"first_level": "贮粮"})
+#     for result in results:
+#         html = result["html"]
+#         # print("原html:"+html)
+#         if "img" in html and "src" in html:
+#             shtml = html.split('img border="0" src=')
+#             html = shtml[0]
+#             for s1 in shtml[1:]:
+#                 sss = s1.split("jpg")
+#                 st = sss[0]
+#                 s2 = st[0:1] + s + st[1:] + "jpg"
+#                 s1 = s2
+#                 for i in sss[1:]:
+#                     s1 += i
+#                 html += 'img border="0" src=' + s1
+#         # print("修改过后的html:"+html)
+#         condition = {'first_level': result['first_level'], 'type': result['type'], 'name': result['name'],
+#                      'second_level': result['second_level']}
+#         result['html'] = html
+#         res = dpdata.update_one(condition, {'$set': result})
+#         print(res)
