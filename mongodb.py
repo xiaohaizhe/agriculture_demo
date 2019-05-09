@@ -6,8 +6,8 @@ from bson import ObjectId
 from dateutil.relativedelta import relativedelta
 from flask import Flask
 from flask_pymongo import PyMongo
-import re
 from province_city import province
+import HTMLParser
 
 '''
 @File    :   mongodb.py    
@@ -33,6 +33,7 @@ apple_zhengzhou = mongo.db.apple_zhengzhou
 dpdata = mongo.db.diseases_or_pests
 
 today = datetime.now().strftime('%Y-%m-%d')
+type = ["病害", "虫害"]
 
 
 # 方法一:定义JSON编码器，重写default()方法
@@ -78,23 +79,23 @@ def strawberry_query_by_date(sdate, edate, page, number):
 
 
 def get_strawberry_price_analyse():
-    results = []
-    results.append(strawberry_price_analyse(""))
-    for pro in province:
-        r = strawberry_price_analyse(pro)
-        if r == None:
-            continue
-        results.append(r)
-    return results
-
-
-def strawberry_price_analyse(range):
     result = mofcom.find().sort('date', pymongo.DESCENDING).limit(1)
     result = json.dumps(result[0], cls=JSONEncoder)
     result = json.loads(result)
     date = result['date']
     print(date)
     date = datetime.strptime(date, '%Y-%m-%d')
+    results = []
+    results.append(strawberry_price_analyse(date, ""))
+    for pro in province:
+        r = strawberry_price_analyse(date, pro)
+        if r == None:
+            continue
+        results.append(r)
+    return results
+
+
+def strawberry_price_analyse(date, range):
     isValid = mofcom.find({"date": date, 'province': {'$regex': range}}).count()
     if isValid == 0:
         return None
@@ -293,25 +294,24 @@ def apple_query_by_date(sdate, edate, page, number):
 
 
 def get_apple_price_analyse():
-    results = []
-    results.append(apple_price_analyse(""))
-    for pro in province:
-        r = apple_price_analyse(pro)
-        if r == None:
-            continue
-        results.append(r)
-    return results
-
-
-def apple_price_analyse(range):
     # 获取苹果价格最新数据日期
     result = apple_price.find().sort('date', pymongo.DESCENDING).limit(1)
     result = json.dumps(result[0], cls=JSONEncoder)
     result = json.loads(result)
     date = result['date']
     date = datetime.strptime(date, '%Y-%m-%d')
+    results = []
+    results.append(apple_price_analyse(date, ""))
+    for pro in province:
+        r = apple_price_analyse(date, pro)
+        if r == None:
+            continue
+        results.append(r)
+    return results
+
+
+def apple_price_analyse(date, range):
     isValid = apple_price.find({"date": date, 'province': {'$regex': range}}).count()
-    print("isValid:"+str(isValid))
     if isValid == 0:
         return None
     else:
@@ -374,3 +374,100 @@ def apple_price_analyse(range):
 #         result['html'] = html
 #         res = dpdata.update_one(condition, {'$set': result})
 #         print(res)
+
+# 病虫害知识库
+'''
+1.参数为空，返回一级目录
+2.参数数量为1，一级目录，返回全部二级目录
+3.参数数量为2，一级目录、二级目录，返回详情
+4.参数数量为3，一级目录、二级目录、name
+'''
+
+
+def get_diseases_or_pests(*args):
+    results = None
+    size = len(args)
+    if size == 0:
+        # 无参数
+        results = dpdata.distinct("first_level")
+        print(results)
+    elif size == 1:
+        '''
+        参数数量为1，参数为first_level
+        数据包含一级目录和二级目录：
+            返回二级目录
+        数据只包含一级目录：
+            返回病害/虫害分类名称    
+        '''
+
+        results1 = dpdata.find({"first_level": args[0], "type": type[0]})
+        results1 = deal_with_results(results1)
+        r = results1[0]
+        if "second_level" in r.keys():
+            print("存在二级目录")
+            second_levels = []
+            for r in results1:
+                second_levels.append(r["second_level"])
+            t1 = datetime.now()
+            second_levels = list(set(second_levels))
+            t2 = datetime.now()
+            delta = (t2-t1).microseconds
+            print("时间差："+str(delta))
+            print(second_levels)
+            results = second_levels
+        else:
+            print("没有二级目录")
+            results2 = dpdata.find({"first_level": args[0], "type": type[1]})
+            results2 = deal_with_results(results2)
+            results = {}
+            names1 = []
+            for r in results1:
+                names1.append(r["name"])
+            names1 = list(set(names1))
+            names2 = []
+            for r in results2:
+                names2.append(r["name"])
+            names2 = list(set(names2))
+            results["病害"] = names1
+            results["虫害"] = names2
+    elif size == 2:
+        '''
+        参数数量为2，
+        情况一：参数为first_level，second_level，返回病害/虫害分类名称 
+        情况二：参数为first_level，name，返回详情
+        '''
+        result = dpdata.find_one({"first_level": args[0]})
+        if "second_level" in result.keys():
+            results1 = dpdata.find({"first_level": args[0], "second_level":args[1],"type": type[0]})
+            results1 = deal_with_results(results1)
+            results2 = dpdata.find({"first_level": args[0], "second_level": args[1], "type": type[1]})
+            results2 = deal_with_results(results2)
+            results = {}
+            names1 = []
+            for r in results1:
+                names1.append(r["name"])
+            names1 = list(set(names1))
+            names2 = []
+            for r in results2:
+                names2.append(r["name"])
+            names2 = list(set(names2))
+            results["病害"] = names1
+            results["虫害"] = names2
+        else:
+            results = dpdata.find({"first_level": args[0],  "name": args[1]})
+            results = deal_with_results(results)
+            results =  results[0]["html"].replace("\r","").replace("\n","").replace('\"',"\'")
+
+            # h = HTMLParser.HTMLParser()
+            # results = h.unescape(results)
+            print(results)
+    else:
+        '''
+        参数数量为3
+        参数为first_level，second_level，name
+        '''
+        results = dpdata.find({"first_level": args[0], "second_level": args[1], "name":args[2]})
+        results = deal_with_results(results)
+        results = results[0]["html"].replace("\r","").replace("\n","").replace('\"',"\'")
+        print(results)
+    return results

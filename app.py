@@ -12,7 +12,7 @@ from twisted.internet import reactor
 from log import Logger
 from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, \
     get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
-    get_apple_price_analyse, apple_futures_data
+    get_apple_price_analyse, apple_futures_data, get_diseases_or_pests
 
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
@@ -51,7 +51,7 @@ class Config(object):
     SCHEDULER_API_ENABLED = True
 
 
-@app.route('/api/apple/apple_futures_data', methods=['GET','POST'])
+@app.route('/api/apple/apple_futures_data', methods=['GET', 'POST'])
 def apple_price():
     response = {}
     result = apple_futures_data()
@@ -59,22 +59,6 @@ def apple_price():
     response['msg'] = '成功'
     response['data'] = result
     return jsonify(response)
-
-
-#
-# @app.route('/orders/<int:order_id>', methods=['GET'])
-# def get_order_id(order_id):
-#     print(type(order_id))
-#     # date = '2019-04-11'
-#     # result = query(date)
-#     # market = '江苏'
-#     # result = query_by_market(market)
-#     # sdate = datetime.datetime.strptime("2019-04-10", '%Y-%m-%d')
-#     # edate = datetime.datetime.strptime("2019-04-16", '%Y-%m-%d')
-#     # result = query_by_date(sdate, edate, 1, 2)
-#     t = '农业气象月报'
-#     result = query_by_type(t)
-#     return jsonify(result)
 
 
 @app.route('/api/strawberry/get_price_detail', methods=['GET'])
@@ -105,10 +89,14 @@ def apple_price_detail():
     response = {}
     try:
         sdate = request.values.get('sdate')
+        if sdate == None:
+            raise Exception
         edate = request.values.get('edate')
+        if edate == None:
+            raise Exception
         page = int(request.values.get('page'))
         number = int(request.values.get('number'))
-    except TypeError:
+    except Exception:
         response['code'] = 1
         response['msg'] = '参数不完整'
     else:
@@ -201,10 +189,97 @@ def cfvin_newsList():
     return jsonify(response)
 
 
-# @app.route('/api/deal_with_plant_diseases_and_insect_pests_data', methods=['GET'])
-# def deal_with_dpdata():
-#     deal_with_data()
-#     return "1"
+@app.route('/api/diseases_or_pests/get_first_level', methods=['GET'])
+def get_first_level():
+    response = {}
+    result = get_diseases_or_pests()
+    response['code'] = 0
+    response['msg'] = '成功'
+    response['data'] = result
+    return jsonify(response)
+
+
+@app.route('/api/diseases_or_pests/get_second_level_or_names', methods=['GET'])
+def get_second_level_or_names():
+    response = {}
+    try:
+        first_level = request.values.get('first_level')
+        if  first_level == None:
+            raise Exception
+    except Exception:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_diseases_or_pests(first_level)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result
+    return jsonify(response)
+
+
+@app.route('/api/diseases_or_pests/get_names', methods=['GET'])
+def get_names():
+    response = {}
+    try:
+        first_level = (request.values.get('first_level'))
+        if first_level == None:
+            raise Exception
+        second_level = (request.values.get('second_level'))
+        if second_level == None:
+            raise Exception
+    except Exception:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_diseases_or_pests(first_level, second_level)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result
+    return jsonify(response)
+
+
+@app.route('/api/diseases_or_pests/get_details1', methods=['GET'])
+def get_details1():
+    response = {}
+    try:
+        first_level = (request.values.get('first_level'))
+        if first_level == None:
+            raise Exception
+        second_level = (request.values.get('second_level'))
+        if second_level == None:
+            raise Exception
+        name = (request.values.get('name'))
+        if name == None:
+            raise Exception
+    except Exception:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_diseases_or_pests(first_level, second_level, name)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result
+    return jsonify(response)
+
+@app.route('/api/diseases_or_pests/get_details2', methods=['GET'])
+def get_details2():
+    response = {}
+    try:
+        first_level = (request.values.get('first_level'))
+        if first_level == None:
+            raise Exception
+        name = (request.values.get('name'))
+        if name == None:
+            raise Exception
+    except Exception:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_diseases_or_pests(first_level, name)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result
+    return jsonify(response)
 
 
 if __name__ == '__main__':
