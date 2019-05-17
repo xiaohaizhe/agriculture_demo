@@ -17,7 +17,7 @@ class SpiderAgronetSpider(scrapy.Spider):
             date = item.xpath(".//span[1]/text()").extract_first()[1:-1]
             date = datetime.datetime.strptime(date, "%Y-%m-%d")
             variety = item.xpath(".//span[2]/text()").extract_first()[:-2]
-            print("相差天数："+str((get_today-date).days))
+            # print("相差天数："+str((get_today-date).days))
             if "苹果" in variety and (get_today-date).days< 1 :
                 fruit_agronet = AppleAgronetItem()
                 fruit_agronet['date'] = date

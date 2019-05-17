@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 import json
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
 import pymongo
 from bson import ObjectId
 from dateutil.relativedelta import relativedelta
 from flask import Flask
 from flask_pymongo import PyMongo
 from province_city import province
-import HTMLParser
 
 '''
 @File    :   mongodb.py    

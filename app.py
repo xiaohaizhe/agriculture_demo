@@ -14,6 +14,7 @@ from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_quer
     get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
     get_apple_price_analyse, apple_futures_data, get_diseases_or_pests
 
+
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
 
@@ -280,6 +281,10 @@ def get_details2():
         response['msg'] = '成功'
         response['data'] = result
     return jsonify(response)
+
+@app.route("/")
+def test():
+    return "Hello,Apache!!!"
 
 
 if __name__ == '__main__':
