@@ -1,0 +1,201 @@
+html,body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, i, b, textarea, button, input, select  {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    /* color: #333333; */
+    font-weight: lighter;
+    font-family: 'Microsoft YaHei';
+    -webkit-tap-highlight-color:transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
+}
+html,body,#app,.el-container{
+    height: 100%;
+    width: 100%;
+    background-color: #f2f5f8;
+}
+.ad-white{
+    color: #fff;
+}
+.bg-fff{
+    background-color: #fff;
+}
+.height100{
+    height: 100%;
+}
+.bg-nav{
+    background-color: #057F88;
+}
+.el-menu{
+    background-color: inherit;
+}
+.hiynn{
+    background-image: url(../assets/hiynn.svg);
+    height: 3.8rem;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #fff;
+    width: 75%;
+    margin: 4.5rem auto;
+    padding-bottom: 7.5rem;
+    background-size: contain;
+}
+.el-menu-item.is-active {
+    color: #fff;
+    background-color: rgba(80, 230, 225, 0.2);
+}
+.el-menu-item{
+    color: rgba(255, 255, 255, 0.6);
+}
+.el-menu{
+    border: none;
+}
+.el-menu-item:focus, .el-menu-item:hover {
+    background-color: rgba(80, 230, 225, 0.2);
+}
+.ad-icon{
+    margin-right: 5px;
+    width: 46px;
+    height: 46px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #3799A0;
+    border-radius: 50%;
+    background-color: #3799A0;
+}
+.is-active .ad-icon{
+    border: 1px solid #5BB491;
+    background-color: #5BB491;
+}
+.ad-icon::before{
+    content: '';
+    position: absolute;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    left: 10px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+.weed::before{
+    background-image: url(../assets/weed.svg);
+}
+.is-active .weed::before{
+    background-image: url(../assets/weeding.svg)
+}
+.info::before{
+    background-image: url(../assets/info.svg);
+}
+.is-active .info::before{
+    background-image: url(../assets/infoing.svg)
+}
+.weather::before{
+    background-image: url(../assets/weather.svg);
+}
+.is-active .weather::before{
+    background-image: url(../assets/weathering.svg)
+}
+.predict::before{
+    background-image: url(../assets/predict.svg);
+}
+.is-active .predict::before{
+    background-image: url(../assets/predicting.svg)
+}
+.el-menu-item, .el-submenu__title {
+    height: 70px;
+    line-height: 70px;
+    padding-left: 40px !important;
+}
+.el-header{
+    z-index: 1;
+    padding: 15px 60px 0;
+}
+.el-aside{
+    z-index: 1;
+}
+.adHeader .el-input__prefix, .el-input__suffix{
+    color: #fff;
+}
+.bg{
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../assets/bg.svg)
+}
+.bg:after{
+    content: "";
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    background: inherit;
+    filter: blur(2px);
+    z-index:0;
+}
+.ad-flex{
+    display: flex;
+}
+.ad-flexBtw{
+    justify-content: space-between;
+}
+.ad-flexCenter{
+    align-items: center
+}
+.el-input__inner {
+    border-radius: 25px;
+}
+.subhead i{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
+    margin:0 15px;
+    cursor: pointer;
+}
+.adHeader .el-input__inner{
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.msg{
+    background-image: url(../assets/msg.svg)
+}
+.wechat{
+    background-image: url(../assets/wechat.svg)
+}
+.config{
+    background-image: url(../assets/config.svg)
+}
+.headIcon{
+    background-image: url(../assets/headIcon.svg)
+}
+.clear .msg{
+    background-image: url(../assets/msging.svg)
+}
+.clear .config{
+    background-image: url(../assets/configing.svg)
+}
+.clear .wechat{
+    background-image: url(../assets/wechating.svg)
+}
+.ad-right .clear{
+    background-color:#fff; 
+}
+.clear .ad-white{
+    color: #797979;
+}
+.el-main.bg-fff{
+    border-radius: 6px;
+    z-index: 1;
+    margin: 15px 60px;
+}
