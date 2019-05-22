@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import { Button, Select,Option,Container,Header,Aside,Main,Col,Menu,Submenu,MenuItem,MenuItemGroup,Input,Breadcrumb,BreadcrumbItem,Divider,Form,FormItem, } from 'element-ui';
+import { Button, Select,Option,Container,Header,Aside,Main,Col,Menu,Submenu,MenuItem,MenuItemGroup,Input,Breadcrumb,BreadcrumbItem,Divider,Form,FormItem,Table,
+  TableColumn, Pagination} from 'element-ui';
 import './style/main.css'
 import store from './store/store'
 
@@ -27,6 +28,9 @@ Vue.use(BreadcrumbItem);
 Vue.use(Divider);
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Pagination);
 
 /* eslint-disable no-new */
 new Vue({

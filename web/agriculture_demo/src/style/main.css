@@ -15,13 +15,35 @@ html,body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, 
     -moz-osx-font-smoothing: grayscale;
     font-weight: normal;
 }
-html,body,#app,.el-container{
+html,body,#app,.el-container,.bg-fff{
     height: 100%;
     width: 100%;
+    
+}
+.bgColor{
     background-color: #f2f5f8;
+}
+.font-20{
+    font-size: 20px;
+    font-weight: bold;
 }
 .ad-white{
     color: #fff;
+}
+.ad-gray{
+    color:#747888;
+}
+.ad-red{
+    color: #FF0000;
+}
+.ad-yellow{
+    color: #FBB02F;
+}
+.mg-right-10{
+    margin-right: 10px;
+}
+.mg-right-20{
+    margin-right: 20px;
 }
 .bg-fff{
     background-color: #fff;
@@ -59,6 +81,12 @@ html,body,#app,.el-container{
     background-color: rgba(80, 230, 225, 0.2);
 }
 .ad-icon{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.bg-nav .nav-icon{
     margin-right: 5px;
     width: 46px;
     height: 46px;
@@ -68,13 +96,12 @@ html,body,#app,.el-container{
     border-radius: 50%;
     background-color: #3799A0;
 }
-.is-active .ad-icon{
+.is-active .nav-icon{
     border: 1px solid #5BB491;
     background-color: #5BB491;
 }
-.ad-icon::before{
+.nav-icon::before{
     content: '';
-    position: absolute;
     position: absolute;
     width: 24px;
     height: 24px;
@@ -116,9 +143,9 @@ html,body,#app,.el-container{
 }
 .el-header{
     z-index: 1;
-    padding: 15px 60px 0;
+    padding: 15px 50px 0;
 }
-.el-aside{
+.el-aside,.el-main{
     z-index: 1;
 }
 .adHeader .el-input__prefix, .el-input__suffix{
@@ -149,6 +176,9 @@ html,body,#app,.el-container{
 }
 .ad-flexCenter{
     align-items: center
+}
+.ad-justifyCenter{
+    justify-content: center
 }
 .el-input__inner {
     border-radius: 25px;
@@ -188,14 +218,91 @@ html,body,#app,.el-container{
 .clear .wechat{
     background-image: url(../assets/wechating.svg)
 }
+.analysis{
+    width: 18px;
+    height: 18px;
+    background-image: url(../assets/analysis.svg)
+}
 .ad-right .clear{
     background-color:#fff; 
 }
 .clear .ad-white{
     color: #797979;
 }
-.el-main.bg-fff{
+.el-main{
+    padding:20px 50px;
+}
+.el-main .bg-fff{
     border-radius: 6px;
     z-index: 1;
-    margin: 15px 60px;
+}
+.el-main .bg-fff .el-header{
+    padding:20px 30px;
+}
+.crop-sum{
+    background-color: #FBF7F2;
+    border-radius: 6px;
+    text-align: center;
+    color: #707070;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.el-button--primary {
+    color: #FFF;
+    background-color: #67DCD8;
+    border-color: #67DCD8;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #057F88;
+    border-color: #057F88;
+    color: #FFF;
+}
+.el-button--primary.is-active, .el-button--primary:active {
+    background: #057F88;
+    border-color: #057F88;
+    color: #FFF;
+}
+.greenhouse{
+    background-image: url(../assets/greenhouse.svg)
+}
+.el-table .ad-icon{
+    width: 60px;
+    height: 60px;
+}
+.el-table th, .el-table tr{
+    background: none;
+}
+.el-table td, .el-table th.is-leaf {
+    border-bottom: none;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+    background-color: #fff;
+}
+.el-table--enable-row-hover .el-table__body tr:hover{
+    box-shadow:0px 3px 8px rgba(0, 0, 0, 0.16);
+}
+.el-table__body-wrapper{
+    padding: 8px;
+}
+.el-table__header-wrapper{
+    padding: 0 8px;
+}
+.el-table__body, .el-table__footer, .el-table__header{
+    width: auto !important;
+}
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+    border-radius: 50%;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #67DCD8;
+}
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: #67DCD8;
+}
+.el-table::before{
+    height: 0;
+}
+.el-pagination{
+    text-align: center;
+    margin-top: 20px;
 }
