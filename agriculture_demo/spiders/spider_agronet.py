@@ -3,7 +3,9 @@ import scrapy
 import datetime
 from agriculture_demo.items import AppleAgronetItem
 from province_city import get_province
+
 get_today = datetime.datetime.now()
+
 
 class SpiderAgronetSpider(scrapy.Spider):
     name = 'spider_agronet'
@@ -18,7 +20,7 @@ class SpiderAgronetSpider(scrapy.Spider):
             date = datetime.datetime.strptime(date, "%Y-%m-%d")
             variety = item.xpath(".//span[2]/text()").extract_first()[:-2]
             # print("相差天数："+str((get_today-date).days))
-            if "苹果" in variety and (get_today-date).days< 1 :
+            if "苹果" in variety and (get_today - date).days < 1:
                 fruit_agronet = AppleAgronetItem()
                 fruit_agronet['date'] = date
                 fruit_agronet['variety'] = variety
@@ -33,6 +35,6 @@ class SpiderAgronetSpider(scrapy.Spider):
                 continue
 
         next_link = response.xpath("//div[@class='Pager']//a[last()]/@href").extract_first()
-        if (get_today - date).days <1 and next_link:
-        # if next_link:
+        if (get_today - date).days < 1 and next_link:
+            # if next_link:
             yield scrapy.Request("http://www.agronet.com.cn" + next_link, callback=self.parse)

@@ -14,7 +14,6 @@ from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_quer
     get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
     get_apple_price_analyse, apple_futures_data, get_diseases_or_pests
 
-
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
 
@@ -45,7 +44,7 @@ class Config(object):
             'id': 'job1',
             'func': process,
             'trigger': 'interval',
-            'hours': 24
+            'hours': 1
         }
     ]
 
@@ -205,7 +204,7 @@ def get_second_level_or_names():
     response = {}
     try:
         first_level = request.values.get('first_level')
-        if  first_level == None:
+        if first_level == None:
             raise Exception
     except Exception:
         response['code'] = 1
@@ -262,6 +261,7 @@ def get_details1():
         response['data'] = result
     return jsonify(response)
 
+
 @app.route('/api/diseases_or_pests/get_details2', methods=['GET'])
 def get_details2():
     response = {}
@@ -282,9 +282,10 @@ def get_details2():
         response['data'] = result
     return jsonify(response)
 
-@app.route("/")
+
+@app.route("/tomcat/test2")
 def test():
-    return "Hello,Apache!!!"
+    return "Hello,Apache!!!This is 8081."
 
 
 if __name__ == '__main__':
@@ -296,6 +297,6 @@ if __name__ == '__main__':
         scheduler.start()
     app.run(
         host='0.0.0.0',
-        port=8080,
+        port=8081,
         debug=True
     )
