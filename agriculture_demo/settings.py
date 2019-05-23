@@ -48,7 +48,6 @@ HTTPERROR_ALLOWED_CODES = [301]
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
     'agriculture_demo.middlewares.AgricultureDemoSpiderMiddleware': 543,
-    'agriculture_demo.middlewares.my_useragent_middleware': 544,
 }
 
 # Enable or disable downloader middlewares

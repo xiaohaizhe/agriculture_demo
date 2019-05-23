@@ -1,9 +1,23 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
-
+from datetime import datetime, timedelta
 import scrapy
-
 from agriculture_demo.items import CfvinItem
+from agriculture_demo.dbhelper import DBHelper
+
+get_today = datetime.now()
+dbhelper = DBHelper()
+date = dbhelper.get_latest_date("strawberry_market_news")
+if date == None:
+    starttime = (datetime.today() + timedelta(days=-30))
+else:
+    starttime = date
+print(starttime)
+
+'''
+草莓行情新闻数据:
+1.数据库中没有数据，爬取近30天内的数据
+2.数据库中有数据，爬取数据库中最新数据到当前时间的数据
+'''
 
 
 class SpiderCfvinSpider(scrapy.Spider):
@@ -18,11 +32,12 @@ class SpiderCfvinSpider(scrapy.Spider):
             yield scrapy.Request(link, callback=self.parse_second)
 
     def parse_second(self, response):
+        c = (get_today - starttime).days
         result = response.xpath("//body")
         article_title = result.xpath(".//div[@class='fl article-time']")
         date = article_title.xpath(".//span[1]/text()").extract_first()
         date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-        if (datetime.now() - date).days < 13:
+        if (datetime.now() - date).days <= c:
             cfvinItem = CfvinItem()
             cfvinItem['date'] = date
             cfvinItem['title'] = result.xpath(".//h1/text()").extract_first()

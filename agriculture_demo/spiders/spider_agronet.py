@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import datetime
+from datetime import timedelta
 from agriculture_demo.items import AppleAgronetItem
 from province_city import get_province
 
 get_today = datetime.datetime.now()
+from agriculture_demo.dbhelper import DBHelper
+
+dbhelper = DBHelper()
+date = dbhelper.get_latest_date("apple_price")
+if date == None:
+    starttime = (datetime.today() + timedelta(days=-365))
+else:
+    starttime = date
+'''
+苹果价格数据爬取：
+1.数据库中为空时，爬取过去据今一年的数据
+2.数据库中有数据，爬取数据库中最新日期到当前日期的数据
+'''
 
 
 class SpiderAgronetSpider(scrapy.Spider):
@@ -13,6 +27,7 @@ class SpiderAgronetSpider(scrapy.Spider):
     start_urls = ['http://www.agronet.com.cn/Price/List?page=1&siteID=7']
 
     def parse(self, response):
+        c = (get_today - starttime).days
         items = response.xpath("//ul[@class='price_table']//li[position()>1]")
         date = None
         for item in items:
@@ -20,7 +35,7 @@ class SpiderAgronetSpider(scrapy.Spider):
             date = datetime.datetime.strptime(date, "%Y-%m-%d")
             variety = item.xpath(".//span[2]/text()").extract_first()[:-2]
             # print("相差天数："+str((get_today-date).days))
-            if "苹果" in variety and (get_today - date).days < 1:
+            if "苹果" in variety and (get_today - date).days <= c:
                 fruit_agronet = AppleAgronetItem()
                 fruit_agronet['date'] = date
                 fruit_agronet['variety'] = variety
@@ -33,8 +48,7 @@ class SpiderAgronetSpider(scrapy.Spider):
                 yield fruit_agronet
             else:
                 continue
-
         next_link = response.xpath("//div[@class='Pager']//a[last()]/@href").extract_first()
-        if (get_today - date).days < 1 and next_link:
+        if (get_today - date).days <= c and next_link:
             # if next_link:
             yield scrapy.Request("http://www.agronet.com.cn" + next_link, callback=self.parse)
