@@ -5,7 +5,7 @@
                <el-col :span="24" class="bg-nav height100">
                    <div class="hiynn"></div>
                   <el-menu router 
-                    :default-active="$route.name"
+                    :default-active="routerName"
                     class="el-menu-vertical-demo"
                     >
                     <el-menu-item index="cropManage" :route="{name:'cropManage'}">
@@ -28,10 +28,10 @@
               </el-col>
             </el-aside>
             <el-container class="ad-right">
-                <el-header :class="{clear:!$route.meta.routeFlag}">
+                <el-header :class="{clear:!$route.meta.routeFlag}" height="70px">
                   <ad-header ></ad-header>
                 </el-header>
-                <el-main >
+                <el-main>
                   <div class="bg-fff">
                     <router-view></router-view>
                   </div>
@@ -48,11 +48,14 @@
     name: 'index',
     data () {
       return {
+        routerName:this.$route.path.split('/')[2]
       }
     },
     computed:{
     },
     mounted(){
+      // debugger;
+      // let a = this.$route;
     },
     components:{
         'ad-header':adHeader

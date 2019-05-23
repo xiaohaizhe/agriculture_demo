@@ -80,7 +80,7 @@
         </el-table-column>
         <el-table-column prop="operation" label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="primary" round>查看</el-button>
+            <el-button size="mini" type="primary" round @click="goto()">查看</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -115,14 +115,14 @@ export default {
       tableData:[],
       fakeData: [{
           headIcon: '1',
-          name: '大棚名称1',
+          name: '马铃薯大棚A-1',
           id: '361',
           classify:'potato',
           region:'1',
           status:'grow'
         },{
           headIcon: '1',
-          name: '大棚名称1',
+          name: '马铃薯大棚A-1',
           id: '361',
           classify:'potato',
           region:'1',
@@ -239,7 +239,11 @@ export default {
         this.tableData = temp;
       }else
         this.tableData = this.fakeData;
-    }
+    },
+    //跳转页面
+    goto(){
+      this.$router.push({name:"greenhouse"})
+    },
   }
 }
 </script>

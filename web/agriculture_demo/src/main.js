@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { Button, Select,Option,Container,Header,Aside,Main,Col,Menu,Submenu,MenuItem,MenuItemGroup,Input,Breadcrumb,BreadcrumbItem,Divider,Form,FormItem,Table,
-  TableColumn, Pagination} from 'element-ui';
+  TableColumn, Pagination,Row,Progress } from 'element-ui';
 import './style/main.css'
 import store from './store/store'
 
@@ -31,6 +31,8 @@ Vue.use(FormItem);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
+Vue.use(Row);
+Vue.use(Progress);
 
 /* eslint-disable no-new */
 new Vue({

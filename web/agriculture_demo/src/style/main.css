@@ -23,9 +23,22 @@ html,body,#app,.el-container,.bg-fff{
 .bgColor{
     background-color: #f2f5f8;
 }
+.font-12{
+    font-size: 12px;
+}
+.font-18{
+    font-size: 18px;
+}
 .font-20{
     font-size: 20px;
     font-weight: bold;
+}
+.font-60{
+    font-size: 60px;
+    font-weight: bold;
+}
+.textRight{
+    text-align: right;
 }
 .ad-white{
     color: #fff;
@@ -39,11 +52,23 @@ html,body,#app,.el-container,.bg-fff{
 .ad-yellow{
     color: #FBB02F;
 }
+.ad-green{
+    color: #67DCD8;
+}
 .mg-right-10{
     margin-right: 10px;
 }
 .mg-right-20{
     margin-right: 20px;
+}
+.mg-bot-10{
+    margin-bottom: 10px;
+}
+.mg-bot-20{
+    margin-bottom: 20px;
+}
+.mg-top-20{
+    margin-top: 20px;
 }
 .bg-fff{
     background-color: #fff;
@@ -143,7 +168,7 @@ html,body,#app,.el-container,.bg-fff{
 }
 .el-header{
     z-index: 1;
-    padding: 15px 50px 0;
+    padding: 15px 50px;
 }
 .el-aside,.el-main{
     z-index: 1;
@@ -229,15 +254,18 @@ html,body,#app,.el-container,.bg-fff{
 .clear .ad-white{
     color: #797979;
 }
-.el-main{
+.ad-right>.el-main{
     padding:20px 50px;
 }
 .el-main .bg-fff{
     border-radius: 6px;
     z-index: 1;
 }
-.el-main .bg-fff .el-header{
+.sub-ad .el-header{
     padding:20px 30px;
+}
+.sub-ad .el-main{
+    padding:0 30px;
 }
 .crop-sum{
     background-color: #FBF7F2;
@@ -265,9 +293,26 @@ html,body,#app,.el-container,.bg-fff{
 .greenhouse{
     background-image: url(../assets/greenhouse.svg)
 }
+.emphasis{
+    background-image: url(../assets/emphasis.svg)
+}
+.greenhousePic{
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-image: url(../assets/exampleGh.svg)
+}
+.star{
+    width: 15px;
+    height: 15px;
+    background-image: url(../assets/star.svg)
+}
 .el-table .ad-icon{
     width: 60px;
     height: 60px;
+}
+.el-table .el-button{
+    cursor: pointer;
 }
 .el-table th, .el-table tr{
     background: none;
@@ -305,4 +350,38 @@ html,body,#app,.el-container,.bg-fff{
 .el-pagination{
     text-align: center;
     margin-top: 20px;
+}
+.score{
+    height: 250px;
+    flex-direction: column;
+    background: -webkit-linear-gradient(to right,#2691FB, #32A7F4); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(to right,#2691FB, #32A7F4); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(to right,#2691FB, #32A7F4); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right,#2691FB, #32A7F4); /* 标准的语法 */
+}
+.score .font-60{
+    text-shadow:3px 3px 6px rgba(0, 0, 0, 0.27);
+    color: #3EF894;
+}
+.envParam{
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.envParam .el-progress{
+    flex: 1;
+}
+.envParam .text{
+    width: 30px;
+}
+.notice{
+    background-color: #FBF7F2;
+    border: 1px solid #FF9595;
+    padding: 30px;
+    border-radius: 6px;
+}
+.gh-text{
+    flex-basis: 80px;
+    flex-shrink: 0;
 }

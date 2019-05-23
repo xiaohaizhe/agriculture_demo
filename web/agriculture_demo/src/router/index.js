@@ -5,6 +5,7 @@ const cropManage = r => require.ensure([], () => r(require('../page/cropManage/c
 const infoBank = r => require.ensure([], () => r(require('../page/infoBank/infoBank')), 'infoBank')
 const weather = r => require.ensure([], () => r(require('../page/weather/weather')), 'weather')
 const predict = r => require.ensure([], () => r(require('../page/predict/predict')), 'predict')
+const greenhouse = r => require.ensure([], () => r(require('../page/greenhouse/greenhouse')), 'greenhouse')
 
 Vue.use(Router)
 
@@ -12,38 +13,42 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
+      redirect: '/index/cropManage'
     },
     {
-      path: '/index/',
+      path: '/index',
       component: index,
       children:[{
           path: "",
-          name:"cropManage",
           component: cropManage, 
-          meta:{routeFlag:true} 
+          meta:{routeFlag:true}
         },{
-          path: "cropManage",
+          path: "/index/cropManage",
           name:"cropManage",
           component: cropManage,
-          meta:{routeFlag:true} 
+          meta:{routeFlag:true}
         },{
-          path: "infoBank",
+          path: "/index/infoBank",
           name:"infoBank",
           component: infoBank,
           meta:{routeFlag:false} 
         },{
-          path: "weather",
+          path: "/index/weather",
           name:"weather",
           component: weather,
           meta:{routeFlag:false} 
         },{
-          path: "predict",
+          path: "/index/predict",
           name:"predict",
           component: predict,
           meta:{routeFlag:false} 
-        }
+        },
+        {
+          path: "/index/cropManage/greenhouse",
+          name:"greenhouse",
+          component: greenhouse,
+          meta:{routeFlag:false} 
+          }
       ]
     }
   ]
