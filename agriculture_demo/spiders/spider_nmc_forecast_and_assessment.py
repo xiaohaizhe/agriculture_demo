@@ -7,7 +7,9 @@ from agriculture_demo.items import NmcItem, ImageItem
 
 today = datetime.datetime.now().strftime('%Y-%m-%d')
 
-
+'''
+农业气象预报新闻不需要爬取历史数据
+'''
 class SpiderNmcSpider(scrapy.Spider):
     name = 'spider_nmc_forecast_and_assessment'
     allowed_domains = ['nmc.cn']

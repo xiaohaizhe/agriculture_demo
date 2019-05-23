@@ -2,6 +2,11 @@
 import scrapy
 from agriculture_demo.items import DiseasesOrPests
 
+'''
+不在定时任务中，
+已经手动爬过整个库
+'''
+
 
 class SpiderDiseasesAndPestsSpider(scrapy.Spider):
     name = 'spider_diseases_and_pests'
@@ -21,7 +26,6 @@ class SpiderDiseasesAndPestsSpider(scrapy.Spider):
             print(str(count) + "." + name.strip() + '-' + link)
             yield scrapy.Request(link, callback=self.parse_third, meta={"name": name, "count": count})
 
-
     # def parse_second(self, response):
     #     second_level = response.meta['name']
     #     count = response.meta['count']
@@ -38,15 +42,15 @@ class SpiderDiseasesAndPestsSpider(scrapy.Spider):
     #                 yield scrapy.Request(link, callback=self.parse_third, meta={"name": name, "second_level": second_level})
     #             else:
     #                 continue
-        # result = response.xpath("//table//tr[7]//td[2]")
-        # name = result.xpath(".//font[position()>0]/text()").extract()
-        # print(name)
-        # name_r = ''
-        # for s in name:
-        #     name_r += s
-        # link = result.xpath(".//a/@href").extract_first()
-        # link = "http://crop.agridata.cn/disease/13－药用植物/"+link
-        # yield scrapy.Request(link, callback=self.parse_third, meta={"name": name_r.strip(), "second_level": second_level})
+    # result = response.xpath("//table//tr[7]//td[2]")
+    # name = result.xpath(".//font[position()>0]/text()").extract()
+    # print(name)
+    # name_r = ''
+    # for s in name:
+    #     name_r += s
+    # link = result.xpath(".//a/@href").extract_first()
+    # link = "http://crop.agridata.cn/disease/13－药用植物/"+link
+    # yield scrapy.Request(link, callback=self.parse_third, meta={"name": name_r.strip(), "second_level": second_level})
 
     def parse_third(self, response):
         # second_level = response.meta['name']
@@ -186,5 +190,3 @@ class SpiderDiseasesAndPestsSpider(scrapy.Spider):
         #     data['name'] = deseases_or_pests_name
         #     data['html'] = html
         #     yield data
-
-

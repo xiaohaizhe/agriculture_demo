@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30efe4b2-6269-4333-9299-fde8bf90dee3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/agriculture_demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/agriculture_demo/images/precipitation/2019-04-24.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/mongodb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/dbhelper.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/dbhelper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py" beforeDir="false" afterPath="$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,58 +23,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mongodb.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="458" column="92" selection-start-line="458" selection-start-column="92" selection-end-line="458" selection-end-column="92" />
+            <state relative-caret-position="211">
+              <caret line="41" column="50" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="50" />
               <folding>
-                <element signature="e#26#37#0" expanded="true" />
+                <element signature="e#24#50#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/site-packages/scrapy/http/response/__init__.py">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="257" column="31" selection-start-line="257" selection-start-column="31" selection-end-line="257" selection-end-column="31" />
+            <state relative-caret-position="247">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#24#70#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/log.py">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="114">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python36/Lib/site-packages/pip/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="190">
+              <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -81,42 +69,82 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python36/Lib/site-packages/pip/__main__.py">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="95">
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#24#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python36/Lib/site-packages/pip/_internal/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/dbhelper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python36/Lib/site-packages/pip/_internal/utils/compat.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="76">
+              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
               <folding>
-                <element signature="e#82#130#0" expanded="true" />
+                <element signature="e#24#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python36/Lib/site-packages/pip/_vendor/cachecontrol/compat.py">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+            <state relative-caret-position="247">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="40" />
+              <folding>
+                <element signature="e#24#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+              <folding>
+                <element signature="e#24#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -133,6 +161,9 @@
       <find>get_price_analyse</find>
       <find>price_analys</find>
       <find>/plant_diseases_and_insect_pests/newsLis</find>
+      <find>key</find>
+      <find>HTTP</find>
+      <find>trawberry</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,33 +173,39 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/province_city.py" />
-        <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/items.py" />
+        <option value="$PROJECT_DIR$/app.wsgi" />
+        <option value="$PROJECT_DIR$/wsgi.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo.py" />
+        <option value="$PROJECT_DIR$/mongodb.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo.wsgi" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/pipelines.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/settings.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/middlewares.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/dbhelper.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py" />
-        <option value="$PROJECT_DIR$/agriculture_demo/items.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py" />
+        <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py" />
         <option value="$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py" />
-        <option value="$PROJECT_DIR$/agriculture_demo/settings.py" />
-        <option value="$PROJECT_DIR$/agriculture_demo/pipelines.py" />
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/mongodb.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3" />
-    <option name="y" value="468" />
+    <option name="x" value="-59" />
+    <option name="y" value="276" />
     <option name="width" value="1944" />
-    <option name="height" value="1104" />
+    <option name="height" value="803" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,26 +216,34 @@
             <path>
               <item name="agriculture_demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="agriculture_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="agriculture_demo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="agriculture_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="agriculture_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="agriculture_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../apple_data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../game_analysis" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\26304\PycharmProjects\agriculture_demo\Lib\site-packages\asn1crypto" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -212,7 +257,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.dbhelper">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="agriculture_demo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -235,8 +280,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="dbhelper" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="agriculture_demo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/agriculture_demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/agriculture_demo/dbhelper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dbhelper" />
         <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
@@ -264,7 +332,26 @@
       <workItem from="1557297757844" duration="6687000" />
       <workItem from="1557365291948" duration="4382000" />
       <workItem from="1557372464985" duration="6791000" />
-      <workItem from="1557383488642" duration="5356000" />
+      <workItem from="1557383488642" duration="6778000" />
+      <workItem from="1557467517799" duration="1224000" />
+      <workItem from="1557468775456" duration="50000" />
+      <workItem from="1557470264099" duration="19000" />
+      <workItem from="1557470739583" duration="612000" />
+      <workItem from="1557475977412" duration="2376000" />
+      <workItem from="1557710636621" duration="15000" />
+      <workItem from="1557727912595" duration="1246000" />
+      <workItem from="1557806097772" duration="1579000" />
+      <workItem from="1557985340543" duration="3446000" />
+      <workItem from="1557993189701" duration="3596000" />
+      <workItem from="1558056247820" duration="5183000" />
+      <workItem from="1558062434417" duration="8328000" />
+      <workItem from="1558076698957" duration="405000" />
+      <workItem from="1558077268211" duration="859000" />
+      <workItem from="1558079101156" duration="1180000" />
+      <workItem from="1558081301667" duration="534000" />
+      <workItem from="1558512546660" duration="6461000" />
+      <workItem from="1558519127316" duration="1702000" />
+      <workItem from="1558574560239" duration="19562000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1556158566694</created>
@@ -287,45 +374,73 @@
       <option name="project" value="LOCAL" />
       <updated>1557195528274</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="病虫害知识库接口">
+      <created>1557389029754</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557389029754</updated>
+    </task>
+    <task id="LOCAL-00005" summary="调整目录结构以便Apache服务器使用">
+      <created>1558079183941</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1558079183941</updated>
+    </task>
+    <task id="LOCAL-00006" summary="调整目录结构以便Apache服务器使用">
+      <created>1558079636761</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1558079636761</updated>
+    </task>
+    <task id="LOCAL-00007" summary="数据库工具">
+      <created>1558520615177</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558520615177</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110669000" />
+    <option name="totallyTimeSpent" value="170468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18835893" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16976556" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82295877" visible="true" weight="0.36981758" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49919224" weight="0.3270142" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.81891674" weight="0.6368159" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.56053066" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4995958" weight="0.52238804" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.7065481" weight="0.4602649" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17704123" side_tool="true" visible="true" weight="0.36981758" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.8205336" weight="0.4742952" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10428456" side_tool="true" weight="0.9502488" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.8957154" visible="true" weight="0.12769486" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.052546483" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1851253" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.39499193" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8585287" visible="true" weight="0.3034826" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49919224" weight="0.3270142" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.82067853" weight="0.07109005" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.56053066" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -333,8 +448,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4995958" weight="0.52238804" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1414713" side_tool="true" visible="true" weight="0.3034826" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.8205336" weight="0.4742952" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.18497577" side_tool="true" visible="true" weight="0.4336493" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.8156831" visible="true" weight="0.3034826" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -346,14 +461,68 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="second" />
     <MESSAGE value="1.添加用户权限密码&#10;2.修改完善价格分析，昨日改用最新时间" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.添加用户权限密码&#10;2.修改完善价格分析，昨日改用最新时间" />
+    <MESSAGE value="病虫害知识库接口" />
+    <MESSAGE value="调整目录结构以便Apache服务器使用" />
+    <MESSAGE value="数据库工具" />
+    <option name="LAST_COMMIT_MESSAGE" value="数据库工具" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/agriculture_demo$app.coverage" NAME="app Coverage Results" MODIFIED="1557387521208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/agriculture_demo$app.coverage" NAME="app Coverage Results" MODIFIED="1558512682873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/agriculture_demo$dbhelper.coverage" NAME="dbhelper Coverage Results" MODIFIED="1558593554847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agriculture_demo" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/agriculture_demo/images/precipitation/2019-04-24.jpg">
@@ -372,9 +541,6 @@
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/agriculture_demo/images/forecast_and_assessment/2019-04-24_1.jpg" />
     <entry file="file://$PROJECT_DIR$/agriculture_demo/images/forecast_and_assessment/2019-05-06_1.jpg" />
@@ -401,13 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="109" column="18" selection-start-line="109" selection-start-column="18" selection-end-line="109" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/site-packages/pymongo/database.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -415,63 +574,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="28" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding>
-            <element signature="e#24#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/agriculture.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider" />
       <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="e#24#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding>
-            <element signature="e#24#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="36" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://C:/Python36/Lib/logging/handlers.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -494,23 +598,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/pipelines.py">
+    <entry file="file://$PROJECT_DIR$/Lib/site-packages/scrapy/http/response/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3458">
-          <caret line="188" column="39" selection-start-line="188" selection-start-column="22" selection-end-line="188" selection-end-column="39" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="8" column="90" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="90" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1254">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -524,16 +615,6 @@
     <entry file="file://C:/Python36/Lib/site-packages/pip/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python36/Lib/site-packages/pip/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -545,6 +626,38 @@
     </entry>
     <entry file="file://C:/Python36/Lib/site-packages/pip/_internal/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.wsgi" />
+    <entry file="file://$PROJECT_DIR$/wsgi.py" />
+    <entry file="file://$PROJECT_DIR$/mongodb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pip-selfcheck.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrapy.cfg">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo.wsgi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyvenv.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://C:/Python36/Lib/site-packages/pip/_internal/utils/compat.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -562,29 +675,141 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/site-packages/scrapy/spiders/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1972">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/site-packages/pymongo/cursor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/site-packages/pymongo/collection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1265" column="8" selection-start-line="1265" selection-start-column="8" selection-end-line="1265" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="257" column="31" selection-start-line="257" selection-start-column="31" selection-end-line="257" selection-end-column="31" />
+        <state relative-caret-position="92">
+          <caret line="290" selection-start-line="290" selection-end-line="290" selection-end-column="26" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/site-packages/scrapy/http/response/__init__.py">
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+        <state relative-caret-position="395">
+          <caret line="129" column="50" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mongodb.py">
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/dbhelper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="458" column="92" selection-start-line="458" selection-start-column="92" selection-end-line="458" selection-end-column="92" />
+        <state relative-caret-position="487">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
           <folding>
-            <element signature="e#26#37#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_agronet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_diseases_and_pests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_mofcom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#24#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_cfvin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="40" />
+          <folding>
+            <element signature="e#24#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="41" column="50" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="50" />
+          <folding>
+            <element signature="e#24#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_natesc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_forecast_and_assessment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_nmc_precipitation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agriculture_demo/spiders/spider_zhengzhou.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

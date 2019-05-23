@@ -7,7 +7,11 @@ from agriculture_demo.items import ImageItem, Precipitation
 
 today = datetime.datetime.now().strftime('%Y-%m-%d')
 
-
+'''
+降水量数据
+不需爬取历史数据
+最新数据有效
+'''
 class SpiderNmc1Spider(scrapy.Spider):
     name = 'spider_nmc_precipitation'
     allowed_domains = ['nmc.cn']

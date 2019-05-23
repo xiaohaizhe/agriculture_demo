@@ -3,7 +3,10 @@ import scrapy
 
 from agriculture_demo.items import AppleZhengzhouItem
 from datetime import datetime
-
+'''
+只能获取当前最新数据
+且最新数据为有效数据
+'''
 class SpiderZhengzhouSpider(scrapy.Spider):
     name = 'spider_zhengzhou'
     allowed_domains = ['app.czce.com.cn']

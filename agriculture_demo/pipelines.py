@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import pymongo
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 
 from agriculture_demo.items import MofcomItem, ImageItem, NmcItem, NatescItem, Precipitation, CfvinItem, \
     AppleZhengzhouItem, AppleAgronetItem, DiseasesOrPests
-from agriculture_demo.settings import mongo_host, mongo_port, mongo_db_name, user, password
+from agriculture_demo.dbhelper import DBHelper
 
 
 # Define your item pipelines here
@@ -21,189 +20,67 @@ class AgricultureDemoPipeline(object):
 
 
 class MofcomPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = 'strawberry_price'
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, MofcomItem):
-            date = item['date']
-            market = item['market']
-            isValid = self.post.find(
-                {"date": date, "market": market}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "strawberry_price", "date", "market")
         return item
 
 
 class NmcPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = 'forecast_and_assessment'
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, NmcItem):
-            date = item['date']
-            title = item['title']
-            isValid = self.post.find(
-                {"date": date, "title": title}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "forecast_and_assessment", "date", "title")
         return item
 
 
 class NatescPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = 'pest_news'
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, NatescItem):
-            date = item['date']
-            title = item['title']
-            isValid = self.post.find(
-                {"date": date, "title": title}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "pest_news", "date", "title")
         return item
 
 
 class PrecipitationPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = 'precipitation'
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, Precipitation):
-            date = item['date']
-            isValid = self.post.find(
-                {"date": date}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "precipitation", "date")
         return item
 
 
 class CfvinPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = 'strawberry_market_news'
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, CfvinItem):
-            date = item['date']
-            title = item['title']
-            isValid = self.post.find(
-                {"date": date, "title": title}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "strawberry_market_news", "date", "title")
         return item
 
 
 class AppleZhengzhouPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = "apple_zhengzhou"
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, AppleZhengzhouItem):
-            date = item['date']
-            variety_month = item['variety_month']
-            isValid = self.post.find(
-                {"date": date, "variety_month": variety_month}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "apple_zhengzhou", "date", "variety_month")
         return item
 
 
 class AppleAgronetPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = "apple_price"
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
     def process_item(self, item, spider):
         if isinstance(item, AppleAgronetItem):
-            date = item['date']
-            variety = item['variety']
-            terminal_market = item['terminal_market']
-            isValid = self.post.find(
-                {"date": date, "variety": variety, "terminal_market": terminal_market}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
+            db = DBHelper()
+            db.vertify_and_insert(item, "apple_price", "date", "variety", "terminal_market")
         return item
 
 
-class DiseasesOrPestsPipeline(object):
-    def __init__(self):
-        host = mongo_host
-        port = mongo_port
-        dbname = mongo_db_name
-        collection = "diseases_or_pests"
-        client = pymongo.MongoClient(host=host, port=port)
-        mydb = client[dbname]
-        mydb.authenticate(name=user, password=password)
-        self.post = mydb[collection]
-
-    def process_item(self, item, spider):
-        if isinstance(item, DiseasesOrPests):
-            first_level = item['first_level']
-            second_level = item['second_level']
-            type = item['type']
-            name = item['name']
-            isValid = self.post.find(
-                {"first_level": first_level, "second_level": second_level, "type": type, "name": name}).count()
-            if isValid == 0:
-                data = dict(item)
-                self.post.insert(data)
-        return item
+# class DiseasesOrPestsPipeline(object):
+#     def process_item(self, item, spider):
+#         if isinstance(item, DiseasesOrPests):
+#             db = DBHelper()
+#             db.vertify_and_insert(item, "diseases_or_pests", "first_level", "second_level", "type", "name")
+#         return item
 
 
 class ImagePipeline(ImagesPipeline):

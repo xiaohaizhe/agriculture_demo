@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = 'agriculture_demo.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-
+HTTPERROR_ALLOWED_CODES = [301]
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -79,7 +79,7 @@ ITEM_PIPELINES = {
     'agriculture_demo.pipelines.CfvinPipeline': 306,
     'agriculture_demo.pipelines.AppleZhengzhouPipeline': 307,
     'agriculture_demo.pipelines.AppleAgronetPipeline': 308,
-    'agriculture_demo.pipelines.DiseasesOrPestsPipeline': 309,
+    # 'agriculture_demo.pipelines.DiseasesOrPestsPipeline': 309,
 
 }
 
@@ -103,6 +103,7 @@ ITEM_PIPELINES = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
 mongo_host = '127.0.0.1'
 mongo_port = 27017
 mongo_db_name = 'agriculture_demo'
