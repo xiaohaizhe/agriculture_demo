@@ -67,6 +67,9 @@ html,body,#app,.el-container,.bg-fff{
 .mg-bot-20{
     margin-bottom: 20px;
 }
+.mg-top-10{
+    margin-top: 10px;
+}
 .mg-top-20{
     margin-top: 20px;
 }
@@ -222,6 +225,9 @@ html,body,#app,.el-container,.bg-fff{
     color: #fff;
     background-color: rgba(255, 255, 255, 0.3);
 }
+.cropManage .el-header{
+    padding: 20px 30px 0;
+}
 .msg{
     background-image: url(../assets/msg.svg)
 }
@@ -281,15 +287,16 @@ html,body,#app,.el-container,.bg-fff{
     border-color: #67DCD8;
 }
 .el-button--primary:focus, .el-button--primary:hover {
-    background: #057F88;
-    border-color: #057F88;
+    background: #3799a0;
+    border-color: #3799a0;
     color: #FFF;
 }
 .el-button--primary.is-active, .el-button--primary:active {
-    background: #057F88;
-    border-color: #057F88;
+    background: #3799a0;
+    border-color: #3799a0;
     color: #FFF;
 }
+
 .greenhouse{
     background-image: url(../assets/greenhouse.svg)
 }
@@ -384,4 +391,7 @@ html,body,#app,.el-container,.bg-fff{
 .gh-text{
     flex-basis: 80px;
     flex-shrink: 0;
+}
+.el-date-editor .el-range-separator{
+    padding: 0;
 }
