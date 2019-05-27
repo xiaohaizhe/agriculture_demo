@@ -15,10 +15,9 @@ html,body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, 
     -moz-osx-font-smoothing: grayscale;
     font-weight: normal;
 }
-html,body,#app,.el-container,.bg-fff{
+html,body,#app,.el-container{
     height: 100%;
     width: 100%;
-    
 }
 .bgColor{
     background-color: #f2f5f8;
@@ -55,6 +54,15 @@ html,body,#app,.el-container,.bg-fff{
 .ad-green{
     color: #67DCD8;
 }
+.mg-left-5{
+    margin-left: 5px;
+}
+.mg-left-20{
+    margin-left: 20px;
+}
+.mg-right-5{
+    margin-right: 5px;
+}
 .mg-right-10{
     margin-right: 10px;
 }
@@ -72,6 +80,9 @@ html,body,#app,.el-container,.bg-fff{
 }
 .mg-top-20{
     margin-top: 20px;
+}
+.mg-top-50{
+    margin-top: 50px;
 }
 .bg-fff{
     background-color: #fff;
@@ -263,7 +274,7 @@ html,body,#app,.el-container,.bg-fff{
 .ad-right>.el-main{
     padding:20px 50px;
 }
-.el-main .bg-fff{
+.el-container.bg-fff{
     border-radius: 6px;
     z-index: 1;
 }
@@ -394,4 +405,32 @@ html,body,#app,.el-container,.bg-fff{
 }
 .el-date-editor .el-range-separator{
     padding: 0;
+}
+.paramActive{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+.paramLi{
+    cursor: pointer;
+    text-align:right;
+}
+.bugs{
+    width: 30px;
+    height: 30px;
+    background-image: url(../assets/bugs.svg)
+}
+.illness{
+    width: 30px;
+    height: 30px;
+    background-image: url(../assets/illness.svg)
+}
+.news{
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-image: url(../assets/news.svg);
 }

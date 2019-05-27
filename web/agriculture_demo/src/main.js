@@ -9,7 +9,6 @@ import './style/main.css'
 import store from './store/store'
 
 Vue.config.productionTip = false
-
 Vue.use(Button);
 Vue.use(Select);
 Vue.use(Option);

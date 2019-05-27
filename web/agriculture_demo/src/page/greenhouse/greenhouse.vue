@@ -1,5 +1,5 @@
 <template>
-    <el-container class="sub-ad">
+    <el-container class="sub-ad bg-fff">
         <el-header height="80px">
             <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
@@ -50,7 +50,7 @@
                             </el-popover>
                         </el-row>
                         <el-row class="envParam">
-                            <div class="ad-flex ad-flexCenter mg-bot-10 mg-right-20" v-for="item,index in envParams" :key="item.name">
+                            <div class="ad-flex ad-flexCenter mg-bot-10 mg-right-20" v-for="item in envParams" :key="item.name">
                                 <p style="width:90px" :style="{'color': item.value<=70 && item.value>=30?'':'#CF0505'}">{{item.name}}</p>
                                 <el-progress :percentage="item.value" :show-text="false" class="mg-right-20" :color="item.value<=70 && item.value>=30?'#02C1A7':'#CF0505'"></el-progress>
                                 <p class="text ad-red" v-if="item.value>70">高</p>
@@ -79,7 +79,7 @@
                             <li class="ad-flex mg-bot-10"><p class="gh-text">创建时间：</p>2019/01/18</li>
                             <li class="ad-flex mg-bot-10"><p class="gh-text">大棚介绍：</p><span>该大棚主要用于种植马铃薯，已是2019年第三期种植内容已是2019年第三期种植内容已是2019年第三期种植内容已是2019年第三期种植内容。</span></li>
                         </ul>
-                        <el-button type="primary" round style="margin: 20px auto;display: block;">查看种植记录</el-button>
+                        <el-button type="primary" round style="margin: 20px auto;display: block;" @click="goto('plantLog')">查看种植记录</el-button>
                     </div>
                 </el-col>
             </el-row>

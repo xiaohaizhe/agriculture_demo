@@ -7,6 +7,7 @@ const weather = r => require.ensure([], () => r(require('../page/weather/weather
 const predict = r => require.ensure([], () => r(require('../page/predict/predict')), 'predict')
 const greenhouse = r => require.ensure([], () => r(require('../page/greenhouse/greenhouse')), 'greenhouse')
 const envParam = r => require.ensure([], () => r(require('../page/envParam/envParam')), 'envParam')
+const plantLog = r => require.ensure([], () => r(require('../page/plantLog/plantLog')), 'plantLog')
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
           path: "/index/cropManage/envParam",
           name:"envParam",
           component: envParam,
+          meta:{routeFlag:false} 
+        },{
+          path: "/index/cropManage/plantLog",
+          name:"plantLog",
+          component: plantLog,
           meta:{routeFlag:false} 
         }
       ]

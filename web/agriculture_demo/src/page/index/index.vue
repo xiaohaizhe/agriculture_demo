@@ -32,10 +32,7 @@
                   <ad-header ></ad-header>
                 </el-header>
                 <el-main>
-                  <div class="bg-fff">
                     <router-view></router-view>
-                  </div>
-                  
                 </el-main>
             </el-container>
         </el-container>

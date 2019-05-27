@@ -1,5 +1,5 @@
 <template>
-  <el-container class="cropManage">
+  <el-container class="cropManage bg-fff">
     <el-header height="220px" >
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>

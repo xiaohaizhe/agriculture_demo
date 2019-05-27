@@ -1,23 +1,24 @@
 <template>
     <div>
         <!-- <p class="center" v-show="!hasData" style="height:50px;line-height:50px;">暂无数据</p> -->
-        <div :id="chartId" style="height:200px;"></div>
+        <div :id="chartId" :style="{height:height}"></div>
     </div>
     
 </template>
 
 <script>
-    // let echarts = require('echarts/lib/echarts')
-    // // 引入折线图
-    // require('echarts/lib/chart/line');
-    // // 提示框
-    // require('echarts/lib/component/tooltip')
+    let echarts = require('echarts/lib/echarts')
+    // 引入折线图
+    require('echarts/lib/chart/line');
+    // 提示框
+    require('echarts/lib/component/tooltip')
+    require('echarts/lib/component/markLine')
 
     export default {
         name: 'lineChart',
         data () {
             return {
-                // hasData:false
+                height:0
             }
         },
         props: {
@@ -26,16 +27,17 @@
             }
         },
         mounted(){
+            this.height = window.innerHeight *0.5 +'px'
         },
         methods: {
-            async drawChart(dsData){
-                if(dsData.length==0){
+            async drawChart(data){
+                if(data.data==0){
                     this.$message({
                         message: "暂无统计数据",
                         type: 'warning'
                     });
                 }
-                let lineChart = this.$echarts.init(document.getElementById(this.chartId));
+                let lineChart = echarts.init(document.getElementById(this.chartId));
                 let option = {
                         tooltip: {
                             trigger: 'axis',
@@ -50,7 +52,7 @@
                             axisTick:{
                                 show:false,
                             },
-                            data: ['1','2','3','4']
+                            data: data.time
                         },
                         yAxis: {
                             type: 'value',
@@ -63,21 +65,37 @@
                         },
                         grid:{
                             top:"20px",
-                            left:"40px",
-                            right:"35px",
+                            left:"60px",
+                            right:"60px",
                             bottom:"35px"
                         },
                         series: [{
-                            data: [1,2,3,4],
+                            data: data.data,
+                            markLine: {
+                                data: [
+                                    {
+                                        name: '平均值',
+                                        yAxis: data.mean
+                                    }
+                                ],
+                                lineStyle:{
+                                    color:'#FF0000',
+                                } 
+                            },
                             type: 'line',
                             itemStyle : {  
                                 normal : { 
                                     color: '#FBB02F'
                                 }  
                             }, 
+                            smooth:true,
                             lineStyle:{  
                                 color:'#FBB02F',
-                                width:2
+                                width:2,
+                                shadowColor : 'rgba(0,0,0,0.16)',
+                                shadowBlur: 6,
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 10
                             }
                         }]
                     };
