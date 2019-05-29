@@ -25,6 +25,9 @@ html,body,#app,.el-container{
 .font-12{
     font-size: 12px;
 }
+.font-16{
+    font-size: 16px;
+}
 .font-18{
     font-size: 18px;
 }
@@ -433,4 +436,18 @@ html,body,#app,.el-container{
     background-repeat: no-repeat;
     display: inline-block;
     background-image: url(../assets/news.svg);
+}
+.ad-illness{
+    flex-wrap: wrap;
+}
+.ad-illness li{
+    flex-basis: 25%;
+    text-align: center;
+    padding: 20px;
+    color: #747888;
+    cursor: pointer;
+}
+.ad-illness li:hover{
+    color: #67DCD8;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
 }

@@ -112,7 +112,10 @@ export default {
             if(resp.code==0){
                 this.$refs.lineChart.drawChart(resp.data);
             }else{
-                debugger;
+                this.$message({
+                    type: 'error',
+                    message: '获取数据失败!'
+                });
             }
         }
     }

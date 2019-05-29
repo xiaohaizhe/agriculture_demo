@@ -12,7 +12,7 @@
                       <i class="weed nav-icon"></i>
                       <span slot="title">作物管理</span>
                     </el-menu-item>
-                    <el-menu-item index="infoBank" :route="{name:'infoBank'}">
+                    <el-menu-item index="infoBank" :route="{name:'ordinary'}">
                       <i class="info nav-icon"></i>
                       <span slot="title">病虫害信息库</span>
                     </el-menu-item>

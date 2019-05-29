@@ -14,12 +14,12 @@
 </template>
 
 <script>
-export default {
-  name: 'adHeader',
-  data () {
-    return {
-        search:''
+  export default {
+    name: 'adHeader',
+    data () {
+      return {
+          search:''
+      }
     }
   }
-}
 </script>
