@@ -8,7 +8,7 @@ const predict = r => require.ensure([], () => r(require('../page/predict/predict
 const greenhouse = r => require.ensure([], () => r(require('../page/greenhouse/greenhouse')), 'greenhouse')
 const envParam = r => require.ensure([], () => r(require('../page/envParam/envParam')), 'envParam')
 const plantLog = r => require.ensure([], () => r(require('../page/plantLog/plantLog')), 'plantLog')
-const base = r => require.ensure([], () => r(require('../page/infoBank/children/base')), 'base')
+const knowledgeBase = r => require.ensure([], () => r(require('../page/infoBank/children/base')), 'knowledgeBase')
 const ordinary = r => require.ensure([], () => r(require('../page/infoBank/children/ordinary')), 'ordinary')
 const illDetail = r => require.ensure([], () => r(require('../page/infoBank/children/illDetail')), 'illDetail')
 
@@ -40,9 +40,9 @@ export default new Router({
             path: '',
             redirect: '/index/infoBank/ordinary'
           },{
-            path: "/index/infoBank/base",
-            name:"base",
-            component: base
+            path: "/index/infoBank/knowledgeBase",
+            name:"knowledgeBase",
+            component: knowledgeBase
           },{
             path: "/index/infoBank/ordinary",
             name:"ordinary",

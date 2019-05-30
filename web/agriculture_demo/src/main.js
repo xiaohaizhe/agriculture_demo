@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { Button, Select,Option,Container,Header,Aside,Main,Col,Menu,Submenu,MenuItem,MenuItemGroup,Input,Breadcrumb,BreadcrumbItem,Divider,Form,FormItem,Table,
-  TableColumn, Pagination,Row,Progress ,MessageBox,Popover,DatePicker,Message} from 'element-ui';
+  TableColumn, Pagination,Row,Progress ,MessageBox,Popover,DatePicker,Message,Carousel,CarouselItem,} from 'element-ui';
 import './style/main.css'
 import store from './store/store'
 
@@ -34,6 +34,8 @@ Vue.use(Row);
 Vue.use(Progress);
 Vue.use(Popover);
 Vue.use(DatePicker);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
 
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$message = Message;

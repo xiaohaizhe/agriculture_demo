@@ -19,6 +19,12 @@ html,body,#app,.el-container{
     height: 100%;
     width: 100%;
 }
+.padding-0{
+    padding: 0;
+}
+.margin-0{
+    padding: 0;
+}
 .bgColor{
     background-color: #f2f5f8;
 }
@@ -44,6 +50,9 @@ html,body,#app,.el-container{
 }
 .ad-white{
     color: #fff;
+}
+.ad-lightgray{
+    color: #BDC2D8;
 }
 .ad-gray{
     color:#747888;
@@ -212,6 +221,9 @@ html,body,#app,.el-container{
 }
 .ad-flex{
     display: flex;
+}
+.ad-flexEnd{
+    justify-content: end;
 }
 .ad-flexBtw{
     justify-content: space-between;

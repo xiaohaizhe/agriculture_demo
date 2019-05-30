@@ -16,3 +16,9 @@ export const get3Data = (second_level) => fetch( SERVER_URL+'/api/diseases_or_pe
 
 //threejs获取病虫害二级数据
 export const get2Data = () => fetch( SERVER_URL+'/api/diseases_or_pests_3d/second_level', {});
+
+//获取病虫害新闻列表
+export const getNewsList = (page,number) => fetch( SERVER_URL+'/api/plant_diseases_and_insect_pests/newsList', {page,number});
+
+//获取降雨量前30名城市列表
+export const getPrecipitationList = () => fetch( SERVER_URL+'/api/precipitation/list', {});
