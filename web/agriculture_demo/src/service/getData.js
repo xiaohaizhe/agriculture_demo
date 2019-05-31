@@ -3,7 +3,7 @@ const prodEnv = require('../../config/dev.env')
 const SERVER_URL = prodEnv.LOGIN_SERVER_URL;//映射地址
 
 //获取环境参数图表
-export const getChartData = (type,id=504626770) => fetch( SERVER_URL+'/api/device/get_data_in_chart', {id,type});
+export const getChartData = (type,id=504626770) => fetch( 'strawberry/api/device/get_data_in_chart', {id,type});
 
 //获取病虫害名称（有二级目录）
 export const getIllnessData = (first_level,second_level) => fetch( SERVER_URL+'/api/diseases_or_pests/get_names', {first_level,second_level});
@@ -20,5 +20,11 @@ export const get2Data = () => fetch( SERVER_URL+'/api/diseases_or_pests_3d/secon
 //获取病虫害新闻列表
 export const getNewsList = (page,number) => fetch( SERVER_URL+'/api/plant_diseases_and_insect_pests/newsList', {page,number});
 
+//获取所有城市温度列表
+export const getWeatherList = () => fetch( SERVER_URL+'/api/weather', {});
+
 //获取降雨量前30名城市列表
 export const getPrecipitationList = () => fetch( SERVER_URL+'/api/precipitation/list', {});
+
+//获取最新气象预告与评估
+export const getAssessment = () => fetch( SERVER_URL+'/api/forecast_and_assessment/get_latest_forecast_and_assessment', {});

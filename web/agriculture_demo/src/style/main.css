@@ -41,9 +41,19 @@ html,body,#app,.el-container{
     font-size: 20px;
     font-weight: bold;
 }
+.font-24{
+    font-size: 24px;
+    font-weight: bold;
+}
 .font-60{
     font-size: 60px;
     font-weight: bold;
+}
+.textLeft{
+    text-align: left;
+}
+.textCenter{
+    text-align: center;
 }
 .textRight{
     text-align: right;
@@ -462,4 +472,9 @@ html,body,#app,.el-container{
 .ad-illness li:hover{
     color: #67DCD8;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+}
+.analyseActive{
+    border-bottom: 2px solid #FBB02F;
+    padding-bottom: 5px;
+
 }
