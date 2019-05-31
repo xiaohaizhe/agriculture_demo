@@ -15,20 +15,31 @@
                   </el-col>
               </el-row>
           </el-header>
-          <el-main>
-            <map-chart chartId="mapChart"></map-chart>
+          <el-main id="weather">
+            <map-chart chartId="mapChart" ref="mapChart" v-if="paramActive==0" :style="{height:height}"></map-chart>
+            <div v-if="paramActive==1" class="ad-flex ad-flexCenter ad-justifyCenter">
+              <img :src="precipitation" alt="降雨量图片">
+            </div>
+            <div v-if="paramActive==2" class="textCenter" style="padding: 0 10%;">
+              <p class="font-24 mg-bot-10">{{assessment.title}}</p>
+              <p class="font-18 mg-bot-10" v-for="item in assessment.subhead" :key="item">{{item}}</p>
+              <p class="mg-bot-10">{{assessment.author}} {{assessment.date}}</p>
+              <p v-for="item in assessment.content" :key="item._id" class="textLeft mg-bot-10">{{item}}</p>
+              <img v-for="item in assessment.image_urls" :key="item" :src="item"/>
+            </div>
           </el-main>
     </el-container>
 </template>
 
 <script>
-import {getPrecipitationList} from 'service/getData'
+import {getPrecipitationList,getAssessment,getWeatherList} from 'service/getData'
 import mapChart from 'components/charts/mapChart'
 
 export default {
   name: 'weather',
   data () {
     return {
+      height:'500px',
       paramActive:0,
       pramas:[{
           name:'平均气温',
@@ -40,23 +51,46 @@ export default {
           name:'农业气象影响预报与评估',
           index:2
         }],
-      precipitation:[]
+      precipitation:[],
+      assessment:{}
     }
   },
   components:{
       'map-chart':mapChart
   },
   mounted(){
-    this.getPrecipitationList();
+    this.height = document.getElementById("weather").clientHeight+"px";
+    this.getWeatherList();
   },
   methods:{
     pramaChange(index){
       this.paramActive = index;
+      switch(index){
+        case 0:break;
+        case 1:this.getPrecipitationList();break;
+        case 2:this.getAssessment();break;
+      }
     },
+    //
+    async getWeatherList(){
+      let resp = await getWeatherList();
+      if(resp.code==0){
+        this.$refs.mapChart.drawChart(resp)
+      }
+    },
+    //获取降雨量前30名城市列表
     async getPrecipitationList(){
       let resp = await getPrecipitationList();
       if(resp.code==0){
-        this.precipitation =resp.data;
+        this.precipitation = resp.data[0].image_url;
+        
+      }
+    },
+    //获取最新气象预告与评估
+    async getAssessment(){
+      let resp = await getAssessment();
+      if(resp.code==0){
+        this.assessment = resp.data[0];
       }
     }
   }

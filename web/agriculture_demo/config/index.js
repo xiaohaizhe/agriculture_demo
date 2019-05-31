@@ -16,6 +16,12 @@ module.exports = {
         pathRewrite: {
           '^/dev': ''
         }        
+      },
+      '/strawberry': {
+        target: 'http://121.40.87.226:8100',
+        pathRewrite: {
+          '^/strawberry': ''
+        }        
       }
     },
 

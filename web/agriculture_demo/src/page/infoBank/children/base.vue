@@ -46,7 +46,6 @@
       }
     },
     mounted(){
-        let a = document.getElementById('container').clientHeight;
         this.get2Data();
     },
     methods:{

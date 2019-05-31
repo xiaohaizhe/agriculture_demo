@@ -1,16 +1,17 @@
 <template>
-    <div :id="chartId" style="height:500px"></div>
+    <div :id="chartId"></div>
 </template>
 
 <script>
-    // 引入基本模板
     let echarts = require('echarts/lib/echarts')
-    // 引入line图组件
+    // 地图
     require('echarts/lib/chart/map')
+    // 提示框
     require('echarts/lib/component/tooltip')
-    import china from 'echarts/map/json/china.json'
-    echarts.registerMap('china', china)
-
+    require('echarts/lib/component/visualMap')
+    require('echarts/lib/component/title')
+    import china from 'static/cities.json'
+    
     export default {
         name: 'mapChart',
         data () {
@@ -23,75 +24,60 @@
             }
         },
         mounted(){
-            this.drawChart();
+            
         },
         methods: {
-            drawChart(){
+            drawChart(data){
+                //获取当前时间
+                let date = new Date();
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+                let nowDate = year + "年" + month + "月" + day + "日";
+                data.data.push({"name":"南海诸岛","value":data.max});
+                echarts.registerMap('china', china);
                 let areaChart = echarts.init(document.getElementById(this.chartId));
                 let option = {
+                        // backgroundColor: '#021926',
                         title: {
-                            text: 'iphone销量',
-                            subtext: '纯属虚构',
-                            left: 'center'
-                        },
-                        tooltip: {
-                            trigger: 'item'
-                        },
-                        legend: {
-                            orient: 'vertical',
-                            left: 'left',
-                            data:['iphone3']
+                            text: nowDate+'全国气温分布图',
+                            left: 'center',
                         },
                         visualMap: {
-                            min: 0,
-                            max: 2500,
-                            left: 'left',
-                            top: 'bottom',
-                            text: ['高','低'],           // 文本，默认为数值文本
-                            calculable: true
+                            type: 'continuous',
+                            // text: ['', ''],
+                            calculable: true,
+			                show: true,
+                            right: '50',
+                            top:'50',
+                            min: data.min,
+                            max: data.max
                         },
-                        toolbox: {
-                            show: true,
-                            orient: 'vertical',
-                            left: 'right',
-                            top: 'center',
-                            feature: {
-                                dataView: {readOnly: false},
-                                restore: {},
-                                saveAsImage: {}
-                            }
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: function (params, ticket, callback) {
+                                    if(isNaN(params.value)){
+                                        return params.name+"："+"无";
+                                    }else{
+                                        return params.name+"："+params.value+"℃";
+                                    }
+                                    
+                                }
                         },
-                        series: [
-                            {
-                                name: 'iphone3',
+                        series: [{
+                                name: '温度',
                                 type: 'map',
                                 mapType: 'china',
-                                roam: false,
                                 label: {
                                     normal: {
-                                        show: true
-                                    },
-                                    emphasis: {
-                                        show: true
+                                        show: false
                                     }
                                 },
-                                data:[
-                                    {name: '北京',value: Math.round(Math.random()*1000) },
-                                    {name: '天津',value: Math.round(Math.random()*1000) },
-                                    {name: '上海',value: Math.round(Math.random()*1000) },
-                                    {name: '重庆',value: Math.round(Math.random()*1000) },
-                                    {name: '河北',value: Math.round(Math.random()*1000) },
-                                    {name: '河南',value: Math.round(Math.random()*1000) },
-                                ]
-                            }
-                        ]
-                    };
-                areaChart.setOption(option);
-                window.addEventListener('resize', function () {
-                    areaChart.resize();
-                })
-                
-                
+                                roam:true,
+                                data: data.data
+                                    }]
+                                        }
+                        areaChart.setOption(option);
                 
             }
         }
