@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 from flask import Flask
 from flask_pymongo import PyMongo
 from province_city import province
+import cmath
 
 '''
 @File    :   mongodb.py    
@@ -30,6 +31,7 @@ cfvin = mongo.db.strawberry_market_news
 apple_price = mongo.db.apple_price
 apple_zhengzhou = mongo.db.apple_zhengzhou
 dpdata = mongo.db.diseases_or_pests
+weather = mongo.db.weather
 
 today = datetime.now().strftime('%Y-%m-%d')
 type = ["病害", "虫害"]
@@ -374,6 +376,16 @@ def apple_price_analyse(date, range):
 #         res = dpdata.update_one(condition, {'$set': result})
 #         print(res)
 
+# def deal_with_data():
+#     results = dpdata.find({"second_level": {"$regex": "田间杂草及防除"}})
+#     for result in results:
+#         condition = {'first_level': result['first_level'], 'type': result['type'], 'name': result['name'],
+#                      "second_level": {"$regex": "田间杂草及防除"}}
+#         result['second_level'] = "药用植物的田间杂草及防除"
+#         res = dpdata.update_one(condition, {'$set': result})
+#         print(res)
+
+
 # 病虫害知识库
 '''
 1.参数为空，返回一级目录
@@ -389,7 +401,6 @@ def get_diseases_or_pests(*args):
     if size == 0:
         # 无参数
         results = dpdata.distinct("first_level")
-        print(results)
     elif size == 1:
         '''
         参数数量为1，参数为first_level
@@ -410,8 +421,8 @@ def get_diseases_or_pests(*args):
             t1 = datetime.now()
             second_levels = list(set(second_levels))
             t2 = datetime.now()
-            delta = (t2-t1).microseconds
-            print("时间差："+str(delta))
+            delta = (t2 - t1).microseconds
+            print("时间差：" + str(delta))
             print(second_levels)
             results = second_levels
         else:
@@ -437,7 +448,7 @@ def get_diseases_or_pests(*args):
         '''
         result = dpdata.find_one({"first_level": args[0]})
         if "second_level" in result.keys():
-            results1 = dpdata.find({"first_level": args[0], "second_level":args[1],"type": type[0]})
+            results1 = dpdata.find({"first_level": args[0], "second_level": args[1], "type": type[0]})
             results1 = deal_with_results(results1)
             results2 = dpdata.find({"first_level": args[0], "second_level": args[1], "type": type[1]})
             results2 = deal_with_results(results2)
@@ -453,9 +464,9 @@ def get_diseases_or_pests(*args):
             results["病害"] = names1
             results["虫害"] = names2
         else:
-            results = dpdata.find({"first_level": args[0],  "name": args[1]})
+            results = dpdata.find({"first_level": args[0], "name": args[1]})
             results = deal_with_results(results)
-            results =  results[0]["html"].replace("\r","").replace("\n","").replace('\"',"\'")
+            results = results[0]["html"].replace("\r", "").replace("\n", "").replace('\"', "\'")
 
             # h = HTMLParser.HTMLParser()
             # results = h.unescape(results)
@@ -465,8 +476,85 @@ def get_diseases_or_pests(*args):
         参数数量为3
         参数为first_level，second_level，name
         '''
-        results = dpdata.find({"first_level": args[0], "second_level": args[1], "name":args[2]})
+        results = dpdata.find({"first_level": args[0], "second_level": args[1], "name": args[2]})
         results = deal_with_results(results)
-        results = results[0]["html"].replace("\r","").replace("\n","").replace('\"',"\'")
+        results = results[0]["html"].replace("\r", "").replace("\n", "").replace('\"', "\'")
         print(results)
     return results
+
+
+# 病虫害3D模型数据
+def get_diseases_or_pests_3d_1():
+    r = {}
+    results_1 = []
+    results = dpdata.distinct("second_level")
+    i = 1
+    j = 1
+    # print(str(len(results)))
+    size = cmath.sqrt(len(results))
+    size = round(size.real)
+    r["size"] = size
+    for result in results:
+        data = {}
+        if result == None:
+            data["name"] = "水稻"
+        else:
+            data["name"] = result
+        results_1.append(data)
+        if j == size + 1:
+            i += 1
+            j = 1
+        results_1.append(j)
+        results_1.append(i)
+        j += 1
+    r["data"] = results_1
+    return r
+
+
+def get_diseases_or_pests_3d(second_level):
+    r = {}
+    results_1 = []
+    results = None
+    results = dpdata.find({"second_level": second_level})
+    results = deal_with_results(results)
+    if len(results) == 0:
+        results = dpdata.find({"first_level": second_level})
+        results = deal_with_results(results)
+    i = 1
+    j = 1
+    print(str(len(results)))
+    size = cmath.sqrt(len(results))
+    size = round(size.real)
+    r["size"] = size
+    for result in results:
+        results_1.append(result)
+        if j == size + 1:
+            i += 1
+            j = 1
+        results_1.append(j)
+        results_1.append(i)
+        j += 1
+    r["data"] = results_1
+    return r
+
+
+def get_weather():
+    r = {}
+    l = []
+    results = weather.find()
+    results = deal_with_results(results)
+    max = results[0]["value"]
+    min = results[0]["value"]
+    for result in results:
+        data = {}
+        if max < result["value"]:
+            max = result["value"]
+        if min > result["value"]:
+            min = result["value"]
+        data["name"] = result["name"]
+        data["value"] = result["value"]
+        l.append(data)
+    r["max"] = max
+    r["min"] = min
+    r["data"] = l
+    return r

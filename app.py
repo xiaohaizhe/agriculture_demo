@@ -12,7 +12,8 @@ from twisted.internet import reactor
 from log import Logger
 from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, \
     get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
-    get_apple_price_analyse, apple_futures_data, get_diseases_or_pests
+    get_apple_price_analyse, apple_futures_data, get_diseases_or_pests, get_diseases_or_pests_3d, \
+    get_diseases_or_pests_3d_1, get_weather
 
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
@@ -38,14 +39,31 @@ def process():
     mp.join()
 
 
+def process1():
+    print("开始运行")
+    configure_logging()
+    # 创建并启动子进程
+    mp = Process(target=run_spider, args=(
+        ["spider_weather"]))
+    mp.start()
+    mp.join()
+
+
 class Config(object):
     JOBS = [
         {
             'id': 'job1',
             'func': process,
             'trigger': 'interval',
-            'hours': 1
+            'hours': 24
+        },
+        {
+            'id': 'job1',
+            'func': process1,
+            'trigger': 'interval',
+            'minutes': 1
         }
+
     ]
 
     SCHEDULER_API_ENABLED = True
@@ -283,9 +301,51 @@ def get_details2():
     return jsonify(response)
 
 
+@app.route("/api/diseases_or_pests_3d/second_level")
+def test_get_diseases_or_pests_3d_1():
+    response = {}
+    result = get_diseases_or_pests_3d_1()
+    response['code'] = 0
+    response['msg'] = '成功'
+    response['data'] = result["data"]
+    response['size'] = result['size']
+    return jsonify(response)
+
+
+@app.route("/api/diseases_or_pests_3d/third_level", methods=['GET'])
+def test_get_diseases_or_pests_3d_2():
+    response = {}
+    try:
+        second_level = (request.values.get('second_level'))
+        if second_level == None:
+            raise Exception
+    except Exception:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_diseases_or_pests_3d(second_level)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result["data"]
+        response['size'] = result['size']
+    return jsonify(response)
+
+
 @app.route("/tomcat/test2")
 def test():
     return "Hello,Apache!!!This is 8081."
+
+
+@app.route("/api/weather")
+def weather():
+    datas = get_weather()
+    response = {}
+    response['code'] = 0
+    response['msg'] = '成功'
+    response['data'] = datas["data"]
+    response["max"] = datas["max"]
+    response["min"] = datas["min"]
+    return jsonify(response)
 
 
 if __name__ == '__main__':
@@ -298,5 +358,5 @@ if __name__ == '__main__':
     app.run(
         host='0.0.0.0',
         port=8081,
-        debug=True
+        debug=False
     )

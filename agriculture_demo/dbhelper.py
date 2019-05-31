@@ -25,6 +25,20 @@ class DBHelper():
             data = dict(item)
             col.insert(data)
 
+    def vertify_and_update(self, item, collection, *args):
+        col = self.mydb[collection]
+        condition = {}
+        for s in args:
+            condition[s] = item[s]
+        isValid = col.find(condition).count()
+        if isValid == 0:
+            # 该city下没有数据，直接存入
+            data = dict(item)
+            col.insert(data)
+        else:
+            # 该city下有数据，更新数据
+            col.update_one(condition, {'$set': item})
+
     def get_latest_date(self, collection):
         col = self.mydb[collection]
         count = col.find().count()

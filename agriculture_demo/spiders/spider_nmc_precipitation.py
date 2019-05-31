@@ -40,11 +40,13 @@ class SpiderNmc1Spider(scrapy.Spider):
             # 站点编号
             temp['portal_number'] = tr.xpath("./td[2]/text()").extract_first()
             # 站点名
-            temp['portal_name'] = tr.xpath("./td[3]/a/text()").extract_first()
+            # temp['portal_name'] = tr.xpath("./td[3]/a/text()").extract_first()
+            temp['name'] = tr.xpath("./td[3]/a/text()").extract_first()
             # 所在地区
             temp['province'] = tr.xpath("./td[4]/a/text()").extract_first()
             # Precipitation（mm）
-            temp['amount_of_precipitation'] = tr.xpath("./td[5]/text()").extract_first()
+            # temp['amount_of_precipitation'] = tr.xpath("./td[5]/text()").extract_first()
+            temp['value'] = tr.xpath("./td[5]/text()").extract_first()
             data.append(temp)
         precipitation['data'] = data
         yield precipitation

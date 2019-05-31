@@ -138,7 +138,7 @@ class AppleAgronetItem(scrapy.Item):
 # 作物病虫害数据库
 class DiseasesOrPests(scrapy.Item):
     # 一级目录
-    first_level  = scrapy.Field()
+    first_level = scrapy.Field()
     # 二级目录
     second_level = scrapy.Field()
     # 病害/虫害
@@ -147,3 +147,14 @@ class DiseasesOrPests(scrapy.Item):
     name = scrapy.Field()
     # html详情
     html = scrapy.Field()
+
+
+class Weather(scrapy.Item):
+    # 省份
+    province = scrapy.Field()
+    # 城市
+    name = scrapy.Field()
+    # 温度值
+    value = scrapy.Field()
+    # 更新时间
+    update_time = scrapy.Field()
