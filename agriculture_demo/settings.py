@@ -79,8 +79,7 @@ ITEM_PIPELINES = {
     'agriculture_demo.pipelines.CfvinPipeline': 306,
     'agriculture_demo.pipelines.AppleZhengzhouPipeline': 307,
     'agriculture_demo.pipelines.AppleAgronetPipeline': 308,
-    # 'agriculture_demo.pipelines.DiseasesOrPestsPipeline': 309,
-
+    'agriculture_demo.pipelines.WeatherPipeline': 309,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -104,7 +103,7 @@ ITEM_PIPELINES = {
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-mongo_host = '127.0.0.1'
+mongo_host = '10.0.92.117'
 mongo_port = 27017
 mongo_db_name = 'agriculture_demo'
 user = 'agri_demo_user'

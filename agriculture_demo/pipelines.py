@@ -3,7 +3,7 @@ from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 
 from agriculture_demo.items import MofcomItem, ImageItem, NmcItem, NatescItem, Precipitation, CfvinItem, \
-    AppleZhengzhouItem, AppleAgronetItem, DiseasesOrPests
+    AppleZhengzhouItem, AppleAgronetItem, Weather
 from agriculture_demo.dbhelper import DBHelper
 
 
@@ -72,6 +72,14 @@ class AppleAgronetPipeline(object):
         if isinstance(item, AppleAgronetItem):
             db = DBHelper()
             db.vertify_and_insert(item, "apple_price", "date", "variety", "terminal_market")
+        return item
+
+
+class WeatherPipeline():
+    def process_item(self, item, spider):
+        if isinstance(item, Weather):
+            db = DBHelper()
+            db.vertify_and_update(item, "weather", "name")
         return item
 
 
