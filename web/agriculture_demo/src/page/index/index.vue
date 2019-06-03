@@ -20,7 +20,7 @@
                       <i class="weather nav-icon"></i>
                       <span slot="title">天气信息</span>
                     </el-menu-item>
-                    <el-menu-item index="predict" :route="{name:'predict'}">
+                    <el-menu-item index="predict" :route="{name:'price'}">
                       <i class="predict nav-icon"></i>
                       <span slot="title">行情与预测</span>
                     </el-menu-item>
@@ -28,10 +28,10 @@
               </el-col>
             </el-aside>
             <el-container class="ad-right">
-                <el-header :class="{clear:!$route.meta.routeFlag}" height="70px">
+                <el-header :class="{clear:!$route.meta.routeFlag}">
                   <ad-header ></ad-header>
                 </el-header>
-                <el-main>
+                <el-main id="el-main">
                     <router-view></router-view>
                 </el-main>
             </el-container>

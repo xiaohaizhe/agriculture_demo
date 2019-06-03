@@ -11,6 +11,9 @@ const plantLog = r => require.ensure([], () => r(require('../page/plantLog/plant
 const knowledgeBase = r => require.ensure([], () => r(require('../page/infoBank/children/base')), 'knowledgeBase')
 const ordinary = r => require.ensure([], () => r(require('../page/infoBank/children/ordinary')), 'ordinary')
 const illDetail = r => require.ensure([], () => r(require('../page/infoBank/children/illDetail')), 'illDetail')
+const price = r => require.ensure([], () => r(require('../page/predict/children/price')), 'price')
+const forecast = r => require.ensure([], () => r(require('../page/predict/children/forecast')), 'forecast')
+const supply = r => require.ensure([], () => r(require('../page/predict/children/supply')), 'supply')
 
 Vue.use(Router)
 
@@ -61,7 +64,23 @@ export default new Router({
           path: "/index/predict",
           name:"predict",
           component: predict,
-          meta:{routeFlag:false} 
+          meta:{routeFlag:false},
+          children:[{
+            path: "",
+            redirect: '/index/predict/price'
+          },{
+            path: "/index/predict/price",
+            name:"price",
+            component: price
+          },{
+            path: "/index/predict/supply",
+            name:"supply",
+            component: supply
+          },{
+            path: "/index/predict/forecast",
+            name:"forecast",
+            component: forecast
+          }]
         },{
           path: "/index/cropManage/greenhouse",
           name:"greenhouse",

@@ -45,8 +45,15 @@ html,body,#app,.el-container{
     font-size: 24px;
     font-weight: bold;
 }
+.font-30{
+    font-size: 30px;
+    font-weight: bold;
+}
 .font-60{
     font-size: 60px;
+    font-weight: bold;
+}
+.font-bold{
     font-weight: bold;
 }
 .textLeft{
@@ -76,6 +83,9 @@ html,body,#app,.el-container{
 .ad-green{
     color: #67DCD8;
 }
+.ad-blue{
+    color: #34A2EC;
+}
 .mg-left-5{
     margin-left: 5px;
 }
@@ -96,6 +106,9 @@ html,body,#app,.el-container{
 }
 .mg-bot-20{
     margin-bottom: 20px;
+}
+.mg-bot-50{
+    margin-bottom: 50px;
 }
 .mg-top-10{
     margin-top: 10px;
@@ -244,6 +257,9 @@ html,body,#app,.el-container{
 .ad-justifyCenter{
     justify-content: center
 }
+.ad-flexCol{
+    flex-direction: column;
+}
 .el-input__inner {
     border-radius: 25px;
 }
@@ -260,9 +276,6 @@ html,body,#app,.el-container{
 .adHeader .el-input__inner{
     color: #fff;
     background-color: rgba(255, 255, 255, 0.3);
-}
-.cropManage .el-header{
-    padding: 20px 30px 0;
 }
 .msg{
     background-image: url(../assets/msg.svg)
@@ -296,12 +309,9 @@ html,body,#app,.el-container{
 .clear .ad-white{
     color: #797979;
 }
-.ad-right>.el-main{
+.sub-ad{
     padding:20px 50px;
-}
-.el-container.bg-fff{
     border-radius: 6px;
-    z-index: 1;
 }
 .sub-ad .el-header{
     padding:20px 30px;
@@ -476,5 +486,93 @@ html,body,#app,.el-container{
 .analyseActive{
     border-bottom: 2px solid #FBB02F;
     padding-bottom: 5px;
-
+}
+.predict .ad-main{
+    height: 350px;
+    overflow: auto;
+    border: 1px solid #CCCCCC;
+    padding: 20px;
+}
+.predict .sub{
+    background-color: #FBF7F2;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.predict .sub>div{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+}
+.predict .finance{
+    background-color: #DFB321;
+}
+.predict .map{
+    background-color: #ADDF21;
+}
+.predict .market{
+    background-color: #21DFB2;
+}
+.predict .cost{
+    background-color: #F15959;
+}
+.predict .finance{
+    background-color: #DFB321;
+}
+.predict .finance{
+    background-color: #DFB321;
+}
+.predict .finance{
+    background-color: #DFB321;
+}
+.predict .ad-icon{
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 6px;
+    text-align: center;
+    left: 6px;
+}
+.finance>i{
+    background-image: url(../assets/finance.svg);
+}
+.map>i{
+    background-image: url(../assets/map.svg);
+}
+.market>i{
+    background-image: url(../assets/market.svg);
+}
+.cost>i{
+    background-image: url(../assets/cost.svg);
+}
+.consume>i{
+    background-image: url(../assets/consume.svg);
+}
+.output>i{
+    background-image: url(../assets/output.svg);
+}
+.product>i{
+    background-image: url(../assets/product.svg);
+}
+.storage>i{
+    background-image: url(../assets/storage.svg);
+}
+.import>i{
+    background-image: url(../assets/import.svg);
+}
+.forecast>i{
+    background-image: url(../assets/forecast.svg);
+}
+.price>i{
+    background-image: url(../assets/price.svg);
+}
+.risk>i{
+    background-image: url(../assets/risk.svg);
+}
+.avg{
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
 }

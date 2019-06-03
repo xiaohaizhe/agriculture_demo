@@ -1,6 +1,5 @@
 <template>
-    <el-container class="sub-ad bg-fff">
-          <el-header height="130px">
+    <div class="sub-ad bg-fff">
               <el-breadcrumb separator-class="el-icon-arrow-right">
                   <el-breadcrumb-item :to="{name:'weather'}">天气信息</el-breadcrumb-item>
                   <el-breadcrumb-item>{{pramas[paramActive].name}}</el-breadcrumb-item>
@@ -14,8 +13,7 @@
                       </ul>
                   </el-col>
               </el-row>
-          </el-header>
-          <el-main id="weather">
+          <div id="weather">
             <map-chart chartId="mapChart" ref="mapChart" v-if="paramActive==0" :style="{height:height}"></map-chart>
             <div v-if="paramActive==1" class="ad-flex ad-flexCenter ad-justifyCenter">
               <img :src="precipitation" alt="降雨量图片">
@@ -27,8 +25,8 @@
               <p v-for="item in assessment.content" :key="item._id" class="textLeft mg-bot-10">{{item}}</p>
               <img v-for="item in assessment.image_urls" :key="item" :src="item"/>
             </div>
-          </el-main>
-    </el-container>
+          </div>
+    </div>
 </template>
 
 <script>
@@ -59,14 +57,14 @@ export default {
       'map-chart':mapChart
   },
   mounted(){
-    this.height = document.getElementById("weather").clientHeight+"px";
+    this.height = document.getElementById("el-main").clientHeight-200+"px";
     this.getWeatherList();
   },
   methods:{
     pramaChange(index){
       this.paramActive = index;
       switch(index){
-        case 0:break;
+        case 0:this.getWeatherList();break;
         case 1:this.getPrecipitationList();break;
         case 2:this.getAssessment();break;
       }

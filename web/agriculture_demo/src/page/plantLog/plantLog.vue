@@ -1,6 +1,5 @@
 <template>
-   <el-container class="sub-ad bg-fff">
-        <el-header height="220px">
+   <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ name: 'greenhouse' }">马铃薯大棚A-1</el-breadcrumb-item>
@@ -52,8 +51,6 @@
                 该大棚已种植 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 20 </span> 批次，
                 已收获 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 19 </span> 批次
             </div>
-        </el-header>
-        <el-main>
             <el-table :data="tableData.filter(data => !form.name || data.name.toLowerCase().includes(form.name.toLowerCase()))">
                 <el-table-column prop="plantTime" label="种植时间"></el-table-column>
                 <el-table-column prop="batch" label="种植批次"></el-table-column>
@@ -82,8 +79,7 @@
                 layout="total, sizes, prev, pager, next"
                 :total="pagination.total">
             </el-pagination>
-        </el-main>
-    </el-container>
+    </div>
 </template>
 
 <script>
@@ -130,6 +126,54 @@ export default {
             crops:'potato',
             variety:'品种',
             status:'harvest'
+            },{
+            plantTime: '2018/04/21',
+            batch: '草莓大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'strawberry',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'2'
+            },{
+            plantTime: '2018/04/21',
+            batch: '马铃薯大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'potato',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'1'
+            },{
+            plantTime: '2018/04/21',
+            batch: '草莓大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'strawberry',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'2'
+            },{
+            plantTime: '2018/04/21',
+            batch: '马铃薯大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'potato',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'1'
+            },{
+            plantTime: '2018/04/21',
+            batch: '草莓大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'strawberry',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'2'
+            },{
+            plantTime: '2018/04/21',
+            batch: '马铃薯大棚A-1',
+            harvestTime: '2018/08/01',
+            crops:'potato',
+            variety:'品种',
+            status:'warn',
+            statusTimes:'1'
             },{
             plantTime: '2018/04/21',
             batch: '草莓大棚A-1',

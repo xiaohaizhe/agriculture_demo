@@ -1,13 +1,10 @@
 <template>
-    <el-container class="sub-ad bg-fff">
-        <el-header height="80px">
+    <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
             <el-breadcrumb-item> 马铃薯大棚A-1</el-breadcrumb-item>
             </el-breadcrumb>
             <el-divider></el-divider>
-        </el-header>
-        <el-main>
             <el-row :gutter="60">
                 <el-col :span="16">
                     <div>
@@ -83,9 +80,7 @@
                     </div>
                 </el-col>
             </el-row>
-            
-        </el-main>
-    </el-container>
+    </div>
 </template>
 
 <script>

@@ -3,7 +3,8 @@ const prodEnv = require('../../config/dev.env')
 const SERVER_URL = prodEnv.LOGIN_SERVER_URL;//映射地址
 
 //获取环境参数图表
-export const getChartData = (type,id=504626770) => fetch( 'strawberry/api/device/get_data_in_chart', {id,type});
+//export const getChartData = (type,id=504626770) => fetch( 'strawberry/api/device/get_data_in_chart', {id,type});
+export const getChartData = (type,start,end,id=504626770) => fetch( 'strawberry/api/device/get_data_by_time', {type,start,end,id});
 
 //获取病虫害名称（有二级目录）
 export const getIllnessData = (first_level,second_level) => fetch( SERVER_URL+'/api/diseases_or_pests/get_names', {first_level,second_level});
@@ -28,3 +29,9 @@ export const getPrecipitationList = () => fetch( SERVER_URL+'/api/precipitation/
 
 //获取最新气象预告与评估
 export const getAssessment = () => fetch( SERVER_URL+'/api/forecast_and_assessment/get_latest_forecast_and_assessment', {});
+
+//获取苹果期货最新数据
+export const getAppleFuturesData  = () => fetch( SERVER_URL+'/api/apple/apple_futures_data ', {});
+
+//获取地区价格行情
+export const getPriceAnalyse  = () => fetch( SERVER_URL+'/api/apple/get_price_analyse ', {});

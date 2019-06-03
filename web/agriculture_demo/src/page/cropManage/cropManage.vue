@@ -1,6 +1,5 @@
 <template>
-  <el-container class="cropManage bg-fff">
-    <el-header height="220px" >
+  <div class="bg-fff sub-ad">
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
           <el-breadcrumb-item></el-breadcrumb-item>
@@ -47,8 +46,6 @@
           其中<span class="font-20 ad-red"> 3 </span>个大棚发出预警，
           <span class="font-20 ad-yellow"> 8 </span>个大棚需要收获
         </div>
-    </el-header>
-    <el-main>
       <el-table :data="tableData.filter(data => !form.name || data.name.toLowerCase().includes(form.name.toLowerCase()))">
         <el-table-column prop="headIcon" label=" " width="110">
           <template slot-scope="scope">
@@ -92,8 +89,7 @@
         layout="total, sizes, prev, pager, next"
         :total="pagination.total">
       </el-pagination>
-    </el-main>
-  </el-container>
+  </div>
 </template>
 
 <script>
@@ -130,6 +126,69 @@ export default {
         },{
           headIcon: '1',
           name: '大棚名称2',
+          id: '361',
+          classify:'potato',
+          region:'1',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称2',
+          id: '361',
+          classify:'strawberry',
+          region:'3',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
+          id: '361',
+          classify:'apple',
+          region:'2',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
+          id: '361',
+          classify:'potato',
+          region:'1',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称2',
+          id: '361',
+          classify:'strawberry',
+          region:'3',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
+          id: '361',
+          classify:'apple',
+          region:'2',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
+          id: '361',
+          classify:'potato',
+          region:'1',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称2',
+          id: '361',
+          classify:'strawberry',
+          region:'3',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
+          id: '361',
+          classify:'apple',
+          region:'2',
+          status:'warn'
+        },{
+          headIcon: '1',
+          name: '大棚名称',
           id: '361',
           classify:'potato',
           region:'1',

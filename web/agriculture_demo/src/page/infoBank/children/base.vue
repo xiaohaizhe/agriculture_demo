@@ -1,6 +1,6 @@
 <template>
   <div class="three">
-     <div id="container" ></div>
+     <div id="container"></div>
      <div id="menu">
       <button id="choose">重新选择</button>
       <button v-for="(item,index) in btns" :key="item.id" :id="item.id" v-show="level!=4" :class="{active:activeBtn==index}">{{item.name}}</button>
@@ -447,7 +447,7 @@
 				margin: 0;
 				font-family: Helvetica, sans-serif;;
         overflow: hidden;
-        height: 100%;
+        height: 85%;
         position: relative;
 			}
       #container{

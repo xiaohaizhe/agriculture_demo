@@ -1,27 +1,25 @@
 <template>
    <el-row :gutter="30" class="height100">
      <el-col :span="16" class="height100">
-       <el-container class="sub-ad bg-fff">
-              <el-header height="130px">
-                  <el-breadcrumb separator-class="el-icon-arrow-right">
-                      <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害信息库</el-breadcrumb-item>
-                      <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">{{pramas[paramActive].name}}</el-breadcrumb-item>
-                      <el-breadcrumb-item v-if="routeMatch.name=='illDetail'">{{routeMatch.params.data ||routeMatch}}</el-breadcrumb-item>
-                  </el-breadcrumb>
-                  <el-divider></el-divider>
-                  <el-row>
-                      <el-col :span="12">
-                          <ul class="ad-flex ad-flexEnd mg-top-10 ">
-                              <li v-for="(item,index) in pramas" :key="item.routeId" class="paramLi mg-right-10" @click="pramaChange(index)">
-                                  <i class="paramActive mg-right-10" :style="{'background-color':paramActive==item.index?'#FBB02F':'#fff'}"></i>{{item.name}}</li>
-                          </ul>
-                      </el-col>
-                  </el-row>
-              </el-header>
-              <el-main>
-                  <router-view @updateRoute="updateRoute"></router-view>
-              </el-main>
-        </el-container>
+       <div class="sub-ad bg-fff height100">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害信息库</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">{{pramas[paramActive].name}}</el-breadcrumb-item>
+                <el-breadcrumb-item v-if="routeMatch.name=='illDetail'">{{routeMatch.params.data ||routeMatch}}</el-breadcrumb-item>
+            </el-breadcrumb>
+            <el-divider></el-divider>
+            <el-row>
+                <el-col :span="12">
+                    <ul class="ad-flex ad-flexEnd mg-top-10 ">
+                        <li v-for="(item,index) in pramas" :key="item.routeId" class="paramLi mg-right-10" @click="pramaChange(index)">
+                            <i class="paramActive mg-right-10" :style="{'background-color':paramActive==item.index?'#FBB02F':'#fff'}"></i>{{item.name}}</li>
+                    </ul>
+                </el-col>
+            </el-row>
+            <div class="height100 mg-top-20">
+              <router-view @updateRoute="updateRoute" ></router-view>
+            </div>
+        </div>
      </el-col>
      <el-col :span="8">
        <div class="bg-fff">
