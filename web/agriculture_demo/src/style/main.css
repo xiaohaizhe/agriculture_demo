@@ -101,6 +101,9 @@ html,body,#app,.el-container{
 .mg-right-20{
     margin-right: 20px;
 }
+.mg-right-50{
+    margin-right: 50px;
+}
 .mg-bot-10{
     margin-bottom: 10px;
 }
@@ -493,6 +496,9 @@ html,body,#app,.el-container{
     border: 1px solid #CCCCCC;
     padding: 20px;
 }
+.supply .ad-main,.forecast .ad-main{
+    height: 550px;
+}
 .predict .sub{
     background-color: #FBF7F2;
     padding: 10px 20px;
@@ -506,26 +512,26 @@ html,body,#app,.el-container{
     border-radius: 50%;
     position: relative;
 }
-.predict .finance{
+.finance,.output,.import{
     background-color: #DFB321;
 }
-.predict .map{
+.map,.product,.price{
     background-color: #ADDF21;
 }
-.predict .market{
+.market{
     background-color: #21DFB2;
 }
-.predict .cost{
+.cost{
     background-color: #F15959;
 }
-.predict .finance{
-    background-color: #DFB321;
+.consume,.risk{
+    background-color:  #A177DC;
 }
-.predict .finance{
-    background-color: #DFB321;
+.storage{
+    background-color: #27E0B4;
 }
-.predict .finance{
-    background-color: #DFB321;
+.predict .forecast{
+    background-color: #2FD8FB;
 }
 .predict .ad-icon{
     width: 18px;
@@ -572,7 +578,7 @@ html,body,#app,.el-container{
     background-image: url(../assets/risk.svg);
 }
 .avg{
-    padding: 30px;
+    padding: 25px;
     border-radius: 6px;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
 }

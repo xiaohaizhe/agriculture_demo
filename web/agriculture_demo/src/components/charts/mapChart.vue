@@ -3,13 +3,13 @@
 </template>
 
 <script>
-    let echarts = require('echarts/lib/echarts')
-    // 地图
-    require('echarts/lib/chart/map')
-    // 提示框
-    require('echarts/lib/component/tooltip')
-    require('echarts/lib/component/visualMap')
-    require('echarts/lib/component/title')
+    // let echarts = require('echarts/lib/echarts')
+    // // 地图
+    // require('echarts/lib/chart/map')
+    // // 提示框
+    // require('echarts/lib/component/tooltip')
+    // require('echarts/lib/component/visualMap')
+    // require('echarts/lib/component/title')
     import china from 'static/cities.json'
     
     export default {
@@ -35,8 +35,8 @@
                 let day = date.getDate();
                 let nowDate = year + "年" + month + "月" + day + "日";
                 data.data.push({"name":"南海诸岛","value":data.max});
-                echarts.registerMap('china', china);
-                let areaChart = echarts.init(document.getElementById(this.chartId));
+                this.$echarts.registerMap('china', china);
+                let mapChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                         // backgroundColor: '#021926',
                         title: {
@@ -77,7 +77,10 @@
                                 data: data.data
                                     }]
                                         }
-                        areaChart.setOption(option);
+                        mapChart.setOption(option);
+                         window.addEventListener('resize', function () {
+                                mapChart.resize();
+                            })
                 
             }
         }

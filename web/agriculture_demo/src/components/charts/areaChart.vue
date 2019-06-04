@@ -3,11 +3,11 @@
 </template>
 
 <script>
-    // 引入基本模板
-    let echarts = require('echarts/lib/echarts')
-    // 引入line图组件
-    require('echarts/lib/chart/line')
-    require('echarts/lib/component/tooltip')
+    // // 引入基本模板
+    // let echarts = require('echarts/lib/echarts')
+    // // 引入line图组件
+    // require('echarts/lib/chart/line')
+    // require('echarts/lib/component/tooltip')
 
     export default {
         name: 'areaChart',
@@ -25,9 +25,9 @@
         },
         methods: {
             drawChart(){
-                let areaChart = echarts.init(document.getElementById(this.chartId));
+                let areaChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
-                        backgroundColor:new echarts.graphic.LinearGradient(0, 0, 1, 0,[{
+                        backgroundColor:new this.$echarts.graphic.LinearGradient(0, 0, 1, 0,[{
                                         offset: 0, color: '#32A7F4' // 0% 处的颜色
                                     },{
                                         offset: 1, color: '#59ECDD' // 100% 处的颜色
@@ -93,7 +93,7 @@
                                 width:0
                             }, 
                             areaStyle: {
-                                color:new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
+                                color:new this.$echarts.graphic.LinearGradient(0, 0, 0, 1,[{
                                         offset: 1, color: 'rgba(255, 255, 255, 0.1)' // 0% 处的颜色
                                     },{
                                         offset: 0.5, color: 'rgba(255, 255, 255, 0.7)' // 100% 处的颜色

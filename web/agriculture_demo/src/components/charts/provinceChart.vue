@@ -3,13 +3,13 @@
 </template>
 
 <script>
-    let echarts = require('echarts/lib/echarts')
-    // 地图
-    require('echarts/lib/chart/map')
-    // 提示框
-    require('echarts/lib/component/tooltip')
-    require('echarts/lib/component/visualMap')
-    require('echarts/lib/component/title')
+    // let echarts = require('echarts/lib/echarts')
+    // // 地图
+    // require('echarts/lib/chart/map')
+    // // 提示框
+    // require('echarts/lib/component/tooltip')
+    // require('echarts/lib/component/visualMap')
+    // require('echarts/lib/component/title')
     require('echarts/map/js/china')
 
     export default {
@@ -28,7 +28,7 @@
         },
         methods: {
             drawChart(data){
-                let provinceChart = echarts.init(document.getElementById(this.chartId));
+                let provinceChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                         visualMap: {
                             type: 'continuous',
@@ -37,8 +37,9 @@
 			                show: true,
                             right: '0',
                             top:'0',
+                            color:['#0756AF','rgba(7,86,175,0.05)'],
                             min: 0,
-                            max: 20
+                            max: data.data[0].value
                         },
                         tooltip: {
                             trigger: 'item'
@@ -53,11 +54,13 @@
                                     }
                                 },
                                 roam:true,
-                                data: [{name:"北京",value:7.5}]
+                                data: data.data
                                     }]
                                         }
                 provinceChart.setOption(option);
-                
+                window.addEventListener('resize', function () {
+                    provinceChart.resize();
+                })
             }
         }
 

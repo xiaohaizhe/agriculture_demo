@@ -7,12 +7,12 @@
 </template>
 
 <script>
-    let echarts = require('echarts/lib/echarts')
-    // 引入折线图
-    require('echarts/lib/chart/line');
-    // 提示框
-    require('echarts/lib/component/tooltip')
-    require('echarts/lib/component/markLine')
+    // let echarts = require('echarts/lib/echarts')
+    // // 引入折线图
+    // require('echarts/lib/chart/line');
+    // // 提示框
+    // require('echarts/lib/component/tooltip')
+    // require('echarts/lib/component/markLine')
 
     export default {
         name: 'lineChart',
@@ -37,7 +37,7 @@
                         type: 'warning'
                     });
                 }
-                let lineChart = echarts.init(document.getElementById(this.chartId));
+                let lineChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                         tooltip: {
                             trigger: 'axis',

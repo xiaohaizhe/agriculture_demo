@@ -7,8 +7,8 @@ import { Button, Select,Option,Container,Header,Aside,Main,Col,Menu,Submenu,Menu
   TableColumn, Pagination,Row,Progress ,MessageBox,Popover,DatePicker,Message,Carousel,CarouselItem,} from 'element-ui';
 import './style/main.css'
 import store from './store/store'
-// import echarts from 'echarts' //引入echarts
-// Vue.prototype.$echarts = echarts //引入组件
+import echarts from 'echarts' //引入echarts
+Vue.prototype.$echarts = echarts //引入组件
 
 Vue.config.productionTip = false
 Vue.use(Button);

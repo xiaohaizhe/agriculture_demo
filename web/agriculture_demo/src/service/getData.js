@@ -31,7 +31,13 @@ export const getPrecipitationList = () => fetch( SERVER_URL+'/api/precipitation/
 export const getAssessment = () => fetch( SERVER_URL+'/api/forecast_and_assessment/get_latest_forecast_and_assessment', {});
 
 //获取苹果期货最新数据
-export const getAppleFuturesData  = () => fetch( SERVER_URL+'/api/apple/apple_futures_data ', {});
+export const getAppleFuturesData  = () => fetch( SERVER_URL+'/api/apple/apple_futures_data', {});
 
 //获取地区价格行情
-export const getPriceAnalyse  = () => fetch( SERVER_URL+'/api/apple/get_price_analyse ', {});
+export const getPriceAnalyse  = () => fetch( SERVER_URL+'/api/apple/get_price_analyse', {});
+
+//获取苹果价格详情列表
+export const getPriceDetail  = (sdate,edate,page=1,number=20) => fetch( SERVER_URL+'/api/apple/get_price_detail', {sdate,edate,page,number});
+
+//获取草莓行情新闻列表
+export const getStrawberryNews  = (page=1,number=5) => fetch( SERVER_URL+'/api/strawberry_market_news/newsList', {page,number});

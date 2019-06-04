@@ -1,5 +1,7 @@
 <template>
-    <div class="sub-ad bg-fff">
+  <el-row :gutter="30" class="height100">
+    <el-col :span="16" class="height100">
+      <div class="sub-ad bg-fff">
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{name:'predict'}">行情与预测</el-breadcrumb-item>
             <el-breadcrumb-item>{{pramas[paramActive].name}}</el-breadcrumb-item>
@@ -17,23 +19,55 @@
             </el-col>
         </el-row>
         <router-view></router-view>
-    </div>
+      </div>
+    </el-col>
+    <el-col :span="8">
+       <div class="bg-fff">
+         <div>
+           <el-carousel trigger="click" height="250px">
+            <el-carousel-item v-for="item in 3" :key="item">
+              <i class="news"></i>
+            </el-carousel-item>
+          </el-carousel>
+          </div>
+          <div style="padding:25px">
+              <div class="ad-flex ad-flexBtw ad-flexCenter mg-bot-10">
+                <div>
+                  <i class="el-icon-chat-line-square ad-green font-18"></i>
+                  <span class="ad-gray font-18">最新消息</span>
+                </div>
+                <!-- <el-button type="text" class="ad-lightgray textRight">查看更多></el-button> -->
+              </div>
+              <ul>
+                <li v-for="news in newList" :key="news._id" class="ad-flex ad-flexBtw mg-bot-20">
+                  <span class="ad-gray">{{news.title}}</span>
+                  <span class="ad-lightgray">{{news.date}}</span>
+                </li>
+              </ul>
+          </div>
+        
+       </div>
+     </el-col>
+  </el-row>
+    
 </template>
 
 <script>
+import {getStrawberryNews} from 'service/getData'
 export default {
   name: 'predict',
   data () {
     return {
       paramActive:0,
       analyseActive:0,
+      newList:[],
       pramas:[{
-          name:'马铃薯',
-          id:'potato',
+          name:'苹果',
+          id:'apple',
           index:0
         },{
-          name:'番茄',
-          id:'tomato',
+          name:'草莓',
+          id:'strawberry',
           index:1
         },{
           name:'青椒',
@@ -55,6 +89,9 @@ export default {
       }]
     }
   },
+  mounted(){
+    this.getStrawberryNews();
+  },
   methods:{
     pramaChange(index){
       this.paramActive = index;
@@ -64,6 +101,12 @@ export default {
       this.analyseActive = index;
       this.$router.push('/index/predict/'+this.analyses[index].id);
     },
+    async getStrawberryNews(){
+        let resp = await getStrawberryNews();
+        if(resp.code==0){
+            this.newList = resp.data;
+        }
+    }
   }
 }
 </script>
