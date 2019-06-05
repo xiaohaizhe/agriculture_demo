@@ -1,5 +1,6 @@
 <template>
   <div class="three">
+     
      <div id="container"></div>
      <div id="menu">
       <button id="choose">重新选择</button>
@@ -9,6 +10,7 @@
 			<button id="helix" v-show="level!=4">螺旋形</button> -->
       <!-- <button id="grid">GRID</button> -->
 		</div>
+    <p class="tip">注：鼠标左键为旋转，鼠标右键为移动</p>
   </div>
 </template>
 
@@ -120,8 +122,8 @@
                 //
 
                 var object = new THREE.Object3D();
-                object.position.x = ( this.table[ i + 1 ] * 248 ) - 135*this.size;
-                object.position.y = - ( this.table[ i + 2 ] * 200 ) + 115*this.size;
+                object.position.x = ( this.table[ i + 1 ] * 248 ) - 140*this.size;
+                object.position.y = - ( this.table[ i + 2 ] * 200 ) + 130*this.size;
 
                 this.targets.table.push( object );
 
@@ -325,8 +327,8 @@
                 //
 
                 var object = new THREE.Object3D();
-                object.position.x = ( this.table[ i + 1 ] * 248 ) - 135*this.size;
-                object.position.y = - ( this.table[ i + 2 ] * 200 ) + 115*this.size;
+                object.position.x = ( this.table[ i + 1 ] * 248 ) - 140*this.size;
+                object.position.y = - ( this.table[ i + 2 ] * 200 ) + 130*this.size;
 
                 this.targets.table.push( object );
 
@@ -452,6 +454,12 @@
 			}
       #container{
         height: 100%;
+      }
+      .tip{
+          position: absolute;
+          color: #fff;
+          text-align: center;
+          bottom: 10px;
       }
 			a {
 				color: #ffffff;

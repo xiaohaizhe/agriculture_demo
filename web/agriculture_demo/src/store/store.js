@@ -6,6 +6,11 @@ import actions from './actions'
 
 Vue.use(Vuex);
 const state = {
+	vegetable:{
+		name:'苹果',
+		id:'apple'
+	},
+	// type:'price'
 }
 
 export default new Vuex.Store({

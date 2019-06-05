@@ -14,6 +14,7 @@ const illDetail = r => require.ensure([], () => r(require('../page/infoBank/chil
 const price = r => require.ensure([], () => r(require('../page/predict/children/price')), 'price')
 const forecast = r => require.ensure([], () => r(require('../page/predict/children/forecast')), 'forecast')
 const supply = r => require.ensure([], () => r(require('../page/predict/children/supply')), 'supply')
+const news = r => require.ensure([], () => r(require('../page/news/news')), 'news')
 
 Vue.use(Router)
 
@@ -81,6 +82,10 @@ export default new Router({
             name:"forecast",
             component: forecast
           }]
+        },{
+          path: "/index/predict/news",
+          name:"news",
+          component: news
         },{
           path: "/index/cropManage/greenhouse",
           name:"greenhouse",

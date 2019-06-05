@@ -1,6 +1,6 @@
 <template>
   <ul class="predict">
-     <li class="mg-bot-20">
+     <li class="mg-bot-20" v-if="this.vegetable.id=='apple'">
         <div class="sub ad-flex ad-flexCenter">
             <div class="finance mg-right-20">
                 <i class="ad-icon"></i>
@@ -53,7 +53,7 @@
              </div>
              <div style="width:40%;overflow:auto;height:300px">
                  <el-table :data="areaData">
-                    <el-table-column type="index" label="排名" width="50"></el-table-column>
+                    <el-table-column type="index" label="排名" width="60"></el-table-column>
                     <el-table-column prop="name" label="地区"></el-table-column>
                     <el-table-column prop="value" label="均价(元/公斤)"></el-table-column>
                     <el-table-column prop="day_on_day_rate" label="环比"></el-table-column>
@@ -96,7 +96,7 @@
                     <el-divider></el-divider>
              </div>
              <div>
-                 <el-table :data="priceData">
+                 <el-table :data="priceData" v-if="this.vegetable.id=='apple'">
                     <el-table-column prop="date" label="日期"></el-table-column>
                     <el-table-column prop="variety" label="品种"></el-table-column>
                     <el-table-column prop="province" label="省份"></el-table-column>
@@ -104,6 +104,14 @@
                     <el-table-column prop="bottom_price" label="最低价格"></el-table-column>
                     <el-table-column prop="top_price" label="最高价格"></el-table-column>
                     <el-table-column prop="average_price" label="平均价格"></el-table-column>
+                    <el-table-column prop="measurement_unit" label="计量单位"></el-table-column>
+                </el-table>
+                <el-table :data="priceData" v-if="this.vegetable.id=='strawberry'">
+                    <el-table-column prop="date" label="日期"></el-table-column>
+                    <el-table-column prop="name" label="产品"></el-table-column>
+                    <el-table-column prop="province" label="省份"></el-table-column>
+                    <el-table-column prop="market" label="批发市场"></el-table-column>
+                    <el-table-column prop="price" label="价格"></el-table-column>
                     <el-table-column prop="measurement_unit" label="计量单位"></el-table-column>
                 </el-table>
              </div>
@@ -157,9 +165,10 @@
 </template>
 
 <script>
-    import {getAppleFuturesData,getPriceAnalyse,getPriceDetail} from 'service/getData'
+    import {getAppleFuturesData,getApplePriceAnalyse,getStrawPriceAnalyse,getApplePriceDetail,getStrawPriceDetail} from 'service/getData'
     import provinceChart from 'components/charts/provinceChart'
     import {dateFormat} from 'config/mUtils'
+    import {mapState} from 'vuex'
 
     export default {
         name: 'price',
@@ -196,9 +205,31 @@
             this.price.start = dateFormat(new Date(new Date().getTime() - 14*24*60*60*1000),'',false);
             this.price.end = dateFormat(new Date(),'',false);
             this.date = [this.price.start,this.price.end];
-            this.getAppleFuturesData();
-            this.getPriceAnalyse();
-            this.getPriceDetail();
+            if(this.vegetable.id=='apple'){
+                this.getAppleFuturesData();
+                this.getApplePriceAnalyse();
+                this.getApplePriceDetail();
+            }else{
+                this.getStrawPriceAnalyse();
+                this.getStrawPriceDetail();
+            }
+        },
+        computed:{
+            ...mapState([
+                'vegetable'
+            ])
+        },
+        watch:{
+            vegetable(curVal,oldVal){
+                if(curVal.id=='apple'){
+                    this.getAppleFuturesData();
+                    this.getApplePriceAnalyse();
+                    this.getApplePriceDetail();
+                }else{
+                    this.getStrawPriceAnalyse();
+                    this.getStrawPriceDetail();
+                }
+    　　　},
         },
         components:{
             'province-chart':provinceChart
@@ -211,9 +242,9 @@
                     this.tableData = resp.data;
                 }
             },
-            //获取地区价格行情
-            async getPriceAnalyse(){
-                let resp = await getPriceAnalyse();
+            //获取苹果地区价格行情
+            async getApplePriceAnalyse(){
+                let resp = await getApplePriceAnalyse();
                 if(resp.code==0){
                     this.areaData = resp.data.data;
                     this.nationData = resp.data.nationwide;
@@ -221,8 +252,27 @@
                 }
             },
             //获取苹果价格详情列表
-            async getPriceDetail(){
-                let resp = await getPriceDetail(this.price.start,this.price.end);
+            async getApplePriceDetail(){
+                let resp = await getApplePriceDetail(this.price.start,this.price.end);
+                if(resp.code==0){
+                    this.priceData = resp.data;
+                    this.price.updateTime = resp.data[0].date;
+                    this.price.unit = resp.data[0].measurement_unit;
+                    // this.price.total = resp.total_elements;
+                }
+            },
+            //获取草莓地区价格行情
+            async getStrawPriceAnalyse(){
+                let resp = await getStrawPriceAnalyse();
+                if(resp.code==0){
+                    this.areaData = resp.data.data;
+                    this.nationData = resp.data.nationwide;
+                    this.$refs.provinceChart.drawChart(resp.data)
+                }
+            },
+            //获取草莓价格详情列表
+            async getStrawPriceDetail(){
+                let resp = await getStrawPriceDetail(this.price.start,this.price.end);
                 if(resp.code==0){
                     this.priceData = resp.data;
                     this.price.updateTime = resp.data[0].date;
@@ -234,7 +284,12 @@
             dateChange(date){
                 this.price.start = dateFormat(date[0],'',false);
                 this.price.end  = dateFormat(date[1],'',false);
-                this.getPriceDetail();
+                if(this.$route.params.data=='all' || this.$route.params.data=='apple'){
+                    this.getApplePriceDetail();
+                }else{
+                    this.getStrawPriceDetail();
+                }
+                
             },
         }
     }
