@@ -1,7 +1,7 @@
 <template>
    <el-row :gutter="30" class="height100">
      <el-col :span="16" class="height100">
-       <div class="sub-ad bg-fff height100">
+       <div class="sub-ad bg-fff" style="min-height:100%" :class="{height100: paramActive==1}">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害信息库</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">{{pramas[paramActive].name}}</el-breadcrumb-item>
