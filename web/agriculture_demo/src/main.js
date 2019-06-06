@@ -38,7 +38,7 @@ Vue.use(Popover);
 Vue.use(DatePicker);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
-
+Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$message = Message;
 

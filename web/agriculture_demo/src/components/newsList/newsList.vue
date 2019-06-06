@@ -16,8 +16,8 @@
                 <!-- <el-button type="text" class="ad-lightgray textRight">查看更多></el-button> -->
               </div>
               <ul>
-                <li v-for="news in newList" :key="news._id" class="ad-flex ad-flexBtw mg-bot-20">
-                  <span class="ad-gray" style="cursor: pointer;" @click="goto('news')">{{news.title}}</span>
+                <li v-for="(news,index) in newList" :key="news._id" class="ad-flex ad-flexBtw mg-bot-20">
+                  <span class="ad-gray" style="cursor: pointer;" @click="change(index+1)">{{news.title}}</span>
                   <span class="ad-lightgray">{{news.date}}</span>
                 </li>
               </ul>
@@ -37,8 +37,8 @@
     },
     methods:{
         //跳转页面
-        goto(val){
-            this.$router.push({name:val});
+        change(index){
+            this.$emit('changeNews',index);
         },
     }
   }

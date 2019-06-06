@@ -83,7 +83,7 @@ export default new Router({
             component: forecast
           }]
         },{
-          path: "/index/predict/news",
+          path: "/index/predict/news/:number",
           name:"news",
           component: news
         },{

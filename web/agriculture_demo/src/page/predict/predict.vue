@@ -22,7 +22,7 @@
       </div>
     </el-col>
     <el-col :span="8">
-      <news-list :newList="newList"></news-list>
+      <news-list :newList="newList" @changeNews="changeNews"></news-list>
      </el-col>
   </el-row>
     
@@ -72,7 +72,6 @@ export default {
       ])
   },
   mounted(){
-    
     this.paramActive = this.vegetable.id;
     if(this.paramActive=='strawberry'){
       this.getStrawberryNews();
@@ -99,11 +98,8 @@ export default {
         }
     },
     //跳转页面
-    goto(val){
-      this.activeName = '最新消息';
-      this.analyseActive = 'news';
-      this.$store.commit('HANDLE_VG',{name:'最新消息',id:'news'});
-      this.$router.push({name:val});
+    changeNews(index){
+      this.$router.push({path:'/index/predict/news/'+index});
     },
   }
 }

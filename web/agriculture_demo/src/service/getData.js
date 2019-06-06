@@ -47,3 +47,6 @@ export const getStrawPriceDetail  = (sdate,edate,page=1,number=20) => fetch( SER
 
 //获取草莓行情新闻列表
 export const getStrawberryNews  = (page=1,number=5) => fetch( SERVER_URL+'/api/strawberry_market_news/newsList', {page,number});
+
+//获取草莓行情新闻某条
+export const getStrawberryNewsDetail  = (number) => fetch( SERVER_URL+'/api/strawberry_market_news/detail', {number});
