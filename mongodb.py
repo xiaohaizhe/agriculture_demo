@@ -86,13 +86,25 @@ def get_strawberry_price_analyse():
     date = result['date']
     print(date)
     date = datetime.strptime(date, '%Y-%m-%d')
-    results = []
-    results.append(strawberry_price_analyse(date, ""))
+    # results = []
+    # results.append(strawberry_price_analyse(date, ""))
+    # for pro in province:
+    #     r = strawberry_price_analyse(date, pro)
+    #     if r == None:
+    #         continue
+    #     results.append(r)
+    # return results
+    results = {}
+    results["nationwide"] = strawberry_price_analyse(date, "")
+    data = []
     for pro in province:
         r = strawberry_price_analyse(date, pro)
         if r == None:
             continue
-        results.append(r)
+        r["name"] = pro
+        data = insert_data_by_price(data, r)
+        print(data)
+    results["data"] = data
     return results
 
 
@@ -131,11 +143,11 @@ def strawberry_price_analyse(date, range):
             year_on_year_rate = round((average_yesterday / average_last_year - 1), 3)
 
         result = {}
-        if range == '':
-            result['province'] = 'nationwide'
-        else:
-            result['province'] = range
-        result['average_latest'] = average_yesterday
+        # if range == '':
+        #     result['province'] = 'nationwide'
+        # else:
+        #     result['province'] = range
+        result['value'] = average_yesterday
         result['day_on_day_rate'] = day_on_day_rate
         result['year_on_year_rate'] = year_on_year_rate
         return result
@@ -262,6 +274,14 @@ def get_cfvin_newsList(page, number):
     result['data'] = r
     return result
 
+# 草莓价格市场新闻
+def get_cfvin_newsList_detail(number):
+    result = {}
+    results = cfvin.find().sort('date', pymongo.DESCENDING).skip(number-1).limit(1)
+    r = deal_with_results(results)
+    result['data'] = r
+    return result
+
 
 # 苹果期货数据
 def apple_futures_data():
@@ -296,19 +316,43 @@ def apple_query_by_date(sdate, edate, page, number):
 
 def get_apple_price_analyse():
     # 获取苹果价格最新数据日期
+    print("进入获取苹果价格最新数据日期")
     result = apple_price.find().sort('date', pymongo.DESCENDING).limit(1)
     result = json.dumps(result[0], cls=JSONEncoder)
     result = json.loads(result)
     date = result['date']
     date = datetime.strptime(date, '%Y-%m-%d')
-    results = []
-    results.append(apple_price_analyse(date, ""))
+    results = {}
+    results["nationwide"] = apple_price_analyse(date, "")
+    data = []
+    # price_sum = 0
+    # count = 0
     for pro in province:
         r = apple_price_analyse(date, pro)
         if r == None:
             continue
-        results.append(r)
+        r["name"] = pro
+        data = insert_data_by_price(data, r)
+    results["data"] = data
     return results
+
+
+def insert_data_by_price(data, r):
+    # print("开始插入数据")
+    average_latest = r["value"]
+    # print(str(average_latest))
+    count = 0
+    if len(data) == 0:
+        data.append(r)
+    else:
+        for d in data:
+            if d["value"] > average_latest:
+                count += 1
+                continue
+            else:
+                data.insert(count, r)
+                break
+    return data
 
 
 def apple_price_analyse(date, range):
@@ -342,11 +386,7 @@ def apple_price_analyse(date, range):
             year_on_year_rate = round((average_yesterday / average_last_year - 1), 3)
 
         result = {}
-        if range == '':
-            result['province'] = 'nationwide'
-        else:
-            result['province'] = range
-        result['average_latest'] = average_yesterday
+        result['value'] = average_yesterday
         result['day_on_day_rate'] = day_on_day_rate
         result['year_on_year_rate'] = year_on_year_rate
         return result

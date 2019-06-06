@@ -7747,18 +7747,3 @@ def get_province_by_city(s):
                 break
     return p
 
-# def test():
-#     url = "https://www.tianqiapi.com/api/?version=v6&cityid="
-#     for pro in data:
-#         id =  pro["id"]
-#         url += id
-#         res = requests.get(url=url)
-#         import json
-#         data_str = res.text
-#         data_json = json.loads(data_str)
-#         tem = data_json["tem"]
-#         print(data_json["city"]+":"+data_json["tem"])
-#
-# if __name__ == '__main__':
-#     test()
-

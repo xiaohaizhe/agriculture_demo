@@ -14,7 +14,7 @@ if date == None:
     starttime = (datetime.today() + timedelta(days=-90))
 else:
     starttime = date
-print(starttime)
+# print(starttime)
 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate, sdch, br',
@@ -39,7 +39,7 @@ class SpiderMofcomSpider(scrapy.Spider):
                   '&par_p_index=&p_index=&startTime=' + y + '&endTime=' + y + '&page=' + str(page)]
 
     def parse(self, response):
-        print("进入第一次解析")
+        # print("进入第一次解析")
         global page, yesterday, starttime
         page = 1
         starttime = starttime.strftime('%Y-%m-%d')
@@ -49,7 +49,7 @@ class SpiderMofcomSpider(scrapy.Spider):
         yield scrapy.Request(url=url, callback=self.second_parse, meta={"start": starttime})
 
     def second_parse(self, response):
-        print("进入第二次解析")
+        # print("进入第二次解析")
         global page
         start = response.meta["start"]
         result = response.xpath("//div//table//tr[position()>1]")
@@ -77,7 +77,7 @@ class SpiderMofcomSpider(scrapy.Spider):
             script = response.xpath("//section//script[last()]/text()").extract_first().split(";")
             sum = script[0].split()[-1].strip()
             if page < int(sum):
-                print("执行下一页")
+                # print("执行下一页")
                 page += 1
                 yield scrapy.Request('http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index=13076'
                                      '&craft_index=13167&par_p_index=&p_index=&startTime=' + start

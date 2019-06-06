@@ -13,38 +13,130 @@ from log import Logger
 from mongodb import query_by_type, get_strawberry_price_analyse, strawberry_query_by_date, get_natesc_newsList, \
     get_precipitation, get_latest_forecast_and_assessment, get_cfvin_newsList, apple_query_by_date, \
     get_apple_price_analyse, apple_futures_data, get_diseases_or_pests, get_diseases_or_pests_3d, \
-    get_diseases_or_pests_3d_1, get_weather
+    get_diseases_or_pests_3d_1, get_weather, get_cfvin_newsList_detail
 
 log = Logger('agriculture.log', level='debug')
 app = Flask(__name__)
 
 
-def run_spider(s):
+def run_spider(*s):
+    print(s)
     configure_logging()
     runner = CrawlerRunner(get_project_settings())
     for ss in s:
+        print(ss)
         runner.crawl(ss)
-    d = runner.join()
-    d.addBoth(lambda _: reactor.stop())
-    reactor.run()
+        d = runner.join()
+        d.addBoth(lambda _: reactor.stop())
+        reactor.run()
 
 
 def process():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行0")
     configure_logging()
     # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_mofcom", "spider_nmc_forecast_and_assessment", "spider_nmc_precipitation", "spider_natesc",
+    #      "spider_cfvin", "spider_zhengzhou", "spider_agronet"]))
     mp = Process(target=run_spider, args=(
-        ["spider_mofcom", "spider_nmc_forecast_and_assessment", "spider_nmc_precipitation", "spider_natesc",
-         "spider_cfvin", "spider_zhengzhou", "spider_agronet"]))
+        ["spider_mofcom"]))
     mp.start()
     mp.join()
 
 
 def process1():
-    print("开始运行")
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行1")
     configure_logging()
     # 创建并启动子进程
-    mp = Process(target=run_spider, args=(
-        ["spider_weather"]))
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_nmc_forecast_and_assessment']))
+    mp.start()
+    mp.join()
+
+
+def process2():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行2")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_cfvin']))
+    mp.start()
+    mp.join()
+
+
+def process3():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_nmc_precipitation']))
+    mp.start()
+    mp.join()
+
+
+def process4():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_natesc']))
+    mp.start()
+    mp.join()
+
+
+def process5():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_cfvin']))
+    mp.start()
+    mp.join()
+
+
+def process6():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_zhengzhou']))
+    mp.start()
+    mp.join()
+
+
+def process7():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_agronet']))
+    mp.start()
+    mp.join()
+
+
+def process8():
+    print(datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"))
+    print("开始运行3")
+    configure_logging()
+    # 创建并启动子进程
+    # mp = Process(target=run_spider, args=(
+    #     ["spider_weather"]))
+    mp = Process(target=run_spider, args=(['spider_weather']))
     mp.start()
     mp.join()
 
@@ -52,16 +144,58 @@ def process1():
 class Config(object):
     JOBS = [
         {
-            'id': 'job1',
+            'id': 'job',
             'func': process,
-            'trigger': 'interval',
-            'hours': 24
+            'trigger': 'cron',
+            'hour': 0
         },
         {
             'id': 'job1',
             'func': process1,
+            'trigger': 'cron',
+            'hour': 1
+        },
+        {
+            'id': 'job2',
+            'func': process2,
+            'trigger': 'cron',
+            'hour': 2
+        },
+        {
+            'id': 'job3',
+            'func': process3,
+            'trigger': 'cron',
+            'hour': 9
+        },
+        {
+            'id': 'job4',
+            'func': process4,
+            'trigger': 'cron',
+            'hour': 4
+        },
+        {
+            'id': 'job5',
+            'func': process5,
+            'trigger': 'cron',
+            'hour': 5
+        },
+        {
+            'id': 'job6',
+            'func': process6,
+            'trigger': 'cron',
+            'hour': 6
+        },
+        {
+            'id': 'job7',
+            'func': process7,
+            'trigger': 'cron',
+            'hour': 7
+        },
+        {
+            'id': 'job8',
+            'func': process8,
             'trigger': 'interval',
-            'minutes': 1
+            'minutes': 30
         }
 
     ]
@@ -207,6 +341,22 @@ def cfvin_newsList():
     return jsonify(response)
 
 
+@app.route('/api/strawberry_market_news/detail', methods=['GET'])
+def cfvin_newsList_detail():
+    response = {}
+    try:
+        number = int(request.values.get('number'))
+    except TypeError:
+        response['code'] = 1
+        response['msg'] = '参数不完整'
+    else:
+        result = get_cfvin_newsList_detail(number)
+        response['code'] = 0
+        response['msg'] = '成功'
+        response['data'] = result['data']
+    return jsonify(response)
+
+
 @app.route('/api/diseases_or_pests/get_first_level', methods=['GET'])
 def get_first_level():
     response = {}
@@ -348,13 +498,12 @@ def weather():
     return jsonify(response)
 
 
+app.config.from_object(Config())
 if __name__ == '__main__':
-    app.config.from_object(Config())
-    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-        scheduler = APScheduler()
-        scheduler.api_enabled = True
-        scheduler.init_app(app)
-        scheduler.start()
+    scheduler = APScheduler()
+    scheduler.api_enabled = True
+    scheduler.init_app(app)
+    scheduler.start()
     app.run(
         host='0.0.0.0',
         port=8081,

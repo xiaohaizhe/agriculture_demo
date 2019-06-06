@@ -11,7 +11,7 @@ if date == None:
     starttime = (datetime.today() + timedelta(days=-30))
 else:
     starttime = date
-print(starttime)
+# print(starttime)
 
 '''
 草莓行情新闻数据:
