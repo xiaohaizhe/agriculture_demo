@@ -119,7 +119,7 @@
          </div>
       
      </li>
-     <li class="mg-bot-20">
+     <li class="mg-bot-20" v-if="this.vegetable.id=='apple'">
         <div class="sub ad-flex ad-flexCenter">
             <div class="cost mg-right-20">
                 <i class="ad-icon"></i>

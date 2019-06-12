@@ -64,12 +64,18 @@
     import storageChart from 'components/charts/storageChart'
     import importChart from 'components/charts/importChart'
     import productChart from 'components/charts/productChart'
+    import {mapState} from 'vuex'
 
     export default {
         name: 'supply',
         data () {
         return {
             }
+        },
+        computed:{
+            ...mapState([
+                'vegetable'
+            ])
         },
         components:{
             'output-chart':outputChart,
@@ -78,12 +84,21 @@
             'import-chart':importChart,
             'product-chart':productChart
         },
+        watch:{
+            vegetable(curVal,oldVal){
+                this.$refs.outputChart.drawChart(curVal.id);
+                this.$refs.productChart.drawChart(curVal.id);
+                this.$refs.consumeChart.drawChart(curVal.id);
+                this.$refs.storageChart.drawChart(curVal.id);
+                this.$refs.importChart.drawChart(curVal.id);
+    　　　},
+        },
         mounted(){
-            this.$refs.outputChart.drawChart();
-            this.$refs.productChart.drawChart();
-            this.$refs.consumeChart.drawChart();
-            this.$refs.storageChart.drawChart();
-            this.$refs.importChart.drawChart();
+            this.$refs.outputChart.drawChart(this.vegetable.id);
+            this.$refs.productChart.drawChart(this.vegetable.id);
+            this.$refs.consumeChart.drawChart(this.vegetable.id);
+            this.$refs.storageChart.drawChart(this.vegetable.id);
+            this.$refs.importChart.drawChart(this.vegetable.id);
         },
         methods:{
 

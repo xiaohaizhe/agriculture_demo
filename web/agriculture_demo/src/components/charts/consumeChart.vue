@@ -17,6 +17,14 @@
         name: 'consumeChart',
         data () {
             return {
+                appleData:{
+                    label:['2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017'],
+                    data:[2935.72, 3059.30, 3271.52, 3489.92, 3534.20, 3651.70, 3815.35,3912.13,4013.04]
+                },
+                strawberryData:{
+                    label:['2006','2007','2008','2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017'],
+                    data:[187.34,187.08,200.00,220.57,232.96,249.01,275.99,299.72,311.17,347.75,341.84,399.77]
+                }
             }
         },
         props: {
@@ -27,7 +35,13 @@
         mounted(){
         },
         methods: {
-            async drawChart(){
+            async drawChart(type){
+                let data= {}
+                if(type=="apple"){
+                    data=this.appleData;
+                }else{
+                    data= this.strawberryData;
+                }
                 let consumeChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                     xAxis: {
@@ -38,7 +52,7 @@
                         axisTick:{
                             show:false,
                         },
-                        data: ['2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017']
+                        data: data.label
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -54,7 +68,7 @@
                         }
                     },
                     series: [{
-                        data: [2935.72, 3059.30, 3271.52, 3489.92, 3534.20, 3651.70, 3815.35,3912.13,4013.04],
+                        data: data.data,
                         type: 'bar',
                         barMaxWidth :20,
                         itemStyle: {
