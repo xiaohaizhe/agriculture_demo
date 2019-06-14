@@ -138,7 +138,9 @@ html,body,#app,.el-container{
     background-color: inherit;
 }
 .hiynn{
-    background-image: url(../assets/hiynn.svg);
+    color: #fff;
+    font-size: 30px;
+    /* background-image: url(../assets/hiynn.svg); */
     height: 3.8rem;
     background-repeat: no-repeat;
     border-bottom: 1px solid #fff;
@@ -251,7 +253,7 @@ html,body,#app,.el-container{
 .ad-flex{
     display: flex;
 }
-.ad-flexEnd{
+.ad-end{
     justify-content: end;
 }
 .ad-flexBtw{
@@ -259,6 +261,9 @@ html,body,#app,.el-container{
 }
 .ad-flexCenter{
     align-items: center
+}
+.ad-flexEnd{
+    justify-content: flex-end;
 }
 .ad-justifyCenter{
     justify-content: center
@@ -497,7 +502,7 @@ html,body,#app,.el-container{
     height: 350px;
     overflow: auto;
     border: 1px solid #CCCCCC;
-    padding: 20px;
+    padding: 20px 0 20px 20px;
 }
 .supply .ad-main,.forecast .ad-main{
     height: 550px;

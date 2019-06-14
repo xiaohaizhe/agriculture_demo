@@ -40,6 +40,7 @@
   import forecastChart from 'components/charts/forecastChart'
   // import priceChart from 'components/charts/priceChart'
   // import riskChart from 'components/charts/riskChart'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'forecast',
@@ -47,13 +48,23 @@
       return {
       }
     },
+    computed:{
+        ...mapState([
+            'vegetable'
+        ])
+    },
     components:{
         'forecast-chart':forecastChart,
         // 'price-chart':priceChart,
         // 'risk-chart':riskChart
     },
+    watch:{
+        vegetable(curVal,oldVal){
+            this.$refs.forecastChart.drawChart(curVal.id);
+  　　　},
+    },
     mounted(){
-      this.$refs.forecastChart.drawChart();
+      this.$refs.forecastChart.drawChart(this.vegetable.id);
     }
   }
 </script>

@@ -77,15 +77,15 @@
         </el-table-column>
         <el-table-column prop="operation" label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="primary" round @click="goto()">查看</el-button>
+            <el-button size="mini" type="primary" round @click="goto(scope.row)">查看</el-button>
           </template>
         </el-table-column>
       </el-table>
       <el-pagination
         background
         :current-page="pagination.currentPage"
-        :page-sizes="[10]"
-        :page-size="10"
+        :page-sizes="[15]"
+        :page-size="15"
         layout="total, sizes, prev, pager, next"
         :total="pagination.total">
       </el-pagination>
@@ -109,111 +109,157 @@ export default {
         status:''
       },
       tableData:[],
+      tempData:[],
       fakeData: [{
           headIcon: '1',
-          name: '马铃薯大棚A-1',
+          name: '大棚A-1',
           id: '361',
           classify:'potato',
+          classifyName:'马铃薯',
           region:'1',
-          status:'grow'
+          regionName:'东一区',
+          status:'grow',
+          statusName:'生长'
         },{
           headIcon: '1',
-          name: '马铃薯大棚A-1',
-          id: '361',
+          name: '大棚A-2',
+          id: '362',
           classify:'potato',
+          classifyName:'马铃薯',
           region:'1',
-          status:'harvest'
+          regionName:'东一区',
+          status:'harvest',
+          statusName:'收获'
         },{
           headIcon: '1',
-          name: '大棚名称2',
-          id: '361',
+          name: '大棚A-3',
+          id: '363',
           classify:'potato',
+          classifyName:'马铃薯',
           region:'1',
-          status:'warn'
+          regionName:'东一区',
+          status:'warn',
+          statusName:'预警'
         },{
           headIcon: '1',
-          name: '大棚名称2',
-          id: '361',
+          name: '大棚A-4',
+          id: '364',
+          classify:'potato',
+          classifyName:'马铃薯',
+          region:'1',
+          regionName:'东一区',
+          status:'grow',
+          statusName:'生长'
+        },{
+          headIcon: '1',
+          name: '大棚A-5',
+          id: '365',
+          classify:'potato',
+          classifyName:'马铃薯',
+          region:'1',
+          regionName:'东一区',
+          status:'grow',
+          statusName:'生长'
+        },{
+          headIcon: '1',
+          name: '大棚B-1',
+          id: '431',
           classify:'strawberry',
-          region:'3',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'apple',
+          classifyName:'草莓',
           region:'2',
-          status:'warn'
+          regionName:'东二区',
+          status:'grow',
+          statusName:'生长'
         },{
           headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'potato',
-          region:'1',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称2',
-          id: '361',
+          name: '大棚B-2',
+          id: '432',
           classify:'strawberry',
-          region:'3',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'apple',
+          classifyName:'草莓',
           region:'2',
-          status:'warn'
+          regionName:'东二区',
+          status:'harvest',
+          statusName:'收获'
         },{
           headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'potato',
-          region:'1',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称2',
-          id: '361',
+          name: '大棚B-3',
+          id: '433',
           classify:'strawberry',
-          region:'3',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'apple',
+          classifyName:'草莓',
           region:'2',
-          status:'warn'
+          regionName:'东二区',
+          status:'harvest',
+          statusName:'收获'
         },{
           headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'potato',
-          region:'1',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称2',
-          id: '361',
+          name: '大棚B-4',
+          id: '434',
           classify:'strawberry',
-          region:'3',
-          status:'warn'
-        },{
-          headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'apple',
+          classifyName:'草莓',
           region:'2',
-          status:'warn'
+          regionName:'东二区',
+          status:'warn',
+          statusName:'预警'
         },{
           headIcon: '1',
-          name: '大棚名称',
-          id: '361',
-          classify:'potato',
-          region:'1',
-          status:'warn'
+          name: '大棚B-5',
+          id: '435',
+          classify:'strawberry',
+          classifyName:'草莓',
+          region:'2',
+          regionName:'东二区',
+          status:'harvest',
+          statusName:'收获'
+        },{
+          headIcon: '1',
+          name: '大棚C-1',
+          id: '761',
+          classify:'apple',
+          classifyName:'苹果',
+          region:'3',
+          regionName:'北一区',
+          status:'grow',
+          statusName:'生长'
+        },{
+          headIcon: '1',
+          name: '大棚C-2',
+          id: '762',
+          classify:'apple',
+          classifyName:'苹果',
+          region:'3',
+          regionName:'北一区',
+          status:'warn',
+          statusName:'预警'
+        },{
+          headIcon: '1',
+          name: '大棚C-3',
+          id: '763',
+          classify:'apple',
+          classifyName:'苹果',
+          region:'3',
+          regionName:'北一区',
+          status:'harvest',
+          statusName:'收获'
+        },{
+          headIcon: '1',
+          name: '大棚C-4',
+          id: '764',
+          classify:'apple',
+          classifyName:'苹果',
+          region:'3',
+          regionName:'北一区',
+          status:'harvest',
+          statusName:'收获'
+        },{
+          headIcon: '1',
+          name: '大棚C-5',
+          id: '765',
+          classify:'apple',
+          classifyName:'苹果',
+          region:'3',
+          regionName:'北一区',
+          status:'grow',
+          statusName:'生长'
         }],
       //假数据
       classifyData:[{
@@ -300,8 +346,12 @@ export default {
         this.tableData = this.fakeData;
     },
     //跳转页面
-    goto(){
-      this.$router.push({name:"greenhouse"})
+    goto(val){
+      //加密
+      let b = new Buffer(JSON.stringify(val));
+      let s = b.toString('base64');
+      let data = encodeURIComponent(s);
+      this.$router.push({name:"greenhouse",params:{data:data}})
     },
   }
 }

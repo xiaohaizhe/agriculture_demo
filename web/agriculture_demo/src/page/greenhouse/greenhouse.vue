@@ -2,7 +2,7 @@
     <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
-            <el-breadcrumb-item> 马铃薯大棚A-1</el-breadcrumb-item>
+            <el-breadcrumb-item>{{greenhouse.name}}</el-breadcrumb-item>
             </el-breadcrumb>
             <el-divider></el-divider>
             <el-row :gutter="60">
@@ -68,13 +68,13 @@
                         <p class="mg-bot-20">大棚基本信息</p>
                         <div class="greenhousePic ad-icon mg-bot-20"></div>
                         <ul>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">名称：</p>马铃薯大棚A-1</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">大棚ID：</p>1212</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">分类：</p>马铃薯</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">地区：</p>三鲜农业种植场北三</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">状态：</p>开花期</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">创建时间：</p>2019/01/18</li>
-                            <li class="ad-flex mg-bot-10"><p class="gh-text">大棚介绍：</p><span>该大棚主要用于种植马铃薯，已是2019年第三期种植内容已是2019年第三期种植内容已是2019年第三期种植内容已是2019年第三期种植内容。</span></li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">名称：</p>{{greenhouse.name}}</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">大棚ID：</p>{{greenhouse.id}}</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">分类：</p>{{greenhouse.classifyName}}</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">地区：</p>{{greenhouse.regionName}}</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">状态：</p>{{greenhouse.statusName}}</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">创建时间：</p>2019/05/18</li>
+                            <li class="ad-flex mg-bot-10"><p class="gh-text">大棚介绍：</p><span>暂无介绍</span></li>
                         </ul>
                         <el-button type="primary" round style="margin: 20px auto;display: block;" @click="goto('plantLog')">查看种植记录</el-button>
                     </div>
@@ -91,6 +91,7 @@
         name: 'greenhouse',
         data () {
             return {
+                greenhouse:{},
                 oldParam:'',
                 param:'1',
                 params:[{
@@ -203,6 +204,10 @@
             'area-chart':areaChart
         },
         mounted(){
+             //解密
+            var x = new Buffer(decodeURIComponent(this.$route.params.data), 'base64')
+            var y = x.toString('utf8');
+            this.greenhouse = JSON.parse(y);
             this.envParams = this.fakeEnv1;
         },
         watch:{

@@ -42,7 +42,7 @@ export default new Router({
           meta:{routeFlag:false},
           children:[{
             path: '',
-            redirect: '/index/infoBank/ordinary'
+            redirect: '/index/infoBank/knowledgeBase'
           },{
             path: "/index/infoBank/knowledgeBase",
             name:"knowledgeBase",
@@ -87,7 +87,7 @@ export default new Router({
           name:"news",
           component: news
         },{
-          path: "/index/cropManage/greenhouse",
+          path: "/index/cropManage/greenhouse/:data",
           name:"greenhouse",
           component: greenhouse,
           meta:{routeFlag:false} 

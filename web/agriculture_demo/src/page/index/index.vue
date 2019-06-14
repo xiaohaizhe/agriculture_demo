@@ -3,7 +3,8 @@
         <el-container class="bgColor" :class="{bg :$route.meta.routeFlag,}">
             <el-aside width="15%" class="height100">
                <el-col :span="24" class="bg-nav height100">
-                   <div class="hiynn"></div>
+                   <!-- <div class="hiynn"></div> -->
+                   <div class="hiynn">耘农大脑</div>
                   <el-menu router 
                     :default-active="routerName"
                     class="el-menu-vertical-demo"
@@ -12,7 +13,7 @@
                       <i class="weed nav-icon"></i>
                       <span slot="title">作物管理</span>
                     </el-menu-item>
-                    <el-menu-item index="infoBank" :route="{name:'ordinary'}">
+                    <el-menu-item index="infoBank" :route="{name:'knowledgeBase'}">
                       <i class="info nav-icon"></i>
                       <span slot="title">病虫害信息库</span>
                     </el-menu-item>

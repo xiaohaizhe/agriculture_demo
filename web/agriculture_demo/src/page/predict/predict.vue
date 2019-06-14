@@ -9,11 +9,11 @@
         <el-divider></el-divider>
         <el-row v-if="this.analyseActive!='news'">
             <el-col :span="24">
-                <ul class="ad-flex ad-flexEnd mg-top-10 ">
+                <ul class="ad-flex ad-end mg-top-10 ">
                     <li v-for="(item,index) in pramas" :key="item.routeId" class="paramLi mg-right-10" @click="pramaChange(index)">
                         <i class="paramActive mg-right-10" :style="{'background-color':paramActive==item.id?'#FBB02F':'#fff'}"></i>{{item.name}}</li>
                 </ul>
-                <ul class="ad-flex ad-flexEnd mg-top-20" style="padding-left:20px">
+                <ul class="ad-flex ad-end mg-top-20" style="padding-left:20px">
                     <li v-for="(item,index) in analyses" :class="{analyseActive:analyseActive==item.id}" :key="item.id" class="paramLi mg-right-10" style="margin:15px 30px 15px 0" @click="analyseChange(index)" >{{item.name}}</li>
                 </ul>
             </el-col>

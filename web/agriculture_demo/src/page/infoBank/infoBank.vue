@@ -1,7 +1,7 @@
 <template>
    <el-row :gutter="30" class="height100">
      <el-col :span="16" class="height100">
-       <div class="sub-ad bg-fff" style="min-height:100%" :class="{height100: paramActive==1}">
+       <div class="sub-ad bg-fff height100" :class="{height100: paramActive==1}">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害信息库</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">{{pramas[paramActive].name}}</el-breadcrumb-item>
@@ -10,7 +10,7 @@
             <el-divider></el-divider>
             <el-row>
                 <el-col :span="12">
-                    <ul class="ad-flex ad-flexEnd mg-top-10 ">
+                    <ul class="ad-flex ad-end mg-top-10 ">
                         <li v-for="(item,index) in pramas" :key="item.routeId" class="paramLi mg-right-10" @click="pramaChange(index)">
                             <i class="paramActive mg-right-10" :style="{'background-color':paramActive==item.index?'#FBB02F':'#fff'}"></i>{{item.name}}</li>
                     </ul>
@@ -61,14 +61,16 @@ export default {
     return {
       routeMatch:{},
       paramActive:0,
-      pramas:[{
-            name:'马铃薯常见病虫害',
-            routeId:'ordinary',
-            index:0
-        },{
+      pramas:[
+        // {
+        //     name:'马铃薯常见病虫害',
+        //     routeId:'ordinary',
+        //     index:0
+        // },
+        {
             name:'病虫害数据库',
             routeId:'knowledgeBase',
-            index:1
+            index:0
         }],
       newList:[]
     }
@@ -76,7 +78,7 @@ export default {
   mounted(){
     this.routeMatch = this.$route;
     if(this.routeMatch.name=="knowledgeBase"){
-      this.paramActive = 1;
+      this.paramActive = 0;
     }
     this.getNewsList();
   },

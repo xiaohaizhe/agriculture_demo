@@ -17,6 +17,16 @@
         name: 'importChart',
         data () {
             return {
+                appleData:{
+                    label:['2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017'],
+                    data1:[5.4, 6.6, 7.7, 6.1, 3.8, 2.8, 8.7,6.7,6.8],
+                    data2: [117.18, 112.29, 103.46, 97.58, 99.46, 86.50, 83.30,133.90,132.83]
+                },
+                strawberryData:{
+                    label:['2006','2007','2008','2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017'],
+                    data1:[0,0,574,0,0,0,0,0,182,0,341,47584],
+                    data2:[2279063,969527,360524,202532,345562,827755,1010572,797264,1291462,1453549,1575214,2286796]
+                }
             }
         },
         props: {
@@ -27,7 +37,13 @@
         mounted(){
         },
         methods: {
-            async drawChart(){
+            async drawChart(type){
+                let data= {}
+                if(type=="apple"){
+                    data=this.appleData;
+                }else{
+                    data= this.strawberryData;
+                }
                 let importChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                     xAxis: {
@@ -38,7 +54,7 @@
                         axisTick:{
                             show:false,
                         },
-                        data:['2009', '2010', '2011', '2012', '2013', '2014', '2015','2016','2017']
+                        data:data.label
                     },
                     tooltip: {
                         trigger: 'item',
@@ -59,7 +75,7 @@
                         bottom :0
                     },
                     series: [{
-                        data: [5.4, 6.6, 7.7, 6.1, 3.8, 2.8, 8.7,6.7,6.8],
+                        data: data.data1,
                         type: 'bar',
                         name:'进口',
                         barMaxWidth :20,
@@ -77,7 +93,7 @@
                             },
                         }
                     },{
-                        data: [117.18, 112.29, 103.46, 97.58, 99.46, 86.50, 83.30,133.90,132.83],
+                        data:data.data2,
                         type: 'bar',
                         name:'出口',
                         barMaxWidth :20,

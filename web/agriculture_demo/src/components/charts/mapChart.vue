@@ -10,7 +10,7 @@
     // require('echarts/lib/component/tooltip')
     // require('echarts/lib/component/visualMap')
     // require('echarts/lib/component/title')
-    import china from 'static/cities.json'
+    import cities from 'static/cities.json'
     
     export default {
         name: 'mapChart',
@@ -35,7 +35,7 @@
                 let day = date.getDate();
                 let nowDate = year + "年" + month + "月" + day + "日";
                 data.data.push({"name":"南海诸岛","value":data.max});
-                this.$echarts.registerMap('china', china);
+                this.$echarts.registerMap('cities', cities);
                 let mapChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {
                         // backgroundColor: '#021926',
@@ -67,7 +67,7 @@
                         series: [{
                                 name: '温度',
                                 type: 'map',
-                                mapType: 'china',
+                                mapType: 'cities',
                                 label: {
                                     normal: {
                                         show: false

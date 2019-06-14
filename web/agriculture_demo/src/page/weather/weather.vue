@@ -7,7 +7,7 @@
               <el-divider></el-divider>
               <el-row>
                   <el-col :span="12">
-                      <ul class="ad-flex ad-flexEnd mg-top-10 ">
+                      <ul class="ad-flex ad-end mg-top-10 ">
                           <li v-for="(item,index) in pramas" :key="item.routeId" class="paramLi mg-right-10" @click="pramaChange(index)">
                               <i class="paramActive mg-right-10" :style="{'background-color':paramActive==item.index?'#FBB02F':'#fff'}"></i>{{item.name}}</li>
                       </ul>

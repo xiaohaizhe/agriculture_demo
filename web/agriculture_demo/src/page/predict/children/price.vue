@@ -71,7 +71,7 @@
             <span class="font-18">市场价格</span>
          </div>
          <div class="ad-main ad-flex ad-flexCol"  style="height:450px">
-             <ul class="ad-flex ad-flexEnd ad-lightgray mg-bot-20">
+             <ul class="ad-flex ad-end ad-lightgray mg-bot-20">
                  <li class="mg-right-50">更新时间：{{price.updateTime}}</li>
                  <li class="mg-right-50">更新周期：日</li>
                  <li>价格单元：{{price.unit}}</li>
@@ -127,7 +127,7 @@
             <span class="font-18">成本收益</span>
          </div>
          <div class="ad-main ad-flex ad-flexCol"  style="height:450px">
-             <ul class="ad-flex ad-flexEnd ad-lightgray mg-bot-20">
+             <ul class="ad-flex ad-end ad-lightgray mg-bot-20">
                  <li class="mg-right-50">数据来源：农产品成品收益年鉴</li>
                  <li class="mg-right-50">周期：年度</li>
                  <li>更新时间：{{price.updateTime}}</li>
