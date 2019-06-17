@@ -12,7 +12,7 @@
                         <el-row>
                             <el-col :span="6">
                                 <ul class="score ad-flex ad-flexCenter ad-justifyCenter">
-                                    <li class="font-60">35</li>
+                                    <li class="font-60">{{greenhouse.score}}</li>
                                     <li style="margin:10px 0"><i class="star ad-icon mg-right-10"></i><span class="font-12 ad-white">综合评分</span></li>
                                     <li class="font-12 ad-white">备注：满分100</li>
                                 </ul>
@@ -57,9 +57,9 @@
                             <el-button type="text" class="ad-gray textRight mg-right-20" @click="goto('envParam')">查看更多></el-button>
                         </el-row>
                         <el-row class="notice">
-                            <span class="mg-right-20">生长状态：出现病虫害</span><el-button size="mini" type="primary" round class="mg-bot-10">查看</el-button>
-                            <p class="mg-bot-10">大棚环境：根据环境参数，有XX%几率会出现XXX病虫害</p>
-                            <p class="mg-bot-10">解决办法：建议修改大棚环境模式二</p>
+                            <span class="mg-right-20">生长状态：出现病虫害</span><el-button size="mini" type="primary" round class="mg-bot-10" @click="goto('knowledgeBase')">查看</el-button>
+                            <p class="mg-bot-10">大棚环境：{{analysis}}</p>
+                            <p class="mg-bot-10">解决办法：{{advice}}</p>
                         </el-row>
                     </div>
                 </el-col>
@@ -94,6 +94,8 @@
                 greenhouse:{},
                 oldParam:'',
                 param:'1',
+                analysis:'环境参数中水分较低，植物会出现干燥脱水。',
+                advice:'根据环境参数，建议多给大棚浇水！',
                 params:[{
                     value: '1',
                     label: 'WOFOST'
@@ -119,13 +121,13 @@
                         value:50
                     },{
                         name:'土壤水分',
-                        value:60
+                        value:10
                     },{
                         name:'土壤盐分',
-                        value:80
+                        value:70
                     },{
                         name:'土壤PH值',
-                        value:20
+                        value:40
                     },{
                         name:'土壤氮含量',
                         value:30
@@ -134,10 +136,10 @@
                         value:40
                     },{
                         name:'环境温度',
-                        value:90
+                        value:60
                     },{
                         name:'棚内光照',
-                        value:10
+                        value:40
                     },{
                         name:'二氧化碳',
                         value:55
@@ -175,7 +177,7 @@
                         value:10
                     },{
                         name:'土壤水分',
-                        value:40
+                        value:5
                     },{
                         name:'土壤盐分',
                         value:30
@@ -190,7 +192,7 @@
                         value:30
                     },{
                         name:'环境温度',
-                        value:40
+                        value:20
                     },{
                         name:'棚内光照',
                         value:90
@@ -225,12 +227,12 @@
                     type: 'warning'
                 }).then(() => {
                     switch(val){
-                        case '1' :this.envParams = this.fakeEnv1;break;
-                        case '2' :this.envParams = this.fakeEnv2;break;
-                        case '3' :this.envParams = this.fakeEnv3;break;
-                        case '4' :this.envParams = this.fakeEnv2;break;
-                        case '5' :this.envParams = this.fakeEnv1;break;
-                        case '6' :this.envParams = this.fakeEnv3;break;
+                        case '1' :this.envParams = this.fakeEnv1;this.analysis="环境参数中水分较低，植物会出现干燥脱水。";this.advice="根据环境参数，建议多给大棚浇水！";break;
+                        case '2' :this.envParams = this.fakeEnv2;this.analysis="环境参数中温度较高，植物生长缓慢,叶子将干枯掉落,甚至可能会出现死亡。";this.advice="根据环境参数，建议降低大棚温度！";break;
+                        case '3' :this.envParams = this.fakeEnv3;this.analysis="环境参数中多重预警。";this.advice="建议修改大棚环境模式!";break;
+                        case '4' :this.envParams = this.fakeEnv2;this.analysis="环境参数中温度较高，植物生长缓慢,叶子将干枯掉落,甚至可能会出现死亡。";this.advice="根据环境参数，建议降低大棚温度！";break;
+                        case '5' :this.envParams = this.fakeEnv1;this.analysis="环境参数中水分较低，植物会出现干燥脱水。";this.advice="根据环境参数，建议多给大棚浇水！";break;
+                        case '6' :this.envParams = this.fakeEnv3;this.analysis="环境参数中多重预警。";this.advice="建议修改大棚环境模式!";break;
                     }
                 }).catch(() => {
                     this.param = this.oldParam;   
@@ -238,7 +240,7 @@
             },
             //跳转页面
             goto(name){
-                this.$router.push({name:name})
+                this.$router.push({name:name});
             },
         }
     }

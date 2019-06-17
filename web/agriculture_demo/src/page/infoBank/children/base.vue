@@ -307,7 +307,6 @@
                 element.appendChild( symbol );
 
                 if(this.table[ i ].first_level){
-                  debugger
                   var second_level = document.createElement( 'div' );
                   // second_level.className = 'second_level';
                   // second_level.textContent = (this.table[ i ].second_level || "") + '  '+this.table[ i ].first_level;
@@ -420,7 +419,7 @@
 
           },
           onWindowResize:function() {
-
+            let container = document.getElementById('container');
             this.camera.aspect = container.clientWidth/container.clientHeight;
             this.camera.updateProjectionMatrix();
 

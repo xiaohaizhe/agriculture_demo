@@ -225,7 +225,7 @@
                 let option = {
                             tooltip: {
                                 trigger: 'item',
-                                formatter: function(params) {debugger
+                                formatter: function(params) {
                                     if (typeof(params.value)[2] == "undefined") {
                                         if(params.value){
                                             return params.name + ' : ' + params.value+'（万吨）';
