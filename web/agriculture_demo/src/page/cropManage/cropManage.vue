@@ -42,9 +42,9 @@
         </el-form>
         <div class="crop-sum ad-flex ad-flexCenter ad-justifyCenter">
           <i class="analysis ad-icon mg-right-10"></i>
-          共有<span class="font-20 ad-gray"> 45 </span>个大棚，
+          共有<span class="font-20 ad-gray"> 15 </span>个大棚，
           其中<span class="font-20 ad-red"> 3 </span>个大棚发出预警，
-          <span class="font-20 ad-yellow"> 8 </span>个大棚需要收获
+          <span class="font-20 ad-yellow"> 6 </span>个大棚需要收获
         </div>
       <el-table :data="tableData.filter(data => !form.name || data.name.toLowerCase().includes(form.name.toLowerCase()))">
         <el-table-column prop="headIcon" label=" " width="110">
@@ -319,6 +319,8 @@ export default {
     }
   },
   mounted(){
+    // debugger;
+    this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
     this.tableData = this.fakeData;
     this.pagination.total = this.tableData.length;
   },
@@ -327,38 +329,138 @@ export default {
       if(val !=""){
         let temp = [];
         for(let i of this.fakeData){
-          if(i.classify==val){
+          if(this.form.region!='' && this.form.status!=''){
+            if(i.classify==val && i.region==this.form.region && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else if(this.form.region!='' && this.form.status==''){
+            if(i.classify==val && i.region==this.form.region){
+              temp.push(i);
+            }
+          }else if(this.form.region=='' && this.form.status!=''){
+            if(i.classify==val && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else{
+            if(i.classify==val){
+              temp.push(i);
+            }
+          }
+        }
+        this.tableData = temp;
+      }else{
+        let temp = [];
+        for(let i of this.fakeData){
+          if(this.form.region!='' && this.form.status!=''){
+            if(i.region==this.form.region && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else if(this.form.region!='' && this.form.status==''){
+            if(i.region==this.form.region){
+              temp.push(i);
+            }
+          }else if(this.form.region=='' && this.form.status!=''){
+            if(i.status==this.form.status){
+              temp.push(i);
+            }
+          }else{
               temp.push(i);
           }
         }
         this.tableData = temp;
-      }else
-        this.tableData = this.fakeData;
+      }
       
     },
     regionChange(val){
       if(val !=""){
         let temp = [];
         for(let i of this.fakeData){
-          if(i.region==val){
+          if(this.form.classify!='' && this.form.status!=''){
+            if(i.region==val && i.classify==this.form.classify && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else if(this.form.classify!='' && this.form.status==''){
+            if(i.region==val && i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else if(this.form.classify=='' && this.form.status!=''){
+            if(i.region==val && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else{
+            if(i.region==val){
+              temp.push(i);
+            }
+          }
+        }
+        this.tableData = temp;
+      }else{
+        let temp = [];
+        for(let i of this.fakeData){
+          if(this.form.classify!='' && this.form.status!=''){
+            if(i.classify==this.form.classify && i.status==this.form.status){
+              temp.push(i);
+            }
+          }else if(this.form.classify!='' && this.form.status==''){
+            if(i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else if(this.form.classify=='' && this.form.status!=''){
+            if(i.status==this.form.status){
+              temp.push(i);
+            }
+          }else{
               temp.push(i);
           }
         }
         this.tableData = temp;
-      }else
-        this.tableData = this.fakeData;
+      }
+        
     },
     statusChange(val){
       if(val !=""){
         let temp = [];
         for(let i of this.fakeData){
-          if(i.status==val){
+          if(this.form.region!='' && this.form.classify!=''){
+            if(i.status==val && i.region==this.form.region && i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else if(this.form.region!='' && this.form.classify==''){
+            if(i.status==val && i.region==this.form.region){
+              temp.push(i);
+            }
+          }else if(this.form.region=='' && this.form.classify!=''){
+            if(i.status==val && i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else{
+            if(i.status==val){
+              temp.push(i);
+            }
+          }
+        }
+        this.tableData = temp;
+      }else{
+        let temp = [];
+        for(let i of this.fakeData){
+          if(this.form.region!='' && this.form.classify!=''){
+            if(i.region==this.form.region && i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else if(this.form.region!='' && this.form.classify==''){
+            if(i.region==this.form.region){
+              temp.push(i);
+            }
+          }else if(this.form.region=='' && this.form.classify!=''){
+            if(i.classify==this.form.classify){
+              temp.push(i);
+            }
+          }else{
               temp.push(i);
           }
         }
         this.tableData = temp;
-      }else
-        this.tableData = this.fakeData;
+      }
     },
     //跳转页面
     goto(val){

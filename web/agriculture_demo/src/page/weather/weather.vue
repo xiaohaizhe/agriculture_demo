@@ -57,6 +57,7 @@ export default {
       'map-chart':mapChart
   },
   mounted(){
+    this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
     this.height = document.getElementById("el-main").clientHeight-200+"px";
     this.getWeatherList();
   },

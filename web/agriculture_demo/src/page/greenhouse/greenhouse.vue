@@ -206,6 +206,7 @@
             'area-chart':areaChart
         },
         mounted(){
+            this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
              //解密
             var x = new Buffer(decodeURIComponent(this.$route.params.data), 'base64')
             var y = x.toString('utf8');
@@ -240,7 +241,18 @@
             },
             //跳转页面
             goto(name){
-                this.$router.push({name:name});
+                if(name=='knowledgeBase'){
+                    this.$store.commit('HANDLE_NAV','infoBank');
+                    this.$router.push({name:name});
+                }else{
+                    //加密
+                    let b = new Buffer(JSON.stringify(this.greenhouse));
+                    let s = b.toString('base64');
+                    let data = encodeURIComponent(s);
+                    this.$router.push({name:name,params:{data:data}})
+                    
+                }
+                
             },
         }
     }

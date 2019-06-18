@@ -2,7 +2,7 @@
    <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ name: 'greenhouse' }">马铃薯大棚A-1</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ name: 'greenhouse' ,pramas:{data:secretGh}}">{{greenhouse.name}}</el-breadcrumb-item>
                 <el-breadcrumb-item>种植记录</el-breadcrumb-item>
             </el-breadcrumb>
             <el-divider></el-divider>
@@ -48,8 +48,8 @@
             </el-form>
             <div class="crop-sum ad-flex ad-flexCenter ad-justifyCenter">
                 <i class="analysis ad-icon mg-right-10"></i>
-                该大棚已种植 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 20 </span> 批次，
-                已收获 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 19 </span> 批次
+                该大棚已种植 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 5 </span> 批次，
+                已收获 <span class="font-20 ad-gray mg-right-5 mg-left-5"> 2 </span> 批次
             </div>
             <el-table :data="tableData.filter(data => !form.name || data.name.toLowerCase().includes(form.name.toLowerCase()))">
                 <el-table-column prop="plantTime" label="种植时间"></el-table-column>
@@ -93,103 +93,124 @@ export default {
             crops:'',
             status:''
         },
+        secretGh:'',
+        greenhouse:{},
         tableData:[],
         pagination:{
             currentPage:1,
             total:0
         },
-        fakeData: [{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
-            status:'grow'
-            },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
-            status:'grow'
-            },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
+        fakeData:[],
+        fakeData1: [{
+            plantTime: '2018/10/21',
+            batch: '批次1',
+            harvestTime: '2019/02/01',
+            crops:'strawberry',
+            variety:'硕丰',
             status:'harvest'
             },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
+            plantTime: '2019/11/01',
+            batch: '批次2',
+            harvestTime: '2019/02/20',
+            crops:'strawberry',
+            variety:'明晶',
             status:'harvest'
             },{
-            plantTime: '2018/04/21',
-            batch: '草莓大棚A-1',
-            harvestTime: '2018/08/01',
+            plantTime: '2019/04/21',
+            batch: '批次3',
+            harvestTime: '-',
             crops:'strawberry',
-            variety:'品种',
+            variety:'明旭',
+            status:'grow'
+            },{
+            plantTime: '2019/05/01',
+            batch: '批次4',
+            harvestTime: '-',
+            crops:'strawberry',
+            variety:'戈雷拉',
+            status:'grow'
+            },{
+            plantTime: '2019/05/21',
+            batch: '批次5',
+            harvestTime: '-',
+            crops:'strawberry',
+            variety:'白草莓',
             status:'warn',
             statusTimes:'2'
+            }],
+        fakeData2: [{
+            plantTime: '2018/10/21',
+            batch: '批次1',
+            harvestTime: '2019/02/01',
+            crops:'apple',
+            variety:'红富士',
+            status:'harvest'
             },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
-            status:'warn',
-            statusTimes:'1'
+            plantTime: '2019/11/01',
+            batch: '批次2',
+            harvestTime: '2019/02/20',
+            crops:'apple',
+            variety:'黄元帅',
+            status:'harvest'
             },{
-            plantTime: '2018/04/21',
-            batch: '草莓大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'strawberry',
-            variety:'品种',
-            status:'warn',
-            statusTimes:'2'
+            plantTime: '2019/04/21',
+            batch: '批次3',
+            harvestTime: '-',
+            crops:'apple',
+            variety:'嘎拉',
+            status:'grow'
             },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
-            status:'warn',
-            statusTimes:'1'
+            plantTime: '2019/05/01',
+            batch: '批次4',
+            harvestTime: '-',
+            crops:'apple',
+            variety:'国光',
+            status:'grow'
             },{
-            plantTime: '2018/04/21',
-            batch: '草莓大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'strawberry',
-            variety:'品种',
-            status:'warn',
-            statusTimes:'2'
-            },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'potato',
-            variety:'品种',
-            status:'warn',
-            statusTimes:'1'
-            },{
-            plantTime: '2018/04/21',
-            batch: '草莓大棚A-1',
-            harvestTime: '2018/08/01',
-            crops:'strawberry',
-            variety:'品种',
+            plantTime: '2019/05/21',
+            batch: '批次5',
+            harvestTime: '-',
+            crops:'apple',
+            variety:'红星',
             status:'warn',
             statusTimes:'2'
-            },{
-            plantTime: '2018/04/21',
-            batch: '马铃薯大棚A-1',
-            harvestTime: '2018/08/01',
+            }],
+        fakeData3: [{
+            plantTime: '2018/10/21',
+            batch: '批次1',
+            harvestTime: '2019/02/01',
             crops:'potato',
-            variety:'品种',
+            variety:'早大白',
+            status:'harvest'
+            },{
+            plantTime: '2019/11/01',
+            batch: '批次2',
+            harvestTime: '2019/02/20',
+            crops:'potato',
+            variety:'超白',
+            status:'harvest'
+            },{
+            plantTime: '2019/04/21',
+            batch: '批次3',
+            harvestTime: '-',
+            crops:'potato',
+            variety:'黄麻子',
+            status:'grow'
+            },{
+            plantTime: '2019/05/01',
+            batch: '批次4',
+            harvestTime: '-',
+            crops:'potato',
+            variety:'尤金',
+            status:'grow'
+            },{
+            plantTime: '2019/05/21',
+            batch: '批次5',
+            harvestTime: '-',
+            crops:'potato',
+            variety:'中薯2号',
             status:'warn',
-            statusTimes:'1'
+            statusTimes:'2'
             }],
         cropsData:[{
             value: '',
@@ -220,8 +241,21 @@ export default {
     }
   },
   mounted(){
-      this.tableData = this.fakeData;
-      this.pagination.total = this.tableData.length;
+        this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
+        //解密
+        var x = new Buffer(decodeURIComponent(this.$route.params.data), 'base64')
+        var y = x.toString('utf8');
+        this.secretGh = y;
+        this.greenhouse = JSON.parse(y);
+        if(this.greenhouse.classify=='apple'){
+            this.fakeData = this.fakeData2;
+        }else if(this.greenhouse.classify=='strawberry'){
+            this.fakeData = this.fakeData1;
+        }else {
+            this.fakeData = this.fakeData3;
+        }
+        this.tableData=this.fakeData;
+        this.pagination.total = this.tableData.length;
   },
   methods:{
         statusChange(val){

@@ -77,6 +77,7 @@ export default {
   },
   mounted(){
     this.routeMatch = this.$route;
+    this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
     if(this.routeMatch.name=="knowledgeBase"){
       this.paramActive = 0;
     }

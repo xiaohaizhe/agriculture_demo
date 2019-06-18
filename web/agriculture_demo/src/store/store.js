@@ -10,6 +10,7 @@ const state = {
 		name:'苹果',
 		id:'apple'
 	},
+	nav:'cropManage'
 	// type:'price'
 }
 

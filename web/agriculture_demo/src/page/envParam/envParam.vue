@@ -2,7 +2,7 @@
   <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ name: 'greenhouse' }">马铃薯大棚A-1</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ name: 'greenhouse' ,pramas:{data:secretGh}}">{{greenhouse.name}}</el-breadcrumb-item>
                 <el-breadcrumb-item>大棚环境参数</el-breadcrumb-item>
             </el-breadcrumb>
             <el-divider></el-divider>
@@ -54,6 +54,8 @@ export default {
     data () {
         return {
             paramActive:0,
+            greenhouse:{},
+            secretGh:'',
             form:{
                 greenhouse:'1',
                 time:'',
@@ -98,20 +100,28 @@ export default {
                 }],
             ghData:[{
                     value:'1',
-                    label:'马铃薯大棚A-1'
-                    },{
-                        value:'2',
-                        label:'马铃薯大棚A-2'
-                    },{
-                        value:'3',
-                        label:'马铃薯大棚A-3'
-                    }]
+                    label:'大棚1'
+                    }
+                    // ,{
+                    //     value:'2',
+                    //     label:'大棚2'
+                    // },{
+                    //     value:'3',
+                    //     label:'大棚3'
+                    // }
+                    ]
         }
     },
     components:{
         'line-chart':lineChart
     },
     mounted(){
+        this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
+         //解密
+        var x = new Buffer(decodeURIComponent(this.$route.params.data), 'base64')
+        var y = x.toString('utf8');
+        this.secretGh = y;
+        this.greenhouse = JSON.parse(y);
         this.form.start = dateFormat(new Date(new Date().getTime() - 24*60*60*1000),' 00:00:00');
         this.form.end = dateFormat(new Date(new Date().getTime() - 24*60*60*1000),' 23:59:59');
         this.form.time = [this.form.start,this.form.end];

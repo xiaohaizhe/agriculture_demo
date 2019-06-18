@@ -92,12 +92,12 @@ export default new Router({
           component: greenhouse,
           meta:{routeFlag:false} 
         },{
-          path: "/index/cropManage/envParam",
+          path: "/index/cropManage/envParam/:data",
           name:"envParam",
           component: envParam,
           meta:{routeFlag:false} 
         },{
-          path: "/index/cropManage/plantLog",
+          path: "/index/cropManage/plantLog/:data",
           name:"plantLog",
           component: plantLog,
           meta:{routeFlag:false} 

@@ -34,11 +34,11 @@
         methods: {
             async drawChart(type){
                 let data= {}
-                if(type=="apple"){
+                // if(type=="apple"){
                     data=this.appleData;
-                }else{
-                    data= this.strawberryData;
-                }
+                // }else{
+                    // data= this.strawberryData;
+                // }
                 let nowMonth = new Date().getMonth+1;
                 let forecastChart = this.$echarts.init(document.getElementById(this.chartId));
                 let option = {

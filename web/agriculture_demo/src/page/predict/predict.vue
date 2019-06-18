@@ -72,6 +72,7 @@ export default {
       ])
   },
   mounted(){
+    this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
     this.paramActive = this.vegetable.id;
     if(this.paramActive=='strawberry'){
       this.getStrawberryNews();

@@ -150,7 +150,7 @@ html,body,#app,.el-container{
     background-size: contain;
 }
 .el-menu-item.is-active {
-    color: #fff;
+    /* color: #fff; */
     background-color: rgba(80, 230, 225, 0.2);
 }
 .el-menu-item{

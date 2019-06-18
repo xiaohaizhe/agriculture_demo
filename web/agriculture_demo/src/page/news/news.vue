@@ -42,6 +42,7 @@
       }
     },
     mounted(){
+      this.$store.commit('HANDLE_NAV',this.$route.path.split('/')[2]);
       this.number = this.$route.params.number;
       this.getStrawberryNews();
       this.getStrawberryNewsDetail();

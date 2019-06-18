@@ -1,13 +1,15 @@
 <template>
     <div class="height100">
-        <el-container class="bgColor" :class="{bg :$route.meta.routeFlag,}">
+        <el-container class="bgColor" :class="{bg :$route.meta.routeFlag}">
             <el-aside width="15%" class="height100">
                <el-col :span="24" class="bg-nav height100">
                    <!-- <div class="hiynn"></div> -->
                    <div class="hiynn">耘农大脑</div>
                   <el-menu router 
-                    :default-active="routerName"
+                    :default-active="nav"
                     class="el-menu-vertical-demo"
+                    active-text-color="#fff"
+                    @select="selectNav"
                     >
                     <el-menu-item index="cropManage" :route="{name:'cropManage'}">
                       <i class="weed nav-icon"></i>
@@ -42,24 +44,34 @@
 
 <script>
   import adHeader from 'components/header/header'
+  import {mapState } from 'vuex'
+
   export default {
     name: 'index',
     data () {
       return {
-        routerName:this.$route.path.split('/')[2]
+        // routerName:this.$route.path.split('/')[2]
       }
     },
     computed:{
+        ...mapState([
+            'nav'
+        ])
+    },
+    watch:{
+      routerName(cur,old){
+        
+      }
     },
     mounted(){
-      // debugger;
-      // let a = this.$route;
     },
     components:{
         'ad-header':adHeader
     },
     methods: {
-
+        selectNav( index, indexPath){
+          this.$store.commit('HANDLE_NAV',index);
+        }
     }
 
   }
