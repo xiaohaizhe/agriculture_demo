@@ -101,8 +101,8 @@
                     <el-table-column prop="variety" label="品种"></el-table-column>
                     <el-table-column prop="province" label="省份"></el-table-column>
                     <el-table-column prop="terminal_market" label="批发市场"></el-table-column>
-                    <el-table-column prop="bottom_price" label="最低价格"></el-table-column>
-                    <el-table-column prop="top_price" label="最高价格"></el-table-column>
+                    <!-- <el-table-column prop="bottom_price" label="最低价格"></el-table-column>
+                    <el-table-column prop="top_price" label="最高价格"></el-table-column> -->
                     <el-table-column prop="average_price" label="平均价格"></el-table-column>
                     <el-table-column prop="measurement_unit" label="计量单位"></el-table-column>
                 </el-table>

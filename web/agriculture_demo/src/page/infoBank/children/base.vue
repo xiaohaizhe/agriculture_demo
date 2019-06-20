@@ -459,6 +459,7 @@
           color: #fff;
           text-align: center;
           bottom: 10px;
+          font-size: 12px;
       }
 			a {
 				color: #ffffff;

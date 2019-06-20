@@ -22,7 +22,7 @@
              <price-chart chartId="price" ref="priceChart" style="width:100%"></price-chart>
          </div>
       </li>
-      <li class="mg-bot-20">
+      <!-- <li class="mg-bot-20">
         <div class="sub ad-flex ad-flexCenter">
             <div class="risk mg-right-20">
                 <i class="ad-icon"></i>
@@ -30,9 +30,9 @@
             <span class="font-18">风险预警模型</span>
          </div>
          <div class="ad-main ad-flex ad-flexBtw" style="width:100%">
-             <!-- <risk-chart chartId="risk" ref="riskChart" style="width:100%"></risk-chart> -->
+             <risk-chart chartId="risk" ref="riskChart" style="width:100%"></risk-chart>
          </div>
-      </li>
+      </li> -->
   </ul>
 </template>
 

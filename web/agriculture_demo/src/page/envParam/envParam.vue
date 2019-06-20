@@ -90,12 +90,12 @@ export default {
                 },{
                     name:'土壤温度',
                     id:'soilTemperature',
-                    index:1,
+                    index:5,
                     unit:'%'
                 },{
                     name:'土壤PH值',
                     id:'soilpH',
-                    index:5,
+                    index:6,
                     unit:''
                 }],
             ghData:[{
