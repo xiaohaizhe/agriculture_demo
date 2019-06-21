@@ -1,7 +1,7 @@
 <template>
   <div class="bg-fff sub-ad">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ name: 'cropManage' }">数字化种植</el-breadcrumb-item>
           <el-breadcrumb-item></el-breadcrumb-item>
         </el-breadcrumb>
         <el-divider></el-divider>

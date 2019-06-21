@@ -1,7 +1,7 @@
 <template>
     <div class="sub-ad bg-fff">
               <el-breadcrumb separator-class="el-icon-arrow-right">
-                  <el-breadcrumb-item :to="{name:'weather'}">天气信息</el-breadcrumb-item>
+                  <el-breadcrumb-item :to="{name:'weather'}">智慧农情</el-breadcrumb-item>
                   <el-breadcrumb-item>{{pramas[paramActive].name}}</el-breadcrumb-item>
               </el-breadcrumb>
               <el-divider></el-divider>

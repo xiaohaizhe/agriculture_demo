@@ -140,7 +140,7 @@ html,body,#app,.el-container{
 .hiynn{
     color: #fff;
     font-size: 30px;
-    /* background-image: url(../assets/hiynn.svg); */
+    /* background-image: url(/static/images/hiynn.svg); */
     height: 3.8rem;
     background-repeat: no-repeat;
     border-bottom: 1px solid #fff;
@@ -195,28 +195,28 @@ html,body,#app,.el-container{
     
 }
 .weed::before{
-    background-image: url(../assets/weed.svg);
+    background-image: url('/static/images/weed.svg');
 }
 .is-active .weed::before{
-    background-image: url(../assets/weeding.svg)
+    background-image: url('/static/images/weeding.svg')
 }
 .info::before{
-    background-image: url(../assets/info.svg);
+    background-image: url('/static/images/info.svg');
 }
 .is-active .info::before{
-    background-image: url(../assets/infoing.svg)
+    background-image: url('/static/images/infoing.svg')
 }
 .weather::before{
-    background-image: url(../assets/weather.svg);
+    background-image: url('/static/images/weather.svg');
 }
 .is-active .weather::before{
-    background-image: url(../assets/weathering.svg)
+    background-image: url('/static/images/weathering.svg')
 }
 .predict::before{
-    background-image: url(../assets/predict.svg);
+    background-image: url('/static/images/predict.svg');
 }
 .is-active .predict::before{
-    background-image: url(../assets/predicting.svg)
+    background-image: url('/static/images/predicting.svg')
 }
 .el-menu-item, .el-submenu__title {
     height: 70px;
@@ -237,7 +237,7 @@ html,body,#app,.el-container{
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url(../assets/bg.svg)
+    background-image: url('/static/images/bg.png')
 }
 .bg:after{
     content: "";
@@ -289,30 +289,30 @@ html,body,#app,.el-container{
     background-color: rgba(255, 255, 255, 0.3);
 }
 .msg{
-    background-image: url(../assets/msg.svg)
+    background-image: url('/static/images/msg.svg')
 }
 .wechat{
-    background-image: url(../assets/wechat.svg)
+    background-image: url('/static/images/wechat.svg')
 }
 .config{
-    background-image: url(../assets/config.svg)
+    background-image: url('/static/images/config.svg')
 }
 .headIcon{
-    background-image: url(../assets/headIcon.svg)
+    background-image: url('/static/images/headIcon.png')
 }
 .clear .msg{
-    background-image: url(../assets/msging.svg)
+    background-image: url('/static/images/msging.svg')
 }
 .clear .config{
-    background-image: url(../assets/configing.svg)
+    background-image: url('/static/images/configing.svg')
 }
 .clear .wechat{
-    background-image: url(../assets/wechating.svg)
+    background-image: url('/static/images/wechating.svg')
 }
 .analysis{
     width: 18px;
     height: 18px;
-    background-image: url(../assets/analysis.svg)
+    background-image: url('/static/images/analysis.svg')
 }
 .ad-right .clear{
     background-color:#fff; 
@@ -355,21 +355,21 @@ html,body,#app,.el-container{
 }
 
 .greenhouse{
-    background-image: url(../assets/greenhouse.svg)
+    background-image: url('/static/images/greenhouse.png')
 }
 .emphasis{
-    background-image: url(../assets/emphasis.svg)
+    background-image: url('/static/images/emphasis.svg')
 }
 .greenhousePic{
     width: 100%;
     height: 250px;
     background-size: cover;
-    background-image: url(../assets/exampleGh.svg)
+    background-image: url('/static/images/exampleGh.svg')
 }
 .star{
     width: 15px;
     height: 15px;
-    background-image: url(../assets/star.svg)
+    background-image: url('/static/images/star.svg')
 }
 .el-table .ad-icon{
     width: 60px;
@@ -465,12 +465,12 @@ html,body,#app,.el-container{
 .bugs{
     width: 30px;
     height: 30px;
-    background-image: url(../assets/bugs.svg)
+    background-image: url('/static/images/bugs.svg')
 }
 .illness{
     width: 30px;
     height: 30px;
-    background-image: url(../assets/illness.svg)
+    background-image: url('/static/images/illness.svg')
 }
 .news{
     width: 100%;
@@ -478,7 +478,7 @@ html,body,#app,.el-container{
     background-size: cover;
     background-repeat: no-repeat;
     display: inline-block;
-    background-image: url(../assets/news.svg);
+    background-image: url('/static/images/news.png');
 }
 .ad-illness{
     flex-wrap: wrap;
@@ -550,45 +550,147 @@ html,body,#app,.el-container{
     left: 6px;
 }
 .finance>i{
-    background-image: url(../assets/finance.svg);
+    background-image: url('/static/images/finance.svg');
 }
 .map>i{
-    background-image: url(../assets/map.svg);
+    background-image: url('/static/images/map.svg');
 }
 .market>i{
-    background-image: url(../assets/market.svg);
+    background-image: url('/static/images/market.svg');
 }
 .cost>i{
-    background-image: url(../assets/cost.svg);
+    background-image: url('/static/images/cost.svg');
 }
 .consume>i{
-    background-image: url(../assets/consume.svg);
+    background-image: url('/static/images/consume.svg');
 }
 .output>i{
-    background-image: url(../assets/output.svg);
+    background-image: url('/static/images/output.svg');
 }
 .product>i{
-    background-image: url(../assets/product.svg);
+    background-image: url('/static/images/product.svg');
 }
 .storage>i{
-    background-image: url(../assets/storage.svg);
+    background-image: url('/static/images/storage.svg');
 }
 .import>i{
-    background-image: url(../assets/import.svg);
+    background-image: url('/static/images/import.svg');
 }
 .forecast>i{
-    background-image: url(../assets/forecast.svg);
+    background-image: url('/static/images/forecast.svg');
 }
 .price>i{
-    background-image: url(../assets/price.svg);
+    background-image: url('/static/images/price.svg');
 }
 .risk>i{
-    background-image: url(../assets/risk.svg);
+    background-image: url('/static/images/risk.svg');
 }
 .avg{
     padding: 25px;
     border-radius: 6px;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+}
+.three {
+    background-color: #000000;
+    margin: 0;
+    font-family: Helvetica, sans-serif;;
+overflow: hidden;
+height: 85%;
+position: relative;
+}
+.three #container{
+height: 100%;
+}
+.three .tip{
+position: absolute;
+color: #fff;
+text-align: center;
+bottom: 10px;
+font-size: 12px;
+}
+.three a {
+    color: #ffffff;
+}
+
+.three #info {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    padding: 5px;
+    font-family: Monospace;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+}
+.three #menu .active{
+background-color: rgba(0,255,255,0.5);
+}
+.three #menu {
+    position: absolute;
+bottom: 10px;
+width: 100%;
+/* margin-bottom: 10px; */
+    text-align: center;
+}
+
+.three .element {
+    width: 228px;
+height: 180px;
+display: flex;
+justify-content: center;
+align-items: center;
+    box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+    border: 1px solid rgba(127,255,255,0.25);
+    text-align: center;
+cursor: default;
+flex-direction: column;
+}
+
+.three .element:hover {
+    box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+    border: 1px solid rgba(127,255,255,0.75);
+}
+
+.three .element .number {
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 12px;
+color: rgba(127,255,255,0.75);
+}
+
+.three .element .symbol {
+margin: 0px 5px;
+font-size: 36px;
+color: rgba(255,255,255,0.75);
+text-shadow: 0 0 0px rgba(0,255,255,0.95);
+}
+
+.three .element .second_level {
+margin: 10px;
+font-size: 22px;
+color: rgba(127,255,255,0.75);
+}
+.three .element .first_level {
+font-size: 20px;
+color: rgba(127,255,255,0.75);
+}
+
+.three #menu button {
+    color: rgba(127,255,255,0.75);
+    background: transparent;
+    outline: 1px solid rgba(127,255,255,0.75);
+    border: 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.three #menu button:hover {
+    background-color: rgba(0,255,255,0.5);
+}
+.three #menu button:active {
+    color: #000000;
+    background-color: rgba(0,255,255,0.75);
 }
 ::-webkit-scrollbar {/*滚动条整体样式*/
         width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/

@@ -1,7 +1,7 @@
 <template>
    <div class="sub-ad bg-fff">
             <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ name: 'cropManage' }">作物管理</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ name: 'cropManage' }">数字化种植</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ name: 'greenhouse' ,pramas:{data:secretGh}}">{{greenhouse.name}}</el-breadcrumb-item>
                 <el-breadcrumb-item>种植记录</el-breadcrumb-item>
             </el-breadcrumb>

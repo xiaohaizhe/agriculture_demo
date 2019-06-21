@@ -13,15 +13,15 @@
                     >
                     <el-menu-item index="cropManage" :route="{name:'cropManage'}">
                       <i class="weed nav-icon"></i>
-                      <span slot="title">作物管理</span>
+                      <span slot="title">数字化种植</span>
                     </el-menu-item>
                     <el-menu-item index="infoBank" :route="{name:'knowledgeBase'}">
                       <i class="info nav-icon"></i>
-                      <span slot="title">病虫害信息库</span>
+                      <span slot="title">病虫害知识图谱</span>
                     </el-menu-item>
                     <el-menu-item index="weather" :route="{name:'weather'}">
                       <i class="weather nav-icon"></i>
-                      <span slot="title">天气信息</span>
+                      <span slot="title">智慧农情</span>
                     </el-menu-item>
                     <el-menu-item index="predict" :route="{name:'price'}">
                       <i class="predict nav-icon"></i>

@@ -3,7 +3,7 @@
      <el-col :span="16" class="height100">
        <div class="sub-ad bg-fff height100" :class="{height100: paramActive==1}">
             <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害信息库</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">病虫害知识图谱</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ name : pramas[paramActive].routeId}">{{pramas[paramActive].name}}</el-breadcrumb-item>
                 <el-breadcrumb-item v-if="routeMatch.name=='illDetail'">{{routeMatch.params.data ||routeMatch}}</el-breadcrumb-item>
             </el-breadcrumb>
