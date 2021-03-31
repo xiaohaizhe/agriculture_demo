@@ -19,7 +19,7 @@ incremental==17.5.0
 itsdangerous==1.1.0
 Jinja2==2.10.1
 js2xml==0.3.1
-lxml==4.3.3
+lxml==4.6.3
 MarkupSafe==1.1.1
 mod-wsgi==4.6.5
 parsel==1.5.1
